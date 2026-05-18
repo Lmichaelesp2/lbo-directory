@@ -1,5 +1,9 @@
 import { Organization } from '@/lib/supabase';
 
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').trim();
+}
+
 function getInitials(name: string): string {
   return name.split(' ').filter(Boolean).slice(0, 3).map(w => w[0]).join('').toUpperCase();
 }
@@ -29,7 +33,7 @@ export default function OrgCard({ org }: { org: Organization }) {
       {/* Description */}
       {org.description && (
         <p style={{ fontSize: '12px', color: 'var(--fg-3)', lineHeight: 1.6, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-          {org.description}
+          {stripHtml(org.description)}
         </p>
       )}
 
