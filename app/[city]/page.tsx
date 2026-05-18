@@ -135,8 +135,18 @@ export default function CityPage() {
             </div>
           )}
 
+          {/* More cities callout */}
+          <div style={{ borderRadius: '10px', padding: '16px 20px', border: '1px solid var(--color-rule)', background: 'var(--color-paper-2)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '28px', gap: '16px' }}>
+            <p style={{ fontSize: '13px', color: 'var(--fg-3)', margin: 0 }}>
+              <strong style={{ color: 'var(--fg-1)' }}>Don't see your city?</strong> We're expanding to Florida and beyond — let us know where to go next.
+            </p>
+            <Link href="/contact" style={{ fontSize: '12px', fontWeight: 700, color: 'var(--color-primary)', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+              Request a city →
+            </Link>
+          </div>
+
           {/* Events CTA */}
-          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '24px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '40px', gap: '24px' }}>
+          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '24px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '16px', gap: '24px' }}>
             <div>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '17px', fontWeight: 700, color: '#fff', marginBottom: '3px' }}>See what {cityName} organizations have coming up</h3>
               <p style={{ fontSize: '13px', color: '#94a3b8' }}>View upcoming events on the Local Business Calendars.</p>

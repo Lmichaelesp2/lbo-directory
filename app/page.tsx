@@ -192,6 +192,24 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* More cities coming */}
+        <section style={{ padding: '0 32px 48px', maxWidth: '960px', margin: '0 auto' }}>
+          <div style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '28px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '6px' }}>Expanding soon</div>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '4px' }}>
+                Don't see your city yet?
+              </h3>
+              <p style={{ fontSize: '13px', color: 'var(--fg-3)', lineHeight: 1.6 }}>
+                We're currently in four Texas cities, with Florida and other markets coming soon. Tell us which city you'd like added and we'll notify you when it's live.
+              </p>
+            </div>
+            <Link href="/contact" style={{ background: 'var(--color-primary)', color: '#fff', padding: '11px 24px', borderRadius: '8px', fontSize: '13px', fontWeight: 700, whiteSpace: 'nowrap', textDecoration: 'none', flexShrink: 0 }}>
+              Request Your City →
+            </Link>
+          </div>
+        </section>
+
         {/* Footer ticker */}
         <div style={{ background: 'var(--color-ink)', padding: '10px 32px', display: 'flex', gap: '32px', alignItems: 'center', justifyContent: 'center' }}>
           {[['588+', 'Organizations'], ['4', 'Texas Cities'], ['8', 'Categories'], ['800+', 'Events Monthly']].map(([val, label], i) => (

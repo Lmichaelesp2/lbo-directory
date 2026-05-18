@@ -41,9 +41,14 @@ export default function Navigation({ activeCitySlug }: { activeCitySlug?: string
             </Link>
           ))}
         </div>
-        <Link href="/claim" style={{ background: 'var(--color-accent)', color: '#fff', padding: '7px 18px', borderRadius: '6px', fontSize: '13px', fontWeight: 700, textDecoration: 'none', letterSpacing: '0.01em', whiteSpace: 'nowrap' }}>
-          Claim Your Listing →
-        </Link>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <Link href="/contact" style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none' }}>
+            More Cities
+          </Link>
+          <Link href="/claim" style={{ background: 'var(--color-accent)', color: '#fff', padding: '7px 18px', borderRadius: '6px', fontSize: '13px', fontWeight: 700, textDecoration: 'none', letterSpacing: '0.01em', whiteSpace: 'nowrap' }}>
+            Claim Your Listing →
+          </Link>
+        </div>
       </nav>
     </header>
   );
