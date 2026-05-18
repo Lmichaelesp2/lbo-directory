@@ -59,48 +59,51 @@ export default function CityPageClient() {
       <main style={{ flex: 1 }}>
 
         {/* City hero */}
-        <section style={{ background: 'var(--color-ink)', padding: '40px 32px' }}>
+        <section style={{ background: 'var(--color-paper)', borderBottom: '1px solid var(--color-rule)', padding: '36px 32px' }}>
           <div style={{ maxWidth: '960px', margin: '0 auto' }}>
-            <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5b82f7', marginBottom: '10px' }}>
-              <Link href="/" style={{ color: '#5b82f7', textDecoration: 'none' }}>All Cities</Link> › {cityName}
+            <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '10px' }}>
+              <Link href="/" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>All Cities</Link> › {cityName}
             </div>
-            <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '24px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px' }}>
               <div>
-                <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '36px', fontWeight: 700, color: '#fff', lineHeight: 1.15, marginBottom: '6px' }}>
+                <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '36px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.15, marginBottom: '6px' }}>
                   {cityName} Business Organizations
                 </h1>
                 {content && (
-                  <p style={{ fontSize: '13px', color: '#5b82f7', fontWeight: 500, marginBottom: '0' }}>
+                  <p style={{ fontSize: '13px', color: 'var(--fg-3)', fontWeight: 500, marginBottom: '0' }}>
                     {content.tagline}
                   </p>
                 )}
               </div>
-              <input
-                type="text"
-                placeholder={`Search ${cityName} organizations...`}
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', padding: '10px 14px', fontSize: '13px', width: '260px', color: '#fff', outline: 'none', fontFamily: 'var(--font-sans)', flexShrink: 0 }}
-              />
+              <div style={{ position: 'relative', flexShrink: 0 }}>
+                <span style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--fg-4)', fontSize: '14px', pointerEvents: 'none' }}>🔍</span>
+                <input
+                  type="text"
+                  placeholder={`Search ${cityName} organizations...`}
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
+                  style={{ background: '#fff', border: '1.5px solid #cbd5e1', borderRadius: '8px', padding: '10px 14px 10px 34px', fontSize: '13px', width: '280px', color: 'var(--fg-1)', outline: 'none', fontFamily: 'var(--font-sans)' }}
+                />
+              </div>
             </div>
           </div>
         </section>
 
         {/* Stats strip */}
-        <section style={{ background: '#f8fafc', borderBottom: '1px solid var(--color-rule)', padding: '16px 32px' }}>
+        <section style={{ background: 'var(--color-ink)', padding: '16px 32px' }}>
           <div style={{ maxWidth: '960px', margin: '0 auto', display: 'flex', gap: '40px', alignItems: 'center' }}>
             <div style={{ display: 'flex', gap: '32px' }}>
               <div>
-                <span style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 700, color: 'var(--color-primary)' }}>{orgs.length}</span>
-                <span style={{ fontSize: '12px', color: 'var(--fg-3)', marginLeft: '6px' }}>organizations listed</span>
+                <span style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 700, color: '#fff' }}>{orgs.length}</span>
+                <span style={{ fontSize: '12px', color: '#64748b', marginLeft: '6px' }}>organizations listed</span>
               </div>
               <div>
-                <span style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 700, color: 'var(--color-primary)' }}>8</span>
-                <span style={{ fontSize: '12px', color: 'var(--fg-3)', marginLeft: '6px' }}>categories covered</span>
+                <span style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 700, color: '#fff' }}>8</span>
+                <span style={{ fontSize: '12px', color: '#64748b', marginLeft: '6px' }}>categories covered</span>
               </div>
               <div>
-                <span style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 700, color: 'var(--color-primary)' }}>{Object.keys(counts).length}</span>
-                <span style={{ fontSize: '12px', color: 'var(--fg-3)', marginLeft: '6px' }}>active category types</span>
+                <span style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 700, color: '#fff' }}>{Object.keys(counts).length}</span>
+                <span style={{ fontSize: '12px', color: '#64748b', marginLeft: '6px' }}>active category types</span>
               </div>
             </div>
           </div>
