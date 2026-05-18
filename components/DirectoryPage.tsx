@@ -27,7 +27,7 @@ export default function DirectoryPage() {
       .select('*')
       .eq('city', selectedCity)
       .not('public_category', 'is', null)
-      .eq('archive', false)
+      .not('archive', 'eq', true)
       .order('name')
       .then(({ data }) => {
         setOrgs(data || []);
