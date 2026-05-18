@@ -1,8 +1,32 @@
 'use client';
-import { Suspense } from 'react';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import { CITIES, PUBLIC_CATEGORIES } from '@/lib/config';
+
+const STATS = [
+  { number: '588+', label: 'Organizations tracked' },
+  { number: '4', label: 'Texas cities covered' },
+  { number: '8', label: 'Business categories' },
+  { number: '800+', label: 'Events sourced monthly' },
+];
+
+const WHAT_WE_TRACK = [
+  'Chambers of commerce',
+  'Professional networking groups',
+  'Industry associations',
+  'Real estate organizations',
+  'Technology groups & meetups',
+  'Community & civic organizations',
+  'Construction & trade associations',
+  'Healthcare & professional societies',
+];
+
+const CITY_DESCRIPTIONS: Record<string, string> = {
+  'San Antonio': 'A thriving business community anchored by chambers, veteran organizations, and one of Texas\'s most active networking scenes.',
+  'Houston':     'The largest business ecosystem in Texas — oil & gas, healthcare, technology, and hundreds of professional associations.',
+  'Dallas':      'A powerhouse of finance, real estate, and technology organizations driving North Texas business forward.',
+  'Austin':      'The fastest-growing business community in Texas, led by technology groups, startups, and innovation networks.',
+};
 
 export default function HomePage() {
   return (
@@ -11,54 +35,155 @@ export default function HomePage() {
       <main style={{ flex: 1 }}>
 
         {/* Hero */}
-        <section style={{ padding: '56px 32px 48px', maxWidth: '960px', margin: '0 auto', textAlign: 'center' }}>
-          <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
-            <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--color-primary)', display: 'inline-block' }}></span>
-            588 Organizations Across Texas
-          </div>
-          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '42px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '16px' }}>
-            Discover the organizations<br /><em style={{ fontStyle: 'italic', color: 'var(--color-primary)' }}>behind</em> local business.
-          </h1>
-          <p style={{ fontSize: '15px', color: 'var(--fg-3)', lineHeight: 1.7, maxWidth: '520px', margin: '0 auto 40px' }}>
-            Chambers, networking groups, professional associations, and more — every business organization in Texas, organized by city and category.
-          </p>
+        <section style={{ padding: '56px 32px 48px', maxWidth: '960px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', gap: '48px', alignItems: 'flex-start' }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--color-primary)', display: 'inline-block' }}></span>
+                Texas Business Directory · 4 Cities
+              </div>
+              <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '42px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '18px' }}>
+                Every local business organization in Texas,{' '}
+                <em style={{ fontStyle: 'italic', color: 'var(--color-primary)' }}>all in one place.</em>
+              </h1>
+              <p style={{ fontSize: '15px', color: 'var(--fg-3)', lineHeight: 1.75, maxWidth: '480px', marginBottom: '12px' }}>
+                Local Business Organizations is the most complete directory of business organizations across San Antonio, Houston, Dallas, and Austin — chambers, networking groups, professional associations, trade organizations, and more.
+              </p>
+              <p style={{ fontSize: '15px', color: 'var(--fg-3)', lineHeight: 1.75, maxWidth: '480px', marginBottom: '28px' }}>
+                Whether you're looking to grow your network, find your industry's association, or connect with the right organizations in your city — this is where you start.
+              </p>
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <Link href="/san-antonio" style={{ background: 'var(--color-accent)', color: '#fff', padding: '11px 24px', borderRadius: '8px', fontSize: '13px', fontWeight: 700, textDecoration: 'none' }}>
+                  Browse Organizations →
+                </Link>
+                <Link href="/claim" style={{ background: '#fff', color: 'var(--fg-1)', padding: '11px 24px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, textDecoration: 'none', border: '1px solid #e2e8f0' }}>
+                  Claim Your Listing
+                </Link>
+              </div>
+            </div>
 
-          {/* City cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginBottom: '48px' }}>
+            {/* City panel */}
+            <div style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '20px', minWidth: '220px' }}>
+              <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-4)', marginBottom: '14px' }}>Browse by city</div>
+              {CITIES.map((city, i) => (
+                <Link key={city.slug} href={`/${city.slug}`} style={{ textDecoration: 'none' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: i < CITIES.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                    <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--fg-1)' }}>{city.name}</span>
+                    <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)' }}>{city.count} orgs</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Stats strip */}
+        <section style={{ background: 'var(--color-ink)', padding: '28px 32px' }}>
+          <div style={{ maxWidth: '960px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
+            {STATS.map(stat => (
+              <div key={stat.label} style={{ textAlign: 'center' }}>
+                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '32px', fontWeight: 700, color: '#fff', lineHeight: 1, marginBottom: '6px' }}>{stat.number}</div>
+                <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748b' }}>{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* City cards */}
+        <section style={{ padding: '48px 32px', maxWidth: '960px', margin: '0 auto' }}>
+          <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '8px' }}>4 Texas Cities</div>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '8px' }}>
+            Find organizations in your city
+          </h2>
+          <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '28px', maxWidth: '560px' }}>
+            Each city has its own directory, organized by category. Click your city to browse all organizations, filter by type, and discover who's active in your market.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
             {CITIES.map(city => (
               <Link key={city.slug} href={`/${city.slug}`} style={{ textDecoration: 'none' }}>
-                <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '28px 16px', textAlign: 'center', transition: 'border-color 0.15s', cursor: 'pointer' }}
-                  onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--color-primary)')}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = '#e2e8f0')}>
-                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '20px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '6px' }}>{city.name}</div>
-                  <div style={{ fontSize: '13px', color: 'var(--color-primary)', fontWeight: 600 }}>{city.count} organizations</div>
-                  <div style={{ marginTop: '16px', fontSize: '12px', color: 'var(--color-accent)', fontWeight: 600 }}>Browse →</div>
+                <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px', cursor: 'pointer' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
+                    <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 700, color: 'var(--fg-1)' }}>{city.name}</h3>
+                    <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)', background: 'var(--color-primary-bg)', padding: '3px 10px', borderRadius: '100px' }}>{city.count} orgs</span>
+                  </div>
+                  <p style={{ fontSize: '13px', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '14px' }}>
+                    {CITY_DESCRIPTIONS[city.name]}
+                  </p>
+                  <span style={{ fontSize: '13px', color: 'var(--color-accent)', fontWeight: 600 }}>Browse {city.name} organizations →</span>
                 </div>
               </Link>
             ))}
           </div>
         </section>
 
-        <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)' }} />
+        <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)', margin: '0 32px' }} />
 
-        {/* Categories preview */}
-        <section style={{ padding: '40px 32px', maxWidth: '960px', margin: '0 auto' }}>
-          <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '16px' }}>8 Categories</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
-            {PUBLIC_CATEGORIES.map(cat => (
-              <div key={cat.label} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '14px 12px', textAlign: 'center' }}>
-                <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--fg-1)' }}>{cat.label}</div>
-              </div>
-            ))}
+        {/* What we track */}
+        <section style={{ padding: '48px 32px', maxWidth: '960px', margin: '0 auto', display: 'flex', gap: '64px', alignItems: 'flex-start' }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '8px' }}>What we track</div>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '12px' }}>
+              Every type of business organization, in one directory
+            </h2>
+            <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '24px' }}>
+              We research, verify, and maintain profiles for every major business organization across Texas — so you don't have to hunt across a dozen different websites to find who's out there.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+              {WHAT_WE_TRACK.map(item => (
+                <div key={item} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <span style={{ color: 'var(--color-primary)', fontSize: '13px', flexShrink: 0 }}>✓</span>
+                  <span style={{ fontSize: '13px', color: 'var(--fg-2)' }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Categories */}
+          <div style={{ minWidth: '260px' }}>
+            <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '12px' }}>8 Categories</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {PUBLIC_CATEGORIES.map(cat => (
+                <div key={cat.label} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '10px 14px', fontSize: '13px', fontWeight: 500, color: 'var(--fg-1)' }}>
+                  {cat.label}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)', margin: '0 32px' }} />
+
+        {/* Claim CTA */}
+        <section style={{ padding: '48px 32px', maxWidth: '960px', margin: '0 auto' }}>
+          <div style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '36px 40px', display: 'flex', gap: '40px', alignItems: 'center' }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent)', marginBottom: '8px' }}>For organization leaders</div>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '26px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '10px' }}>
+                Is your organization listed here?
+              </h2>
+              <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '0' }}>
+                If your organization is in our directory, you can claim your listing and take control of how you appear to thousands of Texas business professionals. Add your logo, update your description, and make sure your contact information is accurate. Claiming is free to request — our team reviews every submission.
+              </p>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center', flexShrink: 0 }}>
+              <Link href="/claim" style={{ background: 'var(--color-accent)', color: '#fff', padding: '12px 28px', borderRadius: '8px', fontSize: '13px', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap', textAlign: 'center' }}>
+                Claim Your Listing →
+              </Link>
+              <span style={{ fontSize: '11px', color: 'var(--fg-4)', textAlign: 'center' }}>Free to request · 1–2 day review</span>
+            </div>
           </div>
         </section>
 
         {/* Events CTA */}
-        <section style={{ maxWidth: '960px', margin: '0 auto', padding: '0 32px 48px' }}>
+        <section style={{ padding: '0 32px 48px', maxWidth: '960px', margin: '0 auto' }}>
           <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '28px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px' }}>
             <div>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>See what these organizations have coming up</h3>
-              <p style={{ fontSize: '13px', color: 'var(--fg-4)' }}>Browse upcoming events from every organization on the Local Business Calendars.</p>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>
+                Looking for events, not just organizations?
+              </h3>
+              <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.6 }}>
+                Visit Local Business Calendars — we track every networking event, chamber mixer, and business gathering across Texas, updated weekly.
+              </p>
             </div>
             <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
               style={{ background: 'var(--color-accent)', color: '#fff', padding: '11px 24px', borderRadius: '8px', fontSize: '13px', fontWeight: 700, whiteSpace: 'nowrap', textDecoration: 'none' }}>
@@ -69,12 +194,13 @@ export default function HomePage() {
 
         {/* Footer ticker */}
         <div style={{ background: 'var(--color-ink)', padding: '10px 32px', display: 'flex', gap: '32px', alignItems: 'center', justifyContent: 'center' }}>
-          {[['588', 'Organizations'], ['4', 'Texas Cities'], ['8', 'Categories']].map(([val, label], i) => (
+          {[['588+', 'Organizations'], ['4', 'Texas Cities'], ['8', 'Categories'], ['800+', 'Events Monthly']].map(([val, label], i) => (
             <span key={i} style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#475569' }}>
               <strong style={{ color: '#94a3b8' }}>{val}</strong> {label}
             </span>
           ))}
         </div>
+
       </main>
     </>
   );
