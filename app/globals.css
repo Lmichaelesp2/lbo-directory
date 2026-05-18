@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-ink:        #0a1628;
+  --color-primary:    #1652f0;
+  --color-primary-bg: #eef3fe;
+  --color-accent:     #c2410c;
+  --color-paper:      #fafaf7;
+  --color-paper-2:    #f3f1ea;
+  --color-rule:       #e6e2d6;
+  --fg-1:             #0a1628;
+  --fg-2:             #1f2a3d;
+  --fg-3:             #5b6678;
+  --fg-4:             #94a3b8;
+  --font-sans:        'Inter', system-ui, sans-serif;
+  --font-serif:       'Playfair Display', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  color: var(--fg-1);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  color: var(--fg-1);
+}
+
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
