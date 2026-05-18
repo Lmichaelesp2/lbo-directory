@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Organization } from '@/lib/supabase';
 
 function stripHtml(html: string): string {
@@ -46,9 +47,13 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
             Visit website →
           </a>
         ) : <span />}
-        <span style={{ fontSize: '10px', fontWeight: 600, padding: '2px 7px', borderRadius: '100px', background: org.claimed ? '#d1fae5' : '#f1f5f9', color: org.claimed ? '#065f46' : '#475569' }}>
-          {org.claimed ? 'Claimed' : 'Unclaimed'}
-        </span>
+        {org.claimed ? (
+          <span style={{ fontSize: '10px', fontWeight: 600, padding: '2px 7px', borderRadius: '100px', background: '#d1fae5', color: '#065f46' }}>Claimed</span>
+        ) : (
+          <Link href={`/claim`} style={{ fontSize: '10px', fontWeight: 600, padding: '2px 7px', borderRadius: '100px', background: '#fff7ed', color: '#c2410c', textDecoration: 'none', border: '1px solid #fed7aa' }}>
+            Claim →
+          </Link>
+        )}
       </div>
     </div>
   );
