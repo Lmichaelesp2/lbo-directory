@@ -1,8 +1,12 @@
 'use client';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { CITIES } from '@/lib/config';
 
 export default function Navigation() {
+  const searchParams = useSearchParams();
+  const activeCity = searchParams.get('city');
+
   const today = new Date().toLocaleDateString('en-US', {
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
   }).toUpperCase();
@@ -31,11 +35,12 @@ export default function Navigation() {
       {/* Nav bar */}
       <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 32px', height: '44px' }}>
         <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-          <Link href="/" style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none' }}>
+          <Link href="/" style={{ fontSize: '13px', fontWeight: activeCity === null ? 600 : 500, color: activeCity === null ? 'var(--fg-1)' : 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none' }}>
             All Cities
           </Link>
           {CITIES.map(city => (
-            <Link key={city.slug} href={`/${city.slug}`} style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none' }}>
+            <Link key={city.slug} href={`/?city=${city.slug}`}
+              style={{ fontSize: '13px', fontWeight: activeCity === city.slug ? 600 : 500, color: activeCity === city.slug ? 'var(--fg-1)' : 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none' }}>
               {city.name}
             </Link>
           ))}
