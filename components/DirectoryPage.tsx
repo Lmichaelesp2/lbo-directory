@@ -16,8 +16,7 @@ export default function DirectoryPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const citySlug = searchParams.get('city');
-  const initialCity = citySlug ? (CITY_SLUG_TO_NAME[citySlug as keyof typeof CITY_SLUG_TO_NAME] || 'San Antonio') : 'San Antonio';
-  const [selectedCity, setSelectedCity] = useState(initialCity);
+  const selectedCity = citySlug ? (CITY_SLUG_TO_NAME[citySlug as keyof typeof CITY_SLUG_TO_NAME] || 'San Antonio') : 'San Antonio';
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [orgs, setOrgs] = useState<Organization[]>([]);
@@ -83,7 +82,7 @@ export default function DirectoryPage() {
         <div style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '20px', minWidth: '220px' }}>
           <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-4)', marginBottom: '14px' }}>Organizations by City</div>
           {CITIES.map(city => (
-            <div key={city.slug} onClick={() => { setSelectedCity(city.name); setSelectedCategory(null); router.push(`/?city=${city.slug}`); }}
+            <div key={city.slug} onClick={() => { setSelectedCategory(null); router.push(`/?city=${city.slug}`); }}
               style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: '1px solid #f1f5f9', cursor: 'pointer' }}>
               <span style={{ fontSize: '14px', fontWeight: selectedCity === city.name ? 600 : 500, color: selectedCity === city.name ? 'var(--color-primary)' : 'var(--fg-1)' }}>{city.name}</span>
               <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)' }}>{city.count} orgs</span>
@@ -98,7 +97,7 @@ export default function DirectoryPage() {
         {/* City tabs */}
         <div style={{ display: 'flex', gap: '6px', marginBottom: '28px' }}>
           {CITIES.map(city => (
-            <button key={city.slug} onClick={() => { setSelectedCity(city.name); setSelectedCategory(null); router.push(`/?city=${city.slug}`); }}
+            <button key={city.slug} onClick={() => { setSelectedCategory(null); router.push(`/?city=${city.slug}`); }}
               style={{ fontSize: '13px', fontWeight: selectedCity === city.name ? 600 : 500, color: selectedCity === city.name ? '#fff' : '#475569', padding: '7px 16px', borderRadius: '100px', border: '1px solid', borderColor: selectedCity === city.name ? 'var(--color-ink)' : '#e2e8f0', background: selectedCity === city.name ? 'var(--color-ink)' : '#fff', cursor: 'pointer' }}>
               {city.name}
             </button>
