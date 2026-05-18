@@ -43,11 +43,11 @@ export default function HomePage() {
                 Texas Business Directory · 4 Cities
               </div>
               <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '42px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '18px' }}>
-                Every local business organization in Texas,{' '}
+                The local business organizations of Texas,{' '}
                 <em style={{ fontStyle: 'italic', color: 'var(--color-primary)' }}>all in one place.</em>
               </h1>
               <p style={{ fontSize: '15px', color: 'var(--fg-3)', lineHeight: 1.75, maxWidth: '480px', marginBottom: '12px' }}>
-                Local Business Organizations is the most complete directory of business organizations across San Antonio, Houston, Dallas, and Austin — chambers, networking groups, professional associations, trade organizations, and more.
+                Local Business Organizations is a curated directory of chambers, networking groups, professional associations, trade organizations, and more — spanning San Antonio, Houston, Dallas, and Austin.
               </p>
               <p style={{ fontSize: '15px', color: 'var(--fg-3)', lineHeight: 1.75, maxWidth: '480px', marginBottom: '28px' }}>
                 Whether you're looking to grow your network, find your industry's association, or connect with the right organizations in your city — this is where you start.
@@ -123,10 +123,10 @@ export default function HomePage() {
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '8px' }}>What we track</div>
             <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '12px' }}>
-              Every type of business organization, in one directory
+              The types of business organizations we track
             </h2>
             <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '24px' }}>
-              We research, verify, and maintain profiles for every major business organization across Texas — so you don't have to hunt across a dozen different websites to find who's out there.
+              We research and maintain profiles for a wide range of business organizations across Texas — so you have one place to start instead of hunting across a dozen different websites.
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
               {WHAT_WE_TRACK.map(item => (
