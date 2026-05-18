@@ -59,7 +59,7 @@ export default function CityPageClient() {
       <main style={{ flex: 1 }}>
 
         {/* City hero */}
-        <section style={{ background: 'var(--color-paper)', borderBottom: '1px solid var(--color-rule)', padding: '36px 32px' }}>
+        <section style={{ background: '#fff', borderBottom: '1px solid var(--color-rule)', padding: '36px 32px' }}>
           <div style={{ maxWidth: '960px', margin: '0 auto' }}>
             <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '10px' }}>
               <Link href="/" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>All Cities</Link> › {cityName}
@@ -67,7 +67,7 @@ export default function CityPageClient() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px' }}>
               <div>
                 <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '36px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.15, marginBottom: '6px' }}>
-                  {cityName} Business Organizations
+                  <span style={{ color: 'var(--color-primary)' }}>{cityName}</span> Business Organizations
                 </h1>
                 {content && (
                   <p style={{ fontSize: '13px', color: 'var(--fg-3)', fontWeight: 500, marginBottom: '0' }}>
