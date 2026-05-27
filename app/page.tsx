@@ -46,14 +46,8 @@ export default function HomePage() {
                 The local business organizations of Texas,{' '}
                 <em style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--color-primary)' }}>all in one place.</em>
               </h1>
-              <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '12px' }}>
-                Local Business Organizations is a curated directory of chambers, networking groups, professional associations, trade organizations, and more — spanning San Antonio, Houston, Dallas, and Austin.
-              </p>
-              <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '12px' }}>
-                Whether you're looking to grow your network, find your industry's association, or connect with the right organizations in your city — this is where you start.
-              </p>
-              <p style={{ fontSize: '0.875rem', color: 'var(--fg-4)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '28px' }}>
-                Many of the organizations in this directory host the events listed each week on{' '}
+              <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '2rem' }}>
+                Chambers, networking groups, professional associations, and trade organizations — browse every local business organization in Texas, organized by city and category. Many host the events tracked weekly on{' '}
                 <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'none', fontWeight: 600 }}>
                   Local Business Calendars
                 </a>.
