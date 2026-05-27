@@ -71,7 +71,7 @@ a:hover { text-decoration: underline; }
 .lbo-track-checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .lbo-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .lbo-claim-row { display: flex; gap: 2.5rem; align-items: center; }
-.lbo-cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.lbo-cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 
 /* ── Mobile ── */
 @media (max-width: 768px) {

@@ -45,16 +45,6 @@ const STATES = [
   },
 ];
 
-const WHAT_WE_TRACK = [
-  'Chambers of commerce',
-  'Professional networking groups',
-  'Industry & trade associations',
-  'Real estate organizations',
-  'Technology groups & meetups',
-  'Community & civic organizations',
-  'Construction & trade associations',
-  'Healthcare & professional societies',
-];
 
 export default function HomePage() {
   return (
@@ -165,40 +155,48 @@ export default function HomePage() {
         <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)', margin: '0 2rem' }} />
 
         {/* What we track */}
-        <section className="lbo-track-grid" style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: '4rem', alignItems: 'flex-start' }}>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>What we track</div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.75rem' }}>
-              Every type of local business organization
-            </h2>
-            <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-              We research and verify profiles for a wide range of organizations — so you have one place to find who's active in your market, instead of hunting across a dozen different websites.
-            </p>
-            <div className="lbo-track-checklist" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-              {WHAT_WE_TRACK.map(item => (
-                <div key={item} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--color-primary)', fontSize: '13px', flexShrink: 0 }}>✓</span>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--fg-2)' }}>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div style={{ minWidth: '260px' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.75rem' }}>Also connected to</div>
-            <div style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.25rem' }}>
-              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '0.4rem' }}>Local Business Calendars</div>
-              <p style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '0.75rem' }}>
-                Many of the organizations in this directory host weekly events tracked on our sister site — free to browse, delivered every Monday.
-              </p>
-              <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
-                style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-primary)', textDecoration: 'none' }}>
-                Visit Local Business Calendars ↗
-              </a>
-            </div>
+        <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>What we track</div>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
+            Every type of local business organization
+          </h2>
+          <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '600px' }}>
+            We research and verify profiles for a wide range of organizations — so you have one place to find who's active in your market, instead of hunting across a dozen different websites.
+          </p>
+          <div className="lbo-cat-grid">
+            {[
+              { label: 'Chamber +',        sub: 'Chambers, associations & civic groups',  bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
+              { label: 'Technology +',     sub: 'Tech, startups & innovation groups',      bg: '#f0fdf9', color: '#0f6e56', border: '#a7f3d0' },
+              { label: 'Real Estate +',    sub: 'Real estate, construction & design',      bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
+              { label: 'Small Business +', sub: 'Small biz, finance & professional svcs', bg: '#faf5ff', color: '#7c3aed', border: '#ddd6fe' },
+              { label: '+ More',           sub: 'Healthcare, civic & other industries',    bg: 'var(--color-paper-2)', color: 'var(--fg-3)', border: 'var(--color-rule)' },
+            ].map(cat => (
+              <div key={cat.label} style={{ background: cat.bg, border: `1px solid ${cat.border}`, borderRadius: '12px', padding: '18px 16px' }}>
+                <div style={{ fontSize: '0.875rem', fontWeight: 700, color: cat.color, marginBottom: '4px' }}>{cat.label}</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--fg-3)', lineHeight: 1.5 }}>{cat.sub}</div>
+              </div>
+            ))}
           </div>
         </section>
 
-        <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)', margin: '0 2rem' }} />
+        {/* LBC connection — full width dark band */}
+        <section style={{ background: 'var(--color-ink)', padding: '3rem 2rem', margin: '0' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '2rem', flexWrap: 'wrap' }}>
+            <div>
+              <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#64748b', marginBottom: '0.5rem' }}>Part of the Local Business Network</div>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: 600, color: '#fff', marginBottom: '0.4rem' }}>
+                Also on Local Business Calendars
+              </h3>
+              <p style={{ fontSize: '0.875rem', color: '#94a3b8', lineHeight: 1.6, maxWidth: '520px' }}>
+                Many of the organizations in this directory host weekly events tracked on our sister site — free to browse, delivered every Monday morning.
+              </p>
+            </div>
+            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+              style={{ background: 'var(--color-primary)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+              Browse This Week's Events ↗
+            </a>
+          </div>
+        </section>
 
         {/* Claim CTA */}
         <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>

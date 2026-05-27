@@ -131,12 +131,19 @@ export default function TexasPage() {
         <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>What we track</div>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '1.75rem' }}>
-            8 categories of business organizations
+            5 categories of business organizations
           </h2>
           <div className="lbo-cat-grid">
-            {PUBLIC_CATEGORIES.map(cat => (
-              <div key={cat.label} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '14px 16px', fontSize: '0.875rem', fontWeight: 500, color: 'var(--fg-1)' }}>
-                {cat.label}
+            {[
+              { label: 'Chamber +',       sub: 'Chambers, associations & civic groups',   bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
+              { label: 'Technology +',    sub: 'Tech, startups & innovation groups',       bg: '#f0fdf9', color: '#0f6e56', border: '#a7f3d0' },
+              { label: 'Real Estate +',   sub: 'Real estate, construction & design',       bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
+              { label: 'Small Business +',sub: 'Small biz, finance & professional svcs',  bg: '#faf5ff', color: '#7c3aed', border: '#ddd6fe' },
+              { label: '+ More',          sub: 'Healthcare, civic & other industries',     bg: 'var(--color-paper-2)', color: 'var(--fg-3)', border: 'var(--color-rule)' },
+            ].map(cat => (
+              <div key={cat.label} style={{ background: cat.bg, border: `1px solid ${cat.border}`, borderRadius: '12px', padding: '18px 16px' }}>
+                <div style={{ fontSize: '0.875rem', fontWeight: 700, color: cat.color, marginBottom: '4px' }}>{cat.label}</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--fg-3)', lineHeight: 1.5 }}>{cat.sub}</div>
               </div>
             ))}
           </div>
