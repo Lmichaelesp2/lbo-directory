@@ -46,12 +46,12 @@ export default function TexasPage() {
               </div>
 
               <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.25rem, 4.5vw, 3rem)', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
-                Every business organization in Texas,{' '}
-                <em style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--color-primary)' }}>all in one place.</em>
+                The business organizations that matter{' '}
+                <em style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--color-primary)' }}>across Texas.</em>
               </h1>
 
               <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '2rem' }}>
-                Chambers, networking groups, professional associations, and trade organizations — browse every local business organization across San Antonio, Houston, Dallas, and Austin, organized by city and category.
+                Chambers, networking groups, professional associations, and trade organizations — browse local business organizations across San Antonio, Houston, Dallas, and Austin, organized by city and category.
               </p>
 
               <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>

@@ -72,12 +72,12 @@ export default function HomePage() {
               </div>
 
               <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.25rem, 4.5vw, 3rem)', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
-                Every business organization,{' '}
-                <em style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--color-primary)' }}>every city.</em>
+                The business organizations that matter{' '}
+                <em style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--color-primary)' }}>in your city.</em>
               </h1>
 
               <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '2rem' }}>
-                Local Business Organizations is a curated directory of chambers of commerce, professional associations, networking groups, and trade organizations — organized by city and category so you can find who's active in your market.
+                A curated directory of chambers of commerce, professional associations, networking groups, and trade organizations — organized by city and category so you know who's out there and where to plug in.
               </p>
 
               <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
