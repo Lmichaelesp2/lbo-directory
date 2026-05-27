@@ -37,3 +37,45 @@ h1, h2, h3 {
 
 a { color: var(--color-primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
+/* ── Mobile responsive ── */
+@media (max-width: 768px) {
+  /* Hero: collapse grid to single column, hide city panel */
+  .lbo-hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .lbo-hero-city-panel {
+    display: none !important;
+  }
+  /* Hero padding tighter on mobile */
+  .lbo-hero-section {
+    padding: 2.5rem 1.25rem 0 !important;
+  }
+  /* Nav: hide some items on mobile */
+  .lbo-nav-inner {
+    padding: 0 1rem !important;
+  }
+  /* General section padding */
+  .lbo-section {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+  /* Stats strip: wrap */
+  .lbo-stats-strip {
+    gap: 0.5rem !important;
+    padding: 0.6rem 1rem !important;
+  }
+  /* City cards: single column */
+  .lbo-city-grid {
+    grid-template-columns: 1fr !important;
+  }
+  /* What we track: single column */
+  .lbo-track-grid {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+  .lbo-track-checklist {
+    grid-template-columns: 1fr !important;
+  }
+}
