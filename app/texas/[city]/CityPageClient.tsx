@@ -103,7 +103,7 @@ export default function CityPageClient() {
               {PUBLIC_CATEGORIES.filter(c => c.label !== 'Other').map((cat, i) => (
                 <button key={cat.label}
                   onClick={() => setSelectedCategory(selectedCategory === cat.label ? null : cat.label)}
-                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.7rem 1.25rem', borderBottom: '1px solid var(--color-rule)', width: '100%', background: selectedCategory === cat.label ? 'var(--color-primary-bg)' : 'transparent', border: 'none', borderBottom: '1px solid var(--color-rule)', cursor: 'pointer', textAlign: 'left' }}>
+                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.7rem 1.25rem', borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderBottom: '1px solid var(--color-rule)', width: '100%', background: selectedCategory === cat.label ? 'var(--color-primary-bg)' : 'transparent', cursor: 'pointer', textAlign: 'left' }}>
                   <span style={{ fontSize: '0.875rem', fontWeight: 500, color: selectedCategory === cat.label ? 'var(--color-primary)' : 'var(--fg-1)' }}>{cat.label}</span>
                   <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-primary)', background: 'var(--color-primary-bg)', padding: '2px 8px', borderRadius: '100px' }}>
                     {loading ? '—' : (counts[cat.label] || 0)}
