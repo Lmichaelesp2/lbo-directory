@@ -131,12 +131,12 @@ export default function HomePage() {
             From chambers and trade associations to networking groups and professional societies — we pull them together so you can see the full picture of who's active in your market.
           </p>
           <div className="lbo-cat-grid">
-            {[
+            [
               { label: 'Chamber +',        sub: 'Chambers, associations & civic groups',  bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
-              { label: 'Technology +',     sub: 'Tech, startups & innovation groups',      bg: '#e8effe', color: '#1245c7', border: '#b8ccfc' },
-              { label: 'Real Estate +',    sub: 'Real estate, construction & design',      bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
-              { label: 'Small Business +', sub: 'Small biz, finance & professional svcs', bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
-              { label: '+ More',           sub: 'Healthcare, civic & other industries',    bg: 'var(--color-paper-2)', color: 'var(--fg-3)', border: 'var(--color-rule)' },
+              { label: 'Technology +',     sub: 'Tech, startups & innovation groups',      bg: '#ede9fe', color: '#6d28d9', border: '#c4b5fd' },
+              { label: 'Real Estate +',    sub: 'Real estate, construction & design',      bg: '#ecfdf5', color: '#065f46', border: '#6ee7b7' },
+              { label: 'Small Business +', sub: 'Small biz, finance & professional svcs',  bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
+              { label: '+ More',           sub: 'Healthcare, civic & other industries',    bg: '#f0f9ff', color: '#0369a1', border: '#bae6fd' },
             ].map(cat => (
               <div key={cat.label} style={{ background: cat.bg, border: `1px solid ${cat.border}`, borderRadius: '12px', padding: '18px 16px' }}>
                 <div style={{ fontSize: '0.875rem', fontWeight: 700, color: cat.color, marginBottom: '4px' }}>{cat.label}</div>
@@ -158,11 +158,16 @@ export default function HomePage() {
             We're starting with Texas — four major cities, 588+ organizations already verified. More states are coming soon.
           </p>
           <div className="lbo-city-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
-            {STATES.map(state => (
-              <div key={state.slug} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '24px', opacity: state.live ? 1 : 0.6 }}>
+            {[
+              { ...STATES[0], bg: '#eef3fe', border: '#c7d9fc', accent: '#1652f0' },
+              { ...STATES[1], bg: '#ede9fe', border: '#c4b5fd', accent: '#6d28d9' },
+              { ...STATES[2], bg: '#ecfdf5', border: '#6ee7b7', accent: '#065f46' },
+              { ...STATES[3], bg: '#fff7ed', border: '#fed7aa', accent: '#c2410c' },
+            ].map(state => (
+              <div key={state.slug} style={{ background: state.live ? state.bg : 'var(--color-paper-2)', border: `1px solid ${state.live ? state.border : 'var(--color-rule)'}`, borderRadius: '12px', padding: '24px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
-                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--fg-1)' }}>{state.name}</h3>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: state.live ? 'var(--color-primary)' : 'var(--fg-4)', background: state.live ? 'var(--color-primary-bg)' : 'var(--color-paper-2)', padding: '3px 10px', borderRadius: '100px' }}>
+                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: state.live ? 'var(--fg-1)' : 'var(--fg-3)' }}>{state.name}</h3>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: state.live ? state.accent : 'var(--fg-4)', background: '#fff', padding: '3px 10px', borderRadius: '100px', border: `1px solid ${state.live ? state.border : 'var(--color-rule)'}` }}>
                     {state.orgCount}
                   </span>
                 </div>
@@ -170,7 +175,7 @@ export default function HomePage() {
                   {state.cities.join(' · ')}
                 </p>
                 {state.live ? (
-                  <Link href={`/${state.slug}`} style={{ fontSize: '0.8rem', color: 'var(--color-accent)', fontWeight: 600, textDecoration: 'none' }}>
+                  <Link href={`/${state.slug}`} style={{ fontSize: '0.8rem', color: state.accent, fontWeight: 600, textDecoration: 'none' }}>
                     Browse {state.name} →
                   </Link>
                 ) : (

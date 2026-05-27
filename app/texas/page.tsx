@@ -135,11 +135,11 @@ export default function TexasPage() {
           </h2>
           <div className="lbo-cat-grid">
             {[
-              { label: 'Chamber +',       sub: 'Chambers, associations & civic groups',   bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
-              { label: 'Technology +',    sub: 'Tech, startups & innovation groups',       bg: '#e8effe', color: '#1245c7', border: '#b8ccfc' },
-              { label: 'Real Estate +',   sub: 'Real estate, construction & design',       bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
-              { label: 'Small Business +',sub: 'Small biz, finance & professional svcs',  bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
-              { label: '+ More',          sub: 'Healthcare, civic & other industries',     bg: 'var(--color-paper-2)', color: 'var(--fg-3)', border: 'var(--color-rule)' },
+              { label: 'Chamber +',        sub: 'Chambers, associations & civic groups',  bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
+              { label: 'Technology +',     sub: 'Tech, startups & innovation groups',      bg: '#ede9fe', color: '#6d28d9', border: '#c4b5fd' },
+              { label: 'Real Estate +',    sub: 'Real estate, construction & design',      bg: '#ecfdf5', color: '#065f46', border: '#6ee7b7' },
+              { label: 'Small Business +', sub: 'Small biz, finance & professional svcs',  bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
+              { label: '+ More',           sub: 'Healthcare, civic & other industries',    bg: '#f0f9ff', color: '#0369a1', border: '#bae6fd' },
             ].map(cat => (
               <div key={cat.label} style={{ background: cat.bg, border: `1px solid ${cat.border}`, borderRadius: '12px', padding: '18px 16px' }}>
                 <div style={{ fontSize: '0.875rem', fontWeight: 700, color: cat.color, marginBottom: '4px' }}>{cat.label}</div>

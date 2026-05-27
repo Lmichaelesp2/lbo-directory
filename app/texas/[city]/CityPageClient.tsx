@@ -193,13 +193,21 @@ export default function CityPageClient() {
                   'Small Business': 'Small Business +',
                   'Other': '+ More',
                 };
+                const catStyle: Record<string, { color: string; bg: string; border: string }> = {
+                  'Chamber & Networking': { color: '#1652f0', bg: '#eef3fe', border: '#c7d9fc' },
+                  'Technology':           { color: '#6d28d9', bg: '#ede9fe', border: '#c4b5fd' },
+                  'Real Estate':          { color: '#065f46', bg: '#ecfdf5', border: '#6ee7b7' },
+                  'Small Business':       { color: '#c2410c', bg: '#fff7ed', border: '#fed7aa' },
+                  'Other':                { color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
+                };
+                const cs = catStyle[cat.label] ?? { color: 'var(--fg-1)', bg: 'var(--color-paper-2)', border: 'var(--color-rule)' };
                 return (
                   <button key={cat.label}
                     onClick={() => setSelectedCategory(isActive ? null : cat.label)}
                     style={{
-                      background: isActive ? 'var(--color-primary)' : 'var(--color-paper)',
-                      color: isActive ? '#fff' : 'var(--fg-1)',
-                      border: isActive ? '1.5px solid var(--color-primary)' : '1.5px solid var(--color-rule)',
+                      background: isActive ? cs.color : cs.bg,
+                      color: isActive ? '#fff' : cs.color,
+                      border: `1.5px solid ${isActive ? cs.color : cs.border}`,
                       borderRadius: '100px',
                       padding: '0.5rem 1.25rem',
                       fontSize: '0.825rem',
@@ -214,8 +222,8 @@ export default function CityPageClient() {
                     {displayLabel[cat.label] ?? cat.label}
                     {counts[cat.label] ? (
                       <span style={{
-                        background: isActive ? 'rgba(255,255,255,0.25)' : 'var(--color-primary-bg)',
-                        color: isActive ? '#fff' : 'var(--color-primary)',
+                        background: isActive ? 'rgba(255,255,255,0.25)' : '#fff',
+                        color: isActive ? '#fff' : cs.color,
                         fontSize: '0.7rem',
                         fontWeight: 700,
                         borderRadius: '100px',
