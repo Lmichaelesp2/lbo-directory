@@ -42,8 +42,12 @@ export default function Navigation({ activeCitySlug }: { activeCitySlug?: string
           ))}
         </div>
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+            style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+            Events Calendar ↗
+          </a>
           <Link href="/contact" style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none' }}>
-            More Coming →
+            More Cities →
           </Link>
           <Link href="/claim" style={{ background: 'var(--color-accent)', color: '#fff', padding: '7px 18px', borderRadius: '6px', fontSize: '13px', fontWeight: 700, textDecoration: 'none', letterSpacing: '0.01em', whiteSpace: 'nowrap' }}>
             Claim Your Listing →

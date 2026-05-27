@@ -4,10 +4,10 @@ import Navigation from '@/components/Navigation';
 import { CITIES, PUBLIC_CATEGORIES } from '@/lib/config';
 
 const STATS = [
-  { number: '588+', label: 'Organizations tracked' },
+  { number: '588+', label: 'Verified organization profiles' },
   { number: '4', label: 'Texas cities covered' },
   { number: '8', label: 'Business categories' },
-  { number: '800+', label: 'Events sourced monthly' },
+  { number: '800+', label: 'Event sources monitored' },
 ];
 
 const WHAT_WE_TRACK = [
@@ -49,16 +49,23 @@ export default function HomePage() {
               <p style={{ fontSize: '15px', color: 'var(--fg-3)', lineHeight: 1.75, maxWidth: '480px', marginBottom: '12px' }}>
                 Local Business Organizations is a curated directory of chambers, networking groups, professional associations, trade organizations, and more — spanning San Antonio, Houston, Dallas, and Austin.
               </p>
-              <p style={{ fontSize: '15px', color: 'var(--fg-3)', lineHeight: 1.75, maxWidth: '480px', marginBottom: '28px' }}>
+              <p style={{ fontSize: '15px', color: 'var(--fg-3)', lineHeight: 1.75, maxWidth: '480px', marginBottom: '12px' }}>
                 Whether you're looking to grow your network, find your industry's association, or connect with the right organizations in your city — this is where you start.
+              </p>
+              <p style={{ fontSize: '14px', color: 'var(--fg-4)', lineHeight: 1.7, maxWidth: '480px', marginBottom: '28px' }}>
+                Many of the organizations in this directory host the events listed each week on{' '}
+                <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'none', fontWeight: 600 }}>
+                  Local Business Calendars
+                </a>.
               </p>
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                 <Link href="/san-antonio" style={{ background: 'var(--color-accent)', color: '#fff', padding: '11px 24px', borderRadius: '8px', fontSize: '13px', fontWeight: 700, textDecoration: 'none' }}>
                   Browse Organizations →
                 </Link>
-                <Link href="/claim" style={{ background: '#fff', color: 'var(--fg-1)', padding: '11px 24px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, textDecoration: 'none', border: '1px solid #e2e8f0' }}>
-                  Claim Your Listing
-                </Link>
+                <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+                  style={{ background: '#fff', color: 'var(--color-primary)', padding: '11px 24px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, textDecoration: 'none', border: '1px solid var(--color-primary)' }}>
+                  See Upcoming Events ↗
+                </a>
               </div>
             </div>
 
@@ -86,6 +93,25 @@ export default function HomePage() {
                 <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748b' }}>{stat.label}</div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Events CTA — bridge to LocalBusinessCalendars.com */}
+        <section style={{ padding: '24px 32px 0', maxWidth: '960px', margin: '0 auto' }}>
+          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '28px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px' }}>
+            <div>
+              <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase', color: '#64748b', marginBottom: '6px' }}>From Organizations to Events</div>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>
+                Want to see what these organizations are hosting?
+              </h3>
+              <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.6 }}>
+                Local Business Calendars tracks every networking event, chamber mixer, and business gathering across Texas — updated weekly, free to browse.
+              </p>
+            </div>
+            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+              style={{ background: 'var(--color-accent)', color: '#fff', padding: '11px 24px', borderRadius: '8px', fontSize: '13px', fontWeight: 700, whiteSpace: 'nowrap', textDecoration: 'none', flexShrink: 0 }}>
+              View This Week's Events →
+            </a>
           </div>
         </section>
 
@@ -174,24 +200,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Events CTA */}
-        <section style={{ padding: '0 32px 48px', maxWidth: '960px', margin: '0 auto' }}>
-          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '28px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px' }}>
-            <div>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>
-                Looking for events, not just organizations?
-              </h3>
-              <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.6 }}>
-                Visit Local Business Calendars — we track every networking event, chamber mixer, and business gathering across Texas, updated weekly.
-              </p>
-            </div>
-            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
-              style={{ background: 'var(--color-accent)', color: '#fff', padding: '11px 24px', borderRadius: '8px', fontSize: '13px', fontWeight: 700, whiteSpace: 'nowrap', textDecoration: 'none' }}>
-              View the Calendar →
-            </a>
-          </div>
-        </section>
-
         {/* More cities coming */}
         <section style={{ padding: '0 32px 48px', maxWidth: '960px', margin: '0 auto' }}>
           <div style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '28px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px' }}>
@@ -212,7 +220,7 @@ export default function HomePage() {
 
         {/* Footer ticker */}
         <div style={{ background: 'var(--color-ink)', padding: '10px 32px', display: 'flex', gap: '32px', alignItems: 'center', justifyContent: 'center' }}>
-          {[['588+', 'Organizations'], ['4', 'Texas Cities'], ['8', 'Categories'], ['800+', 'Events Monthly']].map(([val, label], i) => (
+          {[['588+', 'Verified Profiles'], ['4', 'Texas Cities'], ['8', 'Categories'], ['800+', 'Event Sources']].map(([val, label], i) => (
             <span key={i} style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#475569' }}>
               <strong style={{ color: '#94a3b8' }}>{val}</strong> {label}
             </span>
