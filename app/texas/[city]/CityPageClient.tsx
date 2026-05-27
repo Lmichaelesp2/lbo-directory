@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import OrgCard from '@/components/OrgCard';
 import { supabase, Organization } from '@/lib/supabase';
 import { CITY_SLUG_TO_NAME, PUBLIC_CATEGORIES, CITY_CONTENT } from '@/lib/config';
@@ -212,6 +213,7 @@ export default function CityPageClient() {
 
         </div>
       </main>
+      <Footer citySlug={citySlug} cityName={cityName} />
     </>
   );
 }

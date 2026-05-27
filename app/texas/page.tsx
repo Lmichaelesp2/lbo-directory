@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import { CITIES, PUBLIC_CATEGORIES, CITY_CONTENT } from '@/lib/config';
 
 export const metadata: Metadata = {
@@ -184,6 +185,7 @@ export default function TexasPage() {
         </section>
 
       </main>
+      <Footer />
     </>
   );
 }

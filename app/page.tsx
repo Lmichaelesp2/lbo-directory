@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Local Business Organizations — The Directory for Every City',
@@ -218,6 +219,7 @@ export default function HomePage() {
         </section>
 
       </main>
+      <Footer />
     </>
   );
 }
