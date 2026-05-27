@@ -79,7 +79,7 @@ export default function CityPageClient() {
 
               {content && (
                 <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '2rem' }}>
-                  {content.intro}
+                  {content.tagline}
                 </p>
               )}
 
