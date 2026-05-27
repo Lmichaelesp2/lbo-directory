@@ -57,7 +57,7 @@ export default function TexasPage() {
 
               <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
                 <Link href="/texas/san-antonio" style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none' }}>
-                  Browse Organizations →
+                  Browse Texas →
                 </Link>
                 <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
                   style={{ background: '#fff', color: 'var(--color-primary)', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', border: '1px solid var(--color-primary)' }}>
