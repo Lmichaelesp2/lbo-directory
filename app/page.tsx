@@ -166,9 +166,9 @@ export default function HomePage() {
           <div className="lbo-cat-grid">
             {[
               { label: 'Chamber +',        sub: 'Chambers, associations & civic groups',  bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
-              { label: 'Technology +',     sub: 'Tech, startups & innovation groups',      bg: '#f0fdf9', color: '#0f6e56', border: '#a7f3d0' },
+              { label: 'Technology +',     sub: 'Tech, startups & innovation groups',      bg: '#e8effe', color: '#1245c7', border: '#b8ccfc' },
               { label: 'Real Estate +',    sub: 'Real estate, construction & design',      bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
-              { label: 'Small Business +', sub: 'Small biz, finance & professional svcs', bg: '#faf5ff', color: '#7c3aed', border: '#ddd6fe' },
+              { label: 'Small Business +', sub: 'Small biz, finance & professional svcs', bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
               { label: '+ More',           sub: 'Healthcare, civic & other industries',    bg: 'var(--color-paper-2)', color: 'var(--fg-3)', border: 'var(--color-rule)' },
             ].map(cat => (
               <div key={cat.label} style={{ background: cat.bg, border: `1px solid ${cat.border}`, borderRadius: '12px', padding: '18px 16px' }}>
