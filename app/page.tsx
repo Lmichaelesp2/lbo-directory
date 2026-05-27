@@ -37,9 +37,9 @@ const STATES = [
     live: false,
   },
   {
-    name: 'Colorado',
-    slug: 'colorado',
-    cities: ['Denver', 'Colorado Springs', 'Boulder'],
+    name: 'Ohio',
+    slug: 'ohio',
+    cities: ['Columbus', 'Cleveland', 'Cincinnati'],
     orgCount: 'Coming soon',
     live: false,
   },
@@ -98,7 +98,7 @@ export default function HomePage() {
                 Browse by state
               </div>
               {STATES.map((state, i) => (
-                <div key={state.slug} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 1.25rem', borderBottom: i < STATES.length - 1 ? '1px solid var(--color-rule)' : 'none', opacity: state.live ? 1 : 0.5 }}>
+                <div key={state.slug} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 1.25rem', borderBottom: '1px solid var(--color-rule)', opacity: state.live ? 1 : 0.5 }}>
                   {state.live ? (
                     <Link href={`/${state.slug}`} style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--fg-1)', textDecoration: 'none' }}>{state.name}</Link>
                   ) : (
@@ -109,6 +109,9 @@ export default function HomePage() {
                   </span>
                 </div>
               ))}
+              <Link href="/contact" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 1.25rem', textDecoration: 'none' }}>
+                <span style={{ fontSize: '0.825rem', fontWeight: 500, color: 'var(--color-primary)', fontStyle: 'italic' }}>Request a city →</span>
+              </Link>
             </div>
 
           </div>

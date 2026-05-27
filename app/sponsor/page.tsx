@@ -5,59 +5,103 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Sponsorship | Local Business Organizations',
-  description: 'Sponsor the Local Business Organizations directory and reach thousands of business professionals in San Antonio, Houston, Dallas, and Austin.',
+  description: 'Sponsor the Local Business Organizations directory and Local Business Calendars. One sponsorship, two properties — reach thousands of business professionals in your city and category.',
 };
+
+const CITIES = ['San Antonio', 'Houston', 'Dallas', 'Austin'];
+const CATEGORIES = ['Chamber & Networking', 'Real Estate', 'Technology', 'Small Business'];
 
 export default function SponsorPage() {
   return (
     <>
       <Navigation />
       <main style={{ flex: 1 }}>
+
         <section style={{ background: 'var(--color-ink)', padding: '3rem 2rem' }}>
-          <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+          <div style={{ maxWidth: '760px', margin: '0 auto' }}>
             <div style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5b82f7', marginBottom: '0.75rem' }}>
               <Link href="/" style={{ color: '#5b82f7', textDecoration: 'none' }}>Home</Link> › Sponsorship
             </div>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 600, color: '#fff', lineHeight: 1.2, marginBottom: '0.75rem' }}>
-              Reach Texas business professionals
+              One sponsorship. Two properties. One audience.
             </h1>
-            <p style={{ fontSize: '1rem', color: '#94a3b8', lineHeight: 1.7 }}>
-              Local Business Organizations and Local Business Calendars together reach thousands of business professionals across four Texas cities each week.
+            <p style={{ fontSize: '1rem', color: '#94a3b8', lineHeight: 1.7, maxWidth: '560px' }}>
+              A single sponsorship covers both Local Business Organizations and Local Business Calendars — in your city, in your category, reaching the same professionals across both platforms every week.
             </p>
           </div>
         </section>
 
-        <section style={{ maxWidth: '720px', margin: '0 auto', padding: '3rem 2rem' }}>
+        <section style={{ maxWidth: '760px', margin: '0 auto', padding: '3rem 2rem', display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
 
-          <div style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.75rem 2rem', marginBottom: '2rem' }}>
-            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Community supported</div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.75rem' }}>
-              Sponsorships keep both sites free
+          {/* How it works */}
+          <div>
+            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>How it works</div>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.75rem' }}>
+              City × Category sponsorship
             </h2>
-            <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.75 }}>
-              Both Local Business Organizations and Local Business Calendars are free to use. Sponsorships are how we keep them that way. Sponsors get consistent, prominent visibility in front of an engaged audience of business professionals — the same people looking for organizations to join, events to attend, and connections to make in their city.
+            <p style={{ fontSize: '0.9rem', color: 'var(--fg-3)', lineHeight: 1.8, marginBottom: '1rem' }}>
+              Each sponsorship slot is defined by a city and a category. For example, the <strong style={{ color: 'var(--fg-1)' }}>San Antonio Technology</strong> sponsor is featured across both platforms — on the San Antonio organizations directory and on the San Antonio technology events calendar — giving you consistent, ongoing visibility with the exact audience you're trying to reach.
+            </p>
+            <p style={{ fontSize: '0.9rem', color: 'var(--fg-3)', lineHeight: 1.8 }}>
+              There are four category slots per city, and four cities — 16 total slots across Texas. Sponsors don't rotate; you own your slot for the duration of your sponsorship.
             </p>
           </div>
 
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '1rem' }}>Sponsorship structure</h2>
-          <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.75, marginBottom: '1.5rem' }}>
-            Each city has four category sponsorship slots: Chamber &amp; Networking, Real Estate, Technology, and Small Business. Sponsors are featured in the city directory, the weekly events calendar, and the Monday email newsletter — giving you consistent, ongoing visibility with your target market.
-          </p>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '2rem' }}>
-            {['Chamber & Networking', 'Real Estate', 'Technology', 'Small Business'].map(cat => (
-              <div key={cat} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '1rem 1.25rem', fontSize: '0.875rem', fontWeight: 600, color: 'var(--fg-1)' }}>
-                {cat}
-              </div>
-            ))}
+          {/* Grid: cities x categories */}
+          <div>
+            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--fg-4)', marginBottom: '0.75rem' }}>Available slots — Texas</div>
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.825rem' }}>
+                <thead>
+                  <tr style={{ background: 'var(--color-paper-2)' }}>
+                    <th style={{ textAlign: 'left', padding: '0.6rem 1rem', fontWeight: 700, color: 'var(--fg-3)', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em', borderBottom: '1px solid var(--color-rule)' }}>Category</th>
+                    {CITIES.map(c => (
+                      <th key={c} style={{ textAlign: 'center', padding: '0.6rem 0.75rem', fontWeight: 700, color: 'var(--fg-3)', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em', borderBottom: '1px solid var(--color-rule)' }}>{c}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {CATEGORIES.map((cat, i) => (
+                    <tr key={cat} style={{ background: i % 2 === 0 ? '#fff' : 'var(--color-paper)' }}>
+                      <td style={{ padding: '0.65rem 1rem', fontWeight: 600, color: 'var(--fg-1)', borderBottom: '1px solid var(--color-rule)' }}>{cat}</td>
+                      {CITIES.map(city => (
+                        <td key={city} style={{ textAlign: 'center', padding: '0.65rem 0.75rem', borderBottom: '1px solid var(--color-rule)' }}>
+                          <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-accent)', background: '#fff7ed', padding: '2px 8px', borderRadius: '4px' }}>Open</span>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '1.75rem 2rem', marginBottom: '2rem' }}>
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '0.5rem' }}>
-              Interested in sponsoring?
+          {/* What you get */}
+          <div>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '1rem' }}>What your sponsorship includes</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+              {[
+                ['Local Business Organizations', 'Featured in your city\'s organization directory under your category'],
+                ['Local Business Calendars', 'Featured on your city\'s weekly events calendar under your category'],
+                ['Weekly email newsletter', 'Included in the Monday events digest sent to subscribers in your city'],
+                ['Consistent placement', 'No rotation — your slot is yours for the duration of your sponsorship'],
+              ].map(([title, desc]) => (
+                <div key={title} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '1rem 1.25rem' }}>
+                  <div style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '0.3rem' }}>{title}</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.6 }}>{desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '2rem 2.25rem' }}>
+            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748b', marginBottom: '0.5rem' }}>Community supported</div>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '0.5rem' }}>
+              Interested in a sponsorship slot?
             </h3>
-            <p style={{ fontSize: '0.825rem', color: '#94a3b8', lineHeight: 1.7, marginBottom: '1rem' }}>
-              Reach out and we'll send you current availability, pricing, and placement details for the cities you're interested in.
+            <p style={{ fontSize: '0.825rem', color: '#94a3b8', lineHeight: 1.7, marginBottom: '1.25rem' }}>
+              Reach out and we'll send you current availability, pricing, and what placement looks like in your city and category. Cross-city packages available.
             </p>
             <a href="mailto:hello@localbusinessorganizations.com"
               style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.75rem 1.5rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none', display: 'inline-block' }}>
@@ -66,7 +110,7 @@ export default function SponsorPage() {
           </div>
 
           <p style={{ fontSize: '0.8rem', color: 'var(--fg-4)', lineHeight: 1.7 }}>
-            Sponsorships are also available on the companion site <a href="https://www.localbusinesscalendars.com/sponsor" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)' }}>Local Business Calendars</a>. Cross-property packages spanning both sites are available — ask us about bundled pricing.
+            You can also learn more about sponsorship on <a href="https://www.localbusinesscalendars.com/sponsor" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)' }}>Local Business Calendars</a>. Both sites share the same sponsorship structure — one inquiry covers both.
           </p>
 
         </section>
