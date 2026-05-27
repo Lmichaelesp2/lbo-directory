@@ -136,7 +136,7 @@ export default function CityPageClient() {
 
           {/* Category filter */}
           <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '14px' }}>Browse by category</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '32px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px', marginBottom: '32px' }}>
             {PUBLIC_CATEGORIES.map(cat => {
               const colors = ICON_COLOR[cat.color];
               const isActive = selectedCategory === cat.label;
