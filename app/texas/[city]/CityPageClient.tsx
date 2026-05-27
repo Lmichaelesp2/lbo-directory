@@ -8,12 +8,6 @@ import OrgCard from '@/components/OrgCard';
 import { supabase, Organization } from '@/lib/supabase';
 import { CITY_SLUG_TO_NAME, PUBLIC_CATEGORIES, CITY_CONTENT } from '@/lib/config';
 
-const ICON_COLOR: Record<string, { bg: string; color: string }> = {
-  blue:   { bg: '#eef3fe', color: '#1652f0' },
-  teal:   { bg: '#f0fdf9', color: '#0f6e56' },
-  orange: { bg: '#fff7ed', color: '#c2410c' },
-  purple: { bg: '#f5f3ff', color: '#534AB7' },
-};
 
 export default function CityPageClient() {
   const params = useParams();
@@ -59,100 +53,140 @@ export default function CityPageClient() {
       <Navigation activeCitySlug={citySlug} activeState="texas" activeCityName={cityName} />
       <main style={{ flex: 1 }}>
 
-        {/* City hero */}
-        <section style={{ background: '#fff', borderBottom: '1px solid var(--color-rule)', padding: '2.25rem 2rem' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            {/* Breadcrumb */}
-            <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--fg-4)', marginBottom: '1rem' }}>
-              <Link href="/" style={{ color: 'var(--fg-4)', textDecoration: 'none' }}>All States</Link>
-              <span style={{ margin: '0 6px' }}>›</span>
-              <Link href="/texas" style={{ color: 'var(--fg-4)', textDecoration: 'none' }}>Texas</Link>
-              <span style={{ margin: '0 6px' }}>›</span>
-              <span style={{ color: 'var(--fg-2)' }}>{cityName}</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px' }}>
-              <div>
-                <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.1, marginBottom: '0.5rem' }}>
-                  <span style={{ color: 'var(--color-primary)' }}>{cityName}</span>{' '}
-                  Business Organizations
-                </h1>
-                {content && (
-                  <p style={{ fontSize: '0.95rem', color: 'var(--fg-3)', fontWeight: 500 }}>
-                    {content.tagline}
-                  </p>
-                )}
+        {/* City hero — matches Texas page layout */}
+        <section className="lbo-hero-section" style={{ background: 'var(--color-paper)', padding: '4rem 2rem 0', borderBottom: '1px solid var(--color-rule)' }}>
+          <div className="lbo-hero-grid" style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 320px', gap: '3rem', alignItems: 'start', paddingBottom: '3.5rem' }}>
+
+            <div>
+              {/* Breadcrumb */}
+              <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--fg-4)', marginBottom: '1.25rem' }}>
+                <Link href="/" style={{ color: 'var(--fg-4)', textDecoration: 'none' }}>All States</Link>
+                <span style={{ margin: '0 6px' }}>›</span>
+                <Link href="/texas" style={{ color: 'var(--fg-4)', textDecoration: 'none' }}>Texas</Link>
+                <span style={{ margin: '0 6px' }}>›</span>
+                <span style={{ color: 'var(--fg-2)' }}>{cityName}</span>
               </div>
-              <div style={{ position: 'relative', flexShrink: 0 }}>
-                <span style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--fg-4)', fontSize: '14px', pointerEvents: 'none' }}>🔍</span>
-                <input
-                  type="text"
-                  placeholder={`Search ${cityName} organizations...`}
-                  value={search}
-                  onChange={e => setSearch(e.target.value)}
-                  style={{ background: '#fff', border: '1.5px solid #cbd5e1', borderRadius: '8px', padding: '10px 14px 10px 34px', fontSize: '13px', width: '280px', color: 'var(--fg-1)', outline: 'none', fontFamily: 'var(--font-sans)' }}
-                />
+
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-primary)', marginBottom: '1.25rem' }}>
+                <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--color-primary)', display: 'inline-block' }} />
+                {cityName} Business Directory · Texas
+              </div>
+
+              <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.25rem, 4.5vw, 3rem)', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
+                The business organizations that matter{' '}
+                <em style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--color-primary)' }}>in {cityName}.</em>
+              </h1>
+
+              {content && (
+                <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '2rem' }}>
+                  {content.intro}
+                </p>
+              )}
+
+              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                <a href="#organizations" style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none' }}>
+                  Browse {cityName} →
+                </a>
+                <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+                  style={{ background: '#fff', color: 'var(--color-primary)', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', border: '1px solid var(--color-primary)' }}>
+                  See Upcoming Events ↗
+                </a>
               </div>
             </div>
+
+            {/* Right panel — category counts */}
+            <div className="lbo-hero-city-panel" style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(10,22,40,.07)' }}>
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-3)', padding: '0.75rem 1.25rem', borderBottom: '1px solid var(--color-rule)', background: 'var(--color-paper-2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span>Browse by category</span>
+                <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>{loading ? '—' : orgs.length} orgs</span>
+              </div>
+              {PUBLIC_CATEGORIES.filter(c => c.label !== 'Other').map((cat, i) => (
+                <button key={cat.label}
+                  onClick={() => setSelectedCategory(selectedCategory === cat.label ? null : cat.label)}
+                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.7rem 1.25rem', borderBottom: '1px solid var(--color-rule)', width: '100%', background: selectedCategory === cat.label ? 'var(--color-primary-bg)' : 'transparent', border: 'none', borderBottom: '1px solid var(--color-rule)', cursor: 'pointer', textAlign: 'left' }}>
+                  <span style={{ fontSize: '0.875rem', fontWeight: 500, color: selectedCategory === cat.label ? 'var(--color-primary)' : 'var(--fg-1)' }}>{cat.label}</span>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-primary)', background: 'var(--color-primary-bg)', padding: '2px 8px', borderRadius: '100px' }}>
+                    {loading ? '—' : (counts[cat.label] || 0)}
+                  </span>
+                </button>
+              ))}
+              <button
+                onClick={() => setSelectedCategory(selectedCategory === 'Other' ? null : 'Other')}
+                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.7rem 1.25rem', width: '100%', background: selectedCategory === 'Other' ? 'var(--color-primary-bg)' : 'transparent', border: 'none', borderBottom: '1px solid var(--color-rule)', cursor: 'pointer', textAlign: 'left' }}>
+                <span style={{ fontSize: '0.875rem', fontWeight: 500, color: selectedCategory === 'Other' ? 'var(--color-primary)' : 'var(--fg-3)', fontStyle: 'italic' }}>+ More categories</span>
+                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--fg-4)', background: 'var(--color-paper-2)', padding: '2px 8px', borderRadius: '100px' }}>
+                  {loading ? '—' : (counts['Other'] || 0)}
+                </span>
+              </button>
+              {/* Search */}
+              <div style={{ padding: '0.75rem 1.25rem' }}>
+                <div style={{ position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: 'var(--fg-4)', fontSize: '13px', pointerEvents: 'none' }}>🔍</span>
+                  <input
+                    type="text"
+                    placeholder={`Search ${cityName}...`}
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                    style={{ background: 'var(--color-paper)', border: '1px solid var(--color-rule)', borderRadius: '6px', padding: '8px 10px 8px 30px', fontSize: '12px', width: '100%', color: 'var(--fg-1)', outline: 'none', fontFamily: 'var(--font-sans)', boxSizing: 'border-box' }}
+                  />
+                </div>
+              </div>
+            </div>
+
           </div>
         </section>
 
         {/* Stats strip */}
         <section style={{ background: 'var(--color-ink)', padding: '0.6rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,.65)' }}>
-              <strong>{orgs.length || '—'}</strong> organizations listed
-            </span>
-            <span style={{ color: 'rgba(255,255,255,.3)' }}>|</span>
-            <span style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,.65)' }}>
-              <strong>5</strong> categories
-            </span>
-            <span style={{ color: 'rgba(255,255,255,.3)' }}>|</span>
-            <span style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,.65)' }}>
-              Free to browse
-            </span>
+            {[
+              [loading ? '—' : String(orgs.length), 'organizations listed'],
+              ['4', 'categories'],
+              ['Free', 'to browse'],
+            ].map(([val, label], i, arr) => (
+              <>
+                <span key={label} style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,.65)' }}>
+                  <strong>{val}</strong> {label}
+                </span>
+                {i < arr.length - 1 && <span style={{ color: 'rgba(255,255,255,.3)', fontWeight: 300 }}>|</span>}
+              </>
+            ))}
           </div>
         </section>
 
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem 2rem' }}>
+        <div id="organizations" style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem 2rem' }}>
 
-          {/* City intro */}
+          {/* What you'll find here — moved inline below hero */}
           {content && (
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '40px', alignItems: 'flex-start', marginBottom: '2.25rem', paddingBottom: '2rem', borderBottom: '1px solid var(--color-rule)' }}>
-              <p style={{ fontSize: '0.875rem', color: 'var(--fg-2)', lineHeight: 1.8 }}>
-                {content.intro}
-              </p>
-              <div style={{ minWidth: '220px' }}>
-                <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--fg-4)', marginBottom: '10px' }}>What you'll find here</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  {content.highlights.map(h => (
-                    <div key={h} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <span style={{ color: 'var(--color-primary)', flexShrink: 0, marginTop: '1px' }}>✓</span>
-                      <span style={{ fontSize: '0.8rem', color: 'var(--fg-2)', lineHeight: 1.5 }}>{h}</span>
-                    </div>
-                  ))}
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '2rem', paddingBottom: '1.5rem', borderBottom: '1px solid var(--color-rule)' }}>
+              {content.highlights.map(h => (
+                <div key={h} style={{ display: 'flex', gap: '6px', alignItems: 'center', background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '100px', padding: '4px 12px' }}>
+                  <span style={{ color: 'var(--color-primary)', fontSize: '11px' }}>✓</span>
+                  <span style={{ fontSize: '0.775rem', color: 'var(--fg-2)', fontWeight: 500 }}>{h}</span>
                 </div>
-              </div>
+              ))}
             </div>
           )}
 
-          {/* Category filter */}
-          <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '14px' }}>Browse by category</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px', marginBottom: '2rem' }}>
+          {/* Category filter pills */}
+          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '1.5rem', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--fg-4)', marginRight: '4px' }}>Filter:</span>
             {PUBLIC_CATEGORIES.map(cat => {
-              const colors = ICON_COLOR[cat.color];
               const isActive = selectedCategory === cat.label;
+              const label = cat.label === 'Other' ? '+ More' : cat.label;
               return (
                 <button key={cat.label}
                   onClick={() => setSelectedCategory(isActive ? null : cat.label)}
-                  style={{ background: isActive ? 'var(--color-primary-bg)' : '#fff', border: isActive ? '1.5px solid var(--color-primary)' : '1px solid #e2e8f0', borderRadius: '10px', padding: '12px 10px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', cursor: 'pointer', textAlign: 'center' }}>
-                  <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: colors.bg, color: colors.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>
-                    <i className={`ti ${cat.icon}`} aria-hidden="true"></i>
-                  </div>
-                  <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.3 }}>{cat.label}</div>
-                  <div style={{ fontSize: '10px', color: 'var(--fg-4)' }}>{counts[cat.label] || 0} orgs</div>
+                  style={{ background: isActive ? 'var(--color-primary)' : '#fff', color: isActive ? '#fff' : 'var(--fg-2)', border: isActive ? '1px solid var(--color-primary)' : '1px solid #e2e8f0', borderRadius: '100px', padding: '5px 14px', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                  {label} {counts[cat.label] ? `(${counts[cat.label]})` : ''}
                 </button>
               );
             })}
+            {selectedCategory && (
+              <button onClick={() => setSelectedCategory(null)} style={{ background: 'none', border: 'none', color: 'var(--color-primary)', cursor: 'pointer', fontSize: '0.8rem', padding: '5px 8px', fontFamily: 'var(--font-sans)' }}>
+                Clear ×
+              </button>
+            )}
           </div>
 
           {/* Results header */}
@@ -171,10 +205,7 @@ export default function CityPageClient() {
           )}
           {selectedCategory && (
             <p style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
-              Showing {filtered.length} <strong>{selectedCategory}</strong> organizations in {cityName}.{' '}
-              <button onClick={() => setSelectedCategory(null)} style={{ background: 'none', border: 'none', color: 'var(--color-primary)', cursor: 'pointer', fontSize: '0.8rem', padding: 0, fontFamily: 'var(--font-sans)' }}>
-                Clear filter →
-              </button>
+              Showing {filtered.length} <strong>{selectedCategory}</strong> organizations in {cityName}.
             </p>
           )}
 
