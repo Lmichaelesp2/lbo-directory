@@ -10,7 +10,8 @@ export default function Navigation({ activeCitySlug }: { activeCitySlug?: string
   return (
     <header style={{ borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
       {/* Top bar */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 32px', borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
+      <div style={{ borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '1100px', margin: '0 auto', padding: '20px 32px', width: '100%', boxSizing: 'border-box' }}>
         <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', color: 'var(--fg-4)' }}>{today}</span>
 
         <Link href="/" style={{ textAlign: 'center', textDecoration: 'none' }}>
@@ -26,10 +27,12 @@ export default function Navigation({ activeCitySlug }: { activeCitySlug?: string
           <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--color-accent)', display: 'inline-block' }}></span>
           <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)' }}>588 Organizations</span>
         </div>
+        </div>
       </div>
 
       {/* Nav bar */}
-      <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 2rem', height: '48px', background: '#fff' }}>
+      <nav style={{ background: '#fff' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '1100px', margin: '0 auto', padding: '0 2rem', height: '48px', width: '100%', boxSizing: 'border-box' }}>
         <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
           <Link href="/" style={{ fontSize: '13px', fontWeight: !activeCitySlug ? 600 : 500, color: !activeCitySlug ? 'var(--fg-1)' : 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none' }}>
             All Cities
@@ -52,6 +55,7 @@ export default function Navigation({ activeCitySlug }: { activeCitySlug?: string
           <Link href="/claim" style={{ background: 'var(--color-accent)', color: '#fff', padding: '7px 18px', borderRadius: '6px', fontSize: '13px', fontWeight: 700, textDecoration: 'none', letterSpacing: '0.01em', whiteSpace: 'nowrap' }}>
             Claim Your Listing →
           </Link>
+        </div>
         </div>
       </nav>
     </header>
