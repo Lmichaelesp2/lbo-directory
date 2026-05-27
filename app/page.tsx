@@ -121,39 +121,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* States section */}
-        <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Coverage</div>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
-            States we cover
-          </h2>
-          <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '560px' }}>
-            We're starting in Texas and expanding city by city. Each state gets its own directory, each city its own page — built to work as a standalone resource for anyone searching for local business organizations in that market.
-          </p>
-          <div className="lbo-city-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
-            {STATES.map(state => (
-              <div key={state.slug} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px', opacity: state.live ? 1 : 0.6 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
-                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--fg-1)' }}>{state.name}</h3>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: state.live ? 'var(--color-primary)' : 'var(--fg-4)', background: state.live ? 'var(--color-primary-bg)' : 'var(--color-paper-2)', padding: '3px 10px', borderRadius: '100px' }}>
-                    {state.orgCount}
-                  </span>
-                </div>
-                <p style={{ fontSize: '0.8rem', color: 'var(--fg-4)', marginBottom: state.live ? '14px' : '0' }}>
-                  {state.cities.join(' · ')}
-                </p>
-                {state.live && (
-                  <Link href={`/${state.slug}`} style={{ fontSize: '0.8rem', color: 'var(--color-accent)', fontWeight: 600, textDecoration: 'none' }}>
-                    Browse {state.name} organizations →
-                  </Link>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)', margin: '0 2rem' }} />
-
         {/* What we track */}
         <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>What we track</div>
@@ -178,6 +145,43 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+
+        <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)', margin: '0 2rem' }} />
+
+        {/* States we cover */}
+        <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Where we cover</div>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
+            States in the directory
+          </h2>
+          <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '560px' }}>
+            We're starting with Texas — four major cities, 588+ organizations already verified. More states are coming soon.
+          </p>
+          <div className="lbo-city-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
+            {STATES.map(state => (
+              <div key={state.slug} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '24px', opacity: state.live ? 1 : 0.6 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
+                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--fg-1)' }}>{state.name}</h3>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: state.live ? 'var(--color-primary)' : 'var(--fg-4)', background: state.live ? 'var(--color-primary-bg)' : 'var(--color-paper-2)', padding: '3px 10px', borderRadius: '100px' }}>
+                    {state.orgCount}
+                  </span>
+                </div>
+                <p style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '12px' }}>
+                  {state.cities.join(' · ')}
+                </p>
+                {state.live ? (
+                  <Link href={`/${state.slug}`} style={{ fontSize: '0.8rem', color: 'var(--color-accent)', fontWeight: 600, textDecoration: 'none' }}>
+                    Browse {state.name} →
+                  </Link>
+                ) : (
+                  <span style={{ fontSize: '0.8rem', color: 'var(--fg-4)', fontWeight: 500 }}>Coming soon</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)', margin: '0 2rem' }} />
 
         {/* LBC connection — full width dark band */}
         <section style={{ background: 'var(--color-ink)', padding: '3rem 2rem', margin: '0' }}>
