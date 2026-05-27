@@ -48,6 +48,7 @@ export const LBC_URL = process.env.NEXT_PUBLIC_LBC_URL || 'https://www.localbusi
 
 export const CITY_CONTENT: Record<string, {
   tagline: string;
+  heroText: string;
   intro: string;
   highlights: string[];
   seoTitle: string;
@@ -55,6 +56,7 @@ export const CITY_CONTENT: Record<string, {
 }> = {
   'San Antonio': {
     tagline: 'One of Texas\'s most active business networking scenes',
+    heroText: 'San Antonio has a tightly connected business community built around chambers of commerce, veteran-owned networks, and strong professional associations across every major industry. This directory gives you a clear picture of who\'s active and where to plug in.',
     intro: 'San Antonio has a vibrant and tightly connected business community built around chambers of commerce, veteran-owned business networks, and a strong foundation of professional associations. Whether you\'re new to the market or a longtime local, this directory gives you a clear picture of who\'s active, who\'s organized, and where to plug in.',
     highlights: [
       'Strong chamber of commerce network across the metro',
@@ -67,6 +69,7 @@ export const CITY_CONTENT: Record<string, {
   },
   'Houston': {
     tagline: 'The largest and most diverse business ecosystem in Texas',
+    heroText: 'Houston\'s professional organizations span energy, healthcare, real estate, technology, and beyond — making it one of the most complete business organization landscapes in the country. Find the right group for your industry, all in one place.',
     intro: 'Houston is home to one of the most expansive collections of business organizations in the country. From energy and oil & gas associations to one of the nation\'s largest medical center ecosystems, the city\'s professional organizations span virtually every industry. This directory brings them all together so you can find the right group for your field.',
     highlights: [
       'World-class energy & oil and gas industry associations',
@@ -79,6 +82,7 @@ export const CITY_CONTENT: Record<string, {
   },
   'Dallas': {
     tagline: 'A powerhouse of finance, real estate, and professional networks',
+    heroText: 'Dallas-Fort Worth is one of the fastest-growing business markets in the country, with a deep infrastructure of chambers, finance associations, real estate groups, and technology networks spanning the entire metro. Whether you\'re in Dallas proper or the surrounding cities, this is where to find your community.',
     intro: 'Dallas-Fort Worth is one of the fastest-growing business markets in the country, and its professional organization landscape reflects that momentum. From some of Texas\'s largest chambers to nationally recognized finance and real estate associations, Dallas has a strong infrastructure for professionals looking to grow their network and deepen their industry ties.',
     highlights: [
       'Major chambers covering Dallas, Plano, Frisco, and surrounding cities',
@@ -91,6 +95,7 @@ export const CITY_CONTENT: Record<string, {
   },
   'Austin': {
     tagline: 'Texas\'s fastest-growing business community, led by tech and innovation',
+    heroText: 'Austin has become one of the top business destinations in the country, and its organization landscape reflects that — technology groups, startup networks, chambers, and professional associations are all thriving here. Whether you\'re building a company or growing a career, this is where connections happen.',
     intro: 'Austin has transformed into one of the top business destinations in the United States, attracting companies and talent from across the country. Its organization landscape reflects that energy — technology groups, startup networks, entrepreneur communities, and professional associations are all thriving here. Whether you\'re building a company or growing a career, Austin\'s business organizations are where connections happen.',
     highlights: [
       'Nationally recognized technology and startup ecosystem',
