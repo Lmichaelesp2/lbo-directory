@@ -14,10 +14,10 @@ export default function Navigation({ activeCitySlug }: { activeCitySlug?: string
         <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', color: 'var(--fg-4)' }}>{today}</span>
 
         <Link href="/" style={{ textAlign: 'center', textDecoration: 'none' }}>
-          <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.02em', fontFamily: 'var(--font-sans)', lineHeight: 1 }}>
+          <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.04em', fontFamily: 'var(--font-sans)', lineHeight: 1.1, whiteSpace: 'nowrap' }}>
             <span style={{ color: 'var(--color-primary)' }}>Local</span> Business Organizations
           </div>
-          <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-4)', marginTop: '3px' }}>
+          <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-4)', marginTop: '4px' }}>
             Business Organizations · By City &amp; Category
           </div>
         </Link>
