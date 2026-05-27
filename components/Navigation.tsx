@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { CITIES } from '@/lib/config';
 
-export default function Navigation({ activeCitySlug }: { activeCitySlug?: string }) {
+export default function Navigation({ activeCitySlug, activeState }: { activeCitySlug?: string; activeState?: string }) {
   const today = new Date().toLocaleDateString('en-US', {
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
   }).toUpperCase();
@@ -34,11 +34,11 @@ export default function Navigation({ activeCitySlug }: { activeCitySlug?: string
       <nav style={{ background: '#fff' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '1100px', margin: '0 auto', padding: '0 2rem', height: '48px', width: '100%', boxSizing: 'border-box' }}>
         <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-          <Link href="/" style={{ fontSize: '13px', fontWeight: !activeCitySlug ? 600 : 500, color: !activeCitySlug ? 'var(--fg-1)' : 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none' }}>
-            All Cities
+          <Link href="/texas" style={{ fontSize: '13px', fontWeight: activeState === 'texas' && !activeCitySlug ? 600 : 500, color: activeState === 'texas' && !activeCitySlug ? 'var(--fg-1)' : 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none' }}>
+            Texas
           </Link>
           {CITIES.map(city => (
-            <Link key={city.slug} href={`/${city.slug}`}
+            <Link key={city.slug} href={`/texas/${city.slug}`}
               style={{ fontSize: '13px', fontWeight: activeCitySlug === city.slug ? 600 : 500, color: activeCitySlug === city.slug ? 'var(--fg-1)' : 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none' }}>
               {city.name}
             </Link>
