@@ -42,17 +42,17 @@ export default function HomePage() {
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--color-primary)', display: 'inline-block' }}></span>
                 Texas Business Directory · 4 Cities
               </div>
-              <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '42px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '18px' }}>
+              <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.25rem, 4.5vw, 3rem)', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.025em', marginBottom: '20px' }}>
                 The local business organizations of Texas,{' '}
-                <em style={{ fontStyle: 'italic', color: 'var(--color-primary)' }}>all in one place.</em>
+                <em style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--color-primary)' }}>all in one place.</em>
               </h1>
-              <p style={{ fontSize: '15px', color: 'var(--fg-3)', lineHeight: 1.75, maxWidth: '480px', marginBottom: '12px' }}>
+              <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '12px' }}>
                 Local Business Organizations is a curated directory of chambers, networking groups, professional associations, trade organizations, and more — spanning San Antonio, Houston, Dallas, and Austin.
               </p>
-              <p style={{ fontSize: '15px', color: 'var(--fg-3)', lineHeight: 1.75, maxWidth: '480px', marginBottom: '12px' }}>
+              <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '12px' }}>
                 Whether you're looking to grow your network, find your industry's association, or connect with the right organizations in your city — this is where you start.
               </p>
-              <p style={{ fontSize: '14px', color: 'var(--fg-4)', lineHeight: 1.7, maxWidth: '480px', marginBottom: '28px' }}>
+              <p style={{ fontSize: '0.875rem', color: 'var(--fg-4)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '28px' }}>
                 Many of the organizations in this directory host the events listed each week on{' '}
                 <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'none', fontWeight: 600 }}>
                   Local Business Calendars
@@ -70,13 +70,13 @@ export default function HomePage() {
             </div>
 
             {/* City panel */}
-            <div style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '20px', minWidth: '220px' }}>
-              <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-4)', marginBottom: '14px' }}>Browse by city</div>
+            <div style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', overflow: 'hidden', minWidth: '240px', boxShadow: '0 2px 12px rgba(10,22,40,.07)' }}>
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-3)', padding: '0.75rem 1.25rem', borderBottom: '1px solid var(--color-rule)', background: 'var(--color-paper-2)' }}>Browse by city</div>
               {CITIES.map((city, i) => (
                 <Link key={city.slug} href={`/${city.slug}`} style={{ textDecoration: 'none' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: i < CITIES.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
-                    <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--fg-1)' }}>{city.name}</span>
-                    <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)' }}>{city.count} orgs</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 1.25rem', borderBottom: i < CITIES.length - 1 ? '1px solid var(--color-rule)' : 'none' }}>
+                    <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--fg-1)' }}>{city.name}</span>
+                    <span style={{ fontSize: '0.825rem', fontWeight: 600, color: 'var(--color-primary)' }}>{city.count} orgs</span>
                   </div>
                 </Link>
               ))}
@@ -85,13 +85,15 @@ export default function HomePage() {
         </section>
 
         {/* Stats strip */}
-        <section style={{ background: 'var(--color-ink)', padding: '28px 32px' }}>
-          <div style={{ maxWidth: '960px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
-            {STATS.map(stat => (
-              <div key={stat.label} style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '32px', fontWeight: 700, color: '#fff', lineHeight: 1, marginBottom: '6px' }}>{stat.number}</div>
-                <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748b' }}>{stat.label}</div>
-              </div>
+        <section style={{ background: 'var(--color-ink)', padding: '0.6rem 2rem' }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            {STATS.map((stat, i) => (
+              <>
+                <span key={stat.label} style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,.65)' }}>
+                  <strong style={{ color: 'rgba(255,255,255,.65)' }}>{stat.number}</strong> {stat.label}
+                </span>
+                {i < STATS.length - 1 && <span style={{ color: 'rgba(255,255,255,.3)', fontWeight: 300 }}>|</span>}
+              </>
             ))}
           </div>
         </section>
@@ -118,7 +120,7 @@ export default function HomePage() {
         {/* City cards */}
         <section style={{ padding: '48px 32px', maxWidth: '960px', margin: '0 auto' }}>
           <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '8px' }}>4 Texas Cities</div>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '8px' }}>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '8px' }}>
             Find organizations in your city
           </h2>
           <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '28px', maxWidth: '560px' }}>
@@ -148,7 +150,7 @@ export default function HomePage() {
         <section style={{ padding: '48px 32px', maxWidth: '960px', margin: '0 auto', display: 'flex', gap: '64px', alignItems: 'flex-start' }}>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '8px' }}>What we track</div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '12px' }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '12px' }}>
               The types of business organizations we track
             </h2>
             <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '24px' }}>
@@ -184,7 +186,7 @@ export default function HomePage() {
           <div style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '36px 40px', display: 'flex', gap: '40px', alignItems: 'center' }}>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent)', marginBottom: '8px' }}>For organization leaders</div>
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '26px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '10px' }}>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '10px' }}>
                 Is your organization listed here?
               </h2>
               <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '0' }}>
