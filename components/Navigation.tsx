@@ -17,7 +17,7 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
       : 'Business Organizations · By City & Category';
 
   return (
-    <header style={{ borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
+    <header style={{ borderBottom: '1px solid var(--color-rule)', background: '#fff', position: 'sticky', top: 0, zIndex: 50 }}>
       {/* Top bar */}
       <div style={{ borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
         <div className="lbo-nav-topbar-inner">
