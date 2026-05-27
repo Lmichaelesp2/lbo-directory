@@ -10,7 +10,7 @@ export default function Navigation({ activeCitySlug }: { activeCitySlug?: string
   return (
     <header style={{ borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
       {/* Top bar */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 32px', height: '72px', borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 2rem 0.75rem', borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
         <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', color: 'var(--fg-4)' }}>{today}</span>
 
         <Link href="/" style={{ textAlign: 'center', textDecoration: 'none' }}>
@@ -29,7 +29,7 @@ export default function Navigation({ activeCitySlug }: { activeCitySlug?: string
       </div>
 
       {/* Nav bar */}
-      <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 32px', height: '44px', background: '#fff' }}>
+      <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 2rem', height: '48px', background: '#fff' }}>
         <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
           <Link href="/" style={{ fontSize: '13px', fontWeight: !activeCitySlug ? 600 : 500, color: !activeCitySlug ? 'var(--fg-1)' : 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none' }}>
             All Cities
