@@ -15,34 +15,33 @@ export const CITY_SLUG_TO_NAME: Record<CitySlug, string> = {
 };
 
 export const PUBLIC_CATEGORIES = [
-  { label: 'Chambers & Networking',   icon: 'ti-users',              color: 'blue'   },
-  { label: 'Community & Education',   icon: 'ti-school',             color: 'teal'   },
-  { label: 'Technology',              icon: 'ti-device-laptop',      color: 'blue'   },
-  { label: 'Real Estate',             icon: 'ti-building',           color: 'orange' },
-  { label: 'Construction & Industry', icon: 'ti-hammer',             color: 'orange' },
-  { label: 'Healthcare',              icon: 'ti-heart-rate-monitor', color: 'teal'   },
-  { label: 'Professional Organizations', icon: 'ti-briefcase',       color: 'purple' },
-  { label: 'More Organizations',      icon: 'ti-layout-grid',        color: 'purple' },
+  { label: 'Chamber & Networking', icon: 'ti-users',         color: 'blue'   },
+  { label: 'Technology',           icon: 'ti-device-laptop', color: 'blue'   },
+  { label: 'Real Estate',          icon: 'ti-building',      color: 'orange' },
+  { label: 'Small Business',       icon: 'ti-briefcase',     color: 'teal'   },
+  { label: 'Other',                icon: 'ti-layout-grid',   color: 'purple' },
 ] as const;
 
 export type PublicCategory = typeof PUBLIC_CATEGORIES[number]['label'];
 
 // Maps backend `category` values to public_category display labels
+// Categories mirror the 4 LBC sub-calendars so sponsors can span both properties
 export const CATEGORY_MAP: Record<string, PublicCategory> = {
-  'Chambers':        'Chambers & Networking',
-  'Networking':      'Chambers & Networking',
-  'Community/Edu':   'Community & Education',
-  'Co-Working':      'Community & Education',
-  'Technology':      'Technology',
-  'Real Estate':     'Real Estate',
-  'Const/Design/Mfg': 'Construction & Industry',
-  'Healthcare':      'Healthcare',
-  'Financial':       'Professional Organizations',
-  'Professional Svcs': 'Professional Organizations',
-  'Career/HR':       'Professional Organizations',
-  'Fed/State/Local': 'Professional Organizations',
-  'Hospitality':     'More Organizations',
-  'Other':           'More Organizations',
+  'Chambers':           'Chamber & Networking',
+  'Networking':         'Chamber & Networking',
+  'Technology':         'Technology',
+  'Real Estate':        'Real Estate',
+  'Small Business':     'Small Business',
+  'Community/Edu':      'Small Business',
+  'Co-Working':         'Small Business',
+  'Financial':          'Small Business',
+  'Professional Svcs':  'Small Business',
+  'Career/HR':          'Small Business',
+  'Const/Design/Mfg':   'Other',
+  'Healthcare':         'Other',
+  'Fed/State/Local':    'Other',
+  'Hospitality':        'Other',
+  'Other':              'Other',
 };
 
 export const LBC_URL = process.env.NEXT_PUBLIC_LBC_URL || 'https://www.localbusinesscalendars.com';
