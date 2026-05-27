@@ -3,9 +3,21 @@ import Link from 'next/link';
 interface FooterProps {
   citySlug?: string;
   cityName?: string;
+  stateName?: string;
 }
 
-export default function Footer({ citySlug, cityName }: FooterProps) {
+export default function Footer({ citySlug, cityName, stateName }: FooterProps) {
+  const brandTitle = cityName
+    ? `${cityName} Business Organizations`
+    : stateName
+      ? `${stateName} Business Organizations`
+      : 'Local Business Organizations';
+
+  const brandDesc = cityName
+    ? `A curated directory of chambers, associations, networking groups, and trade organizations in ${cityName} — organized by category so you know who's active in your market.`
+    : stateName
+      ? `A curated directory of chambers, associations, networking groups, and trade organizations across ${stateName} — organized by city and category.`
+      : 'A curated directory of chambers, associations, networking groups, and trade organizations — organized by city and category so you know who\'s out there and where to plug in.';
   return (
     <footer style={{ background: 'var(--color-ink)', color: 'rgba(255,255,255,.6)', fontFamily: 'var(--font-sans)', fontSize: '0.8rem', lineHeight: 1.7 }}>
 
@@ -30,15 +42,29 @@ export default function Footer({ citySlug, cityName }: FooterProps) {
         {/* Brand */}
         <div>
           <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '0.6rem', fontFamily: 'var(--font-sans)' }}>
-            <span style={{ color: 'var(--color-primary)' }}>Local</span> Business Organizations
+            <span style={{ color: 'var(--color-primary)' }}>{cityName || stateName || 'Local'}</span>{' '}Business Organizations
           </div>
           <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,.5)', lineHeight: 1.7, maxWidth: '340px', marginBottom: '1rem' }}>
-            A curated directory of chambers, associations, networking groups, and trade organizations — organized by city and category so you know who's out there and where to plug in.
+            {brandDesc}
           </p>
           <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-primary)', textDecoration: 'none' }}>
+            style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-primary)', textDecoration: 'none', display: 'block', marginBottom: '1rem' }}>
             See upcoming events on Local Business Calendars ↗
           </a>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.7rem', color: 'rgba(255,255,255,.25)', fontWeight: 500, letterSpacing: '0.04em' }}>
+            Part of the{' '}
+            <Link href="/" style={{ color: 'rgba(255,255,255,.4)', textDecoration: 'none', fontWeight: 600 }}>
+              Local Business Network
+            </Link>
+            {' '}·{' '}
+            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,.4)', textDecoration: 'none', fontWeight: 600 }}>
+              Calendars
+            </a>
+            {' '}·{' '}
+            <Link href="/" style={{ color: 'rgba(255,255,255,.4)', textDecoration: 'none', fontWeight: 600 }}>
+              Organizations
+            </Link>
+          </div>
         </div>
 
         {/* Directory */}

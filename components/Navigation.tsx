@@ -2,10 +2,17 @@
 import Link from 'next/link';
 import { CITIES } from '@/lib/config';
 
-export default function Navigation({ activeCitySlug, activeState }: { activeCitySlug?: string; activeState?: string }) {
+export default function Navigation({ activeCitySlug, activeState, activeCityName }: { activeCitySlug?: string; activeState?: string; activeCityName?: string }) {
   const today = new Date().toLocaleDateString('en-US', {
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
   }).toUpperCase();
+
+  // Subtitle changes based on context
+  const subtitle = activeCityName
+    ? `${activeCityName} Business Organizations · Texas`
+    : activeState === 'texas'
+      ? 'Texas Business Organizations · By City & Category'
+      : 'Business Organizations · By City & Category';
 
   return (
     <header style={{ borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
@@ -19,7 +26,7 @@ export default function Navigation({ activeCitySlug, activeState }: { activeCity
               <span style={{ color: 'var(--color-primary)' }}>Local</span> Business Organizations
             </div>
             <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-4)', marginTop: '4px' }}>
-              Business Organizations · By City &amp; Category
+              {subtitle}
             </div>
           </Link>
 

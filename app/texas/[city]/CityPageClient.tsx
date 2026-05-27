@@ -56,7 +56,7 @@ export default function CityPageClient() {
 
   return (
     <>
-      <Navigation activeCitySlug={citySlug} activeState="texas" />
+      <Navigation activeCitySlug={citySlug} activeState="texas" activeCityName={cityName} />
       <main style={{ flex: 1 }}>
 
         {/* City hero */}

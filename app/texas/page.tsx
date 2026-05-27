@@ -185,7 +185,7 @@ export default function TexasPage() {
         </section>
 
       </main>
-      <Footer />
+      <Footer stateName="Texas" />
     </>
   );
 }
