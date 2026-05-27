@@ -132,7 +132,7 @@ export default function TexasPage() {
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '1.75rem' }}>
             8 categories of business organizations
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }}>
+          <div className="lbo-cat-grid">
             {PUBLIC_CATEGORIES.map(cat => (
               <div key={cat.label} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '14px 16px', fontSize: '0.875rem', fontWeight: 500, color: 'var(--fg-1)' }}>
                 {cat.label}
@@ -145,7 +145,7 @@ export default function TexasPage() {
 
         {/* Events bridge */}
         <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '2rem 2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px' }}>
+          <div className="lbo-cta-row" style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '2rem 2.5rem', gap: '24px' }}>
             <div>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#64748b', marginBottom: '0.5rem' }}>From Organizations to Events</div>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '0.4rem' }}>
@@ -164,7 +164,7 @@ export default function TexasPage() {
 
         {/* Claim CTA */}
         <section style={{ padding: '0 2rem 4rem', maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '2.25rem 2.5rem', display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
+          <div className="lbo-claim-row" style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '2.25rem 2.5rem' }}>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent)', marginBottom: '0.5rem' }}>For organization leaders</div>
               <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.6rem' }}>

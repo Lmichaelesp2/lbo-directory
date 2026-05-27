@@ -198,7 +198,7 @@ export default function HomePage() {
 
         {/* Claim CTA */}
         <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '2.25rem 2.5rem', display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
+          <div className="lbo-claim-row" style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '2.25rem 2.5rem' }}>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent)', marginBottom: '0.5rem' }}>For organization leaders</div>
               <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.6rem' }}>

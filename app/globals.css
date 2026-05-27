@@ -38,44 +38,81 @@ h1, h2, h3 {
 a { color: var(--color-primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* ── Mobile responsive ── */
+/* ── Navigation mobile ── */
+.lbo-nav-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 32px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.lbo-nav-links-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 48px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Hero grid ── */
+.lbo-hero-section { background: var(--color-paper); padding: 4rem 2rem 0; border-bottom: 1px solid var(--color-rule); }
+.lbo-hero-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 320px; gap: 3rem; align-items: start; padding-bottom: 3.5rem; }
+
+/* ── Section layouts ── */
+.lbo-city-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.lbo-track-grid { display: flex; gap: 4rem; align-items: flex-start; }
+.lbo-track-checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.lbo-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.lbo-claim-row { display: flex; gap: 2.5rem; align-items: center; }
+.lbo-cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
-  /* Hero: collapse grid to single column, hide city panel */
+  /* Nav top bar: shrink wordmark, tighter padding */
+  .lbo-nav-topbar-inner {
+    padding: 14px 16px !important;
+  }
+  .lbo-nav-wordmark {
+    font-size: 1.25rem !important;
+    letter-spacing: -0.02em !important;
+  }
+  .lbo-nav-dateline,
+  .lbo-nav-orgcount { display: none !important; }
+
+  /* Nav links: scroll horizontally, hide right-side items */
+  .lbo-nav-links-inner {
+    padding: 0 0.75rem !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .lbo-nav-right { display: none !important; }
+
+  /* Hero */
+  .lbo-hero-section { padding: 2rem 1.25rem 0 !important; }
   .lbo-hero-grid {
     grid-template-columns: 1fr !important;
-    gap: 2rem !important;
+    gap: 1.5rem !important;
+    padding-bottom: 2.5rem !important;
   }
-  .lbo-hero-city-panel {
-    display: none !important;
-  }
-  /* Hero padding tighter on mobile */
-  .lbo-hero-section {
-    padding: 2.5rem 1.25rem 0 !important;
-  }
-  /* Nav: hide some items on mobile */
-  .lbo-nav-inner {
-    padding: 0 1rem !important;
-  }
-  /* General section padding */
-  .lbo-section {
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
-  }
-  /* Stats strip: wrap */
-  .lbo-stats-strip {
-    gap: 0.5rem !important;
-    padding: 0.6rem 1rem !important;
-  }
-  /* City cards: single column */
-  .lbo-city-grid {
-    grid-template-columns: 1fr !important;
-  }
-  /* What we track: single column */
-  .lbo-track-grid {
-    flex-direction: column !important;
-    gap: 2rem !important;
-  }
-  .lbo-track-checklist {
-    grid-template-columns: 1fr !important;
-  }
+  .lbo-hero-city-panel { display: none !important; }
+
+  /* Sections */
+  .lbo-city-grid { grid-template-columns: 1fr !important; }
+  .lbo-track-grid { flex-direction: column !important; gap: 2rem !important; }
+  .lbo-track-checklist { grid-template-columns: 1fr !important; }
+  .lbo-cat-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* CTAs: stack vertically */
+  .lbo-cta-row { flex-direction: column !important; align-items: flex-start !important; }
+  .lbo-claim-row { flex-direction: column !important; gap: 1.5rem !important; }
+
+  /* General padding */
+  section { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
 }
