@@ -35,10 +35,10 @@ export default function TexasPage() {
 
             <div>
               {/* Breadcrumb */}
-              <div style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--fg-4)', marginBottom: '1.25rem' }}>
-                <Link href="/" style={{ color: 'var(--fg-4)', textDecoration: 'none' }}>All States</Link>
+              <div style={{ fontSize: '13px', fontWeight: 400, color: 'var(--fg-4)', marginBottom: '1.5rem' }}>
+                <Link href="/" style={{ color: 'var(--fg-4)', textDecoration: 'none' }}>Local Business Organizations</Link>
                 <span style={{ margin: '0 6px' }}>›</span>
-                <span style={{ color: 'var(--fg-2)' }}>Texas</span>
+                <span style={{ color: 'var(--fg-3)' }}>Texas</span>
               </div>
 
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-primary)', marginBottom: '1.25rem' }}>
