@@ -100,16 +100,26 @@ export default function CityPageClient() {
                 <span>Browse by category</span>
                 <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>{loading ? '—' : orgs.length} orgs</span>
               </div>
-              {PUBLIC_CATEGORIES.filter(c => c.label !== 'Other').map((cat, i) => (
-                <button key={cat.label}
-                  onClick={() => setSelectedCategory(selectedCategory === cat.label ? null : cat.label)}
-                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.7rem 1.25rem', borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderBottom: '1px solid var(--color-rule)', width: '100%', background: selectedCategory === cat.label ? 'var(--color-primary-bg)' : 'transparent', cursor: 'pointer', textAlign: 'left' }}>
-                  <span style={{ fontSize: '0.875rem', fontWeight: 500, color: selectedCategory === cat.label ? 'var(--color-primary)' : 'var(--fg-1)' }}>{cat.label}</span>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-primary)', background: 'var(--color-primary-bg)', padding: '2px 8px', borderRadius: '100px' }}>
-                    {loading ? '—' : (counts[cat.label] || 0)}
-                  </span>
-                </button>
-              ))}
+              {PUBLIC_CATEGORIES.filter(c => c.label !== 'Other').map((cat) => {
+                const displayLabel: Record<string, string> = {
+                  'Chamber & Networking': 'Chamber +',
+                  'Technology': 'Technology +',
+                  'Real Estate': 'Real Estate +',
+                  'Small Business': 'Small Business +',
+                };
+                return (
+                  <button key={cat.label}
+                    onClick={() => setSelectedCategory(selectedCategory === cat.label ? null : cat.label)}
+                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.7rem 1.25rem', borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderBottom: '1px solid var(--color-rule)', width: '100%', background: selectedCategory === cat.label ? 'var(--color-primary-bg)' : 'transparent', cursor: 'pointer', textAlign: 'left' }}>
+                    <span style={{ fontSize: '0.875rem', fontWeight: 500, color: selectedCategory === cat.label ? 'var(--color-primary)' : 'var(--fg-1)' }}>
+                      {displayLabel[cat.label] ?? cat.label}
+                    </span>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-primary)', background: 'var(--color-primary-bg)', padding: '2px 8px', borderRadius: '100px' }}>
+                      {loading ? '—' : (counts[cat.label] || 0)}
+                    </span>
+                  </button>
+                );
+              })}
               <button
                 onClick={() => setSelectedCategory(selectedCategory === 'Other' ? null : 'Other')}
                 style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.7rem 1.25rem', width: '100%', background: selectedCategory === 'Other' ? 'var(--color-primary-bg)' : 'transparent', border: 'none', borderBottom: '1px solid var(--color-rule)', cursor: 'pointer', textAlign: 'left' }}>
@@ -168,25 +178,63 @@ export default function CityPageClient() {
             </div>
           )}
 
-          {/* Category filter pills */}
-          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '1.5rem', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--fg-4)', marginRight: '4px' }}>Filter:</span>
-            {PUBLIC_CATEGORIES.map(cat => {
-              const isActive = selectedCategory === cat.label;
-              const label = cat.label === 'Other' ? '+ More' : cat.label;
-              return (
-                <button key={cat.label}
-                  onClick={() => setSelectedCategory(isActive ? null : cat.label)}
-                  style={{ background: isActive ? 'var(--color-primary)' : '#fff', color: isActive ? '#fff' : 'var(--fg-2)', border: isActive ? '1px solid var(--color-primary)' : '1px solid #e2e8f0', borderRadius: '100px', padding: '5px 14px', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                  {label} {counts[cat.label] ? `(${counts[cat.label]})` : ''}
+          {/* Category filter */}
+          <div style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.25rem 1.5rem', marginBottom: '1.75rem' }}>
+            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--fg-4)', textAlign: 'center', marginBottom: '0.875rem' }}>
+              Browse by category
+            </div>
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+              {PUBLIC_CATEGORIES.map(cat => {
+                const isActive = selectedCategory === cat.label;
+                const displayLabel: Record<string, string> = {
+                  'Chamber & Networking': 'Chamber +',
+                  'Technology': 'Technology +',
+                  'Real Estate': 'Real Estate +',
+                  'Small Business': 'Small Business +',
+                  'Other': '+ More',
+                };
+                return (
+                  <button key={cat.label}
+                    onClick={() => setSelectedCategory(isActive ? null : cat.label)}
+                    style={{
+                      background: isActive ? 'var(--color-primary)' : 'var(--color-paper)',
+                      color: isActive ? '#fff' : 'var(--fg-1)',
+                      border: isActive ? '1.5px solid var(--color-primary)' : '1.5px solid var(--color-rule)',
+                      borderRadius: '100px',
+                      padding: '0.5rem 1.25rem',
+                      fontSize: '0.825rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      whiteSpace: 'nowrap',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontFamily: 'var(--font-sans)',
+                    }}>
+                    {displayLabel[cat.label] ?? cat.label}
+                    {counts[cat.label] ? (
+                      <span style={{
+                        background: isActive ? 'rgba(255,255,255,0.25)' : 'var(--color-primary-bg)',
+                        color: isActive ? '#fff' : 'var(--color-primary)',
+                        fontSize: '0.7rem',
+                        fontWeight: 700,
+                        borderRadius: '100px',
+                        padding: '1px 7px',
+                        lineHeight: 1.5,
+                      }}>
+                        {counts[cat.label]}
+                      </span>
+                    ) : null}
+                  </button>
+                );
+              })}
+              {selectedCategory && (
+                <button onClick={() => setSelectedCategory(null)}
+                  style={{ background: 'none', border: '1.5px solid transparent', borderRadius: '100px', color: 'var(--fg-4)', cursor: 'pointer', fontSize: '0.8rem', padding: '0.5rem 0.75rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
+                  Clear ×
                 </button>
-              );
-            })}
-            {selectedCategory && (
-              <button onClick={() => setSelectedCategory(null)} style={{ background: 'none', border: 'none', color: 'var(--color-primary)', cursor: 'pointer', fontSize: '0.8rem', padding: '5px 8px', fontFamily: 'var(--font-sans)' }}>
-                Clear ×
-              </button>
-            )}
+              )}
+            </div>
           </div>
 
           {/* Results header */}
