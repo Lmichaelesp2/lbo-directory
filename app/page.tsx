@@ -158,10 +158,10 @@ export default function HomePage() {
         <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>What we track</div>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
-            Every type of local business organization
+            The organizations that shape your local business community
           </h2>
           <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '600px' }}>
-            We research and verify profiles for a wide range of organizations — so you have one place to find who's active in your market, instead of hunting across a dozen different websites.
+            From chambers and trade associations to networking groups and professional societies — we pull them together so you can see the full picture of who's active in your market.
           </p>
           <div className="lbo-cat-grid">
             {[
