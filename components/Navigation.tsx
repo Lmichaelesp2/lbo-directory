@@ -10,7 +10,7 @@ export default function Navigation({ activeCitySlug }: { activeCitySlug?: string
   return (
     <header style={{ borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
       {/* Top bar */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 2rem 0.75rem', borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 32px', borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
         <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', color: 'var(--fg-4)' }}>{today}</span>
 
         <Link href="/" style={{ textAlign: 'center', textDecoration: 'none' }}>
