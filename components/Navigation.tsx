@@ -157,6 +157,7 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
               {moreOpen && (
                 <div style={{ position: 'absolute', top: 'calc(100% + 6px)', left: 0, background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '10px', boxShadow: '0 4px 20px rgba(10,22,40,.10)', minWidth: '180px', zIndex: 100, overflow: 'hidden' }}>
                   {[
+                    { href: '/texas-business-network', label: 'Texas Business Network' },
                     { href: '/sponsor', label: 'Sponsorship' },
                     { href: '/privacy', label: 'Privacy Policy' },
                     { href: '/terms',   label: 'Terms & Conditions' },
