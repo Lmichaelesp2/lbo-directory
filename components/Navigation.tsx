@@ -1,7 +1,45 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { CITIES } from '@/lib/config';
+
+function LboCitiesDropdown({ activeCitySlug }: { activeCitySlug?: string }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const isActive = CITIES.some(c => c.slug === activeCitySlug);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  return (
+    <div ref={ref} style={{ position: 'relative' }}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        style={{ fontSize: '13px', fontWeight: isActive ? 600 : 500, color: isActive ? 'var(--fg-1)' : 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', background: 'none', border: 'none', cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: 'var(--font-sans)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+        Cities
+        <span style={{ fontSize: '10px', color: 'var(--fg-4)' }}>▾</span>
+      </button>
+      {open && (
+        <div style={{ position: 'absolute', top: 'calc(100% + 6px)', left: 0, background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '10px', boxShadow: '0 4px 20px rgba(10,22,40,.10)', minWidth: '160px', zIndex: 100, overflow: 'hidden' }}>
+          {CITIES.map(city => (
+            <Link key={city.slug} href={`/texas/${city.slug}`}
+              onClick={() => setOpen(false)}
+              style={{ display: 'block', padding: '0.6rem 1rem', fontSize: '13px', fontWeight: activeCitySlug === city.slug ? 700 : 500, color: activeCitySlug === city.slug ? 'var(--color-primary)' : 'var(--fg-1)', textDecoration: 'none', borderBottom: '1px solid var(--color-rule)' }}
+              onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-paper)')}
+              onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
+              {city.name}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Navigation({ activeCitySlug, activeState, activeCityName }: { activeCitySlug?: string; activeState?: string; activeCityName?: string }) {
   const [moreOpen, setMoreOpen]       = useState(false);
@@ -73,23 +111,15 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
       <nav className="lbo-nav-bar">
         <div className="lbo-nav-links-inner">
           <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+            {/* Texas */}
             <Link href="/texas"
               style={{ fontSize: '13px', fontWeight: activeState === 'texas' && !activeCitySlug ? 600 : 500, color: activeState === 'texas' && !activeCitySlug ? 'var(--fg-1)' : 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               Texas
             </Link>
-            {CITIES.map(city => (
-              <Link key={city.slug} href={`/texas/${city.slug}`}
-                style={{ fontSize: '13px', fontWeight: activeCitySlug === city.slug ? 600 : 500, color: activeCitySlug === city.slug ? 'var(--fg-1)' : 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-                {city.name}
-              </Link>
-            ))}
-          </div>
 
-          <div className="lbo-nav-right" style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
-              style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-              Events Calendar ↗
-            </a>
+            {/* Cities dropdown */}
+            <LboCitiesDropdown activeCitySlug={activeCitySlug} />
+
             <Link href="/about"
               style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               About
@@ -113,10 +143,9 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
                 <span style={{ fontSize: '10px', color: 'var(--fg-4)' }}>▾</span>
               </button>
               {moreOpen && (
-                <div style={{ position: 'absolute', top: 'calc(100% + 6px)', right: 0, background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '10px', boxShadow: '0 4px 20px rgba(10,22,40,.10)', minWidth: '180px', zIndex: 100, overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: 'calc(100% + 6px)', left: 0, background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '10px', boxShadow: '0 4px 20px rgba(10,22,40,.10)', minWidth: '180px', zIndex: 100, overflow: 'hidden' }}>
                   {[
                     { href: '/sponsor', label: 'Sponsorship' },
-                    { href: '/claim',   label: 'Claim Your Listing' },
                     { href: '/privacy', label: 'Privacy Policy' },
                     { href: '/terms',   label: 'Terms & Conditions' },
                   ].map(item => (
@@ -130,7 +159,14 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
                 </div>
               )}
             </div>
+          </div>
 
+          <div className="lbo-nav-right" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            {/* Cross-link to LBC */}
+            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+              style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+              Events Calendar ↗
+            </a>
             <Link href="/claim"
               style={{ background: 'var(--color-accent)', color: '#fff', padding: '7px 18px', borderRadius: '6px', fontSize: '13px', fontWeight: 700, textDecoration: 'none', letterSpacing: '0.01em', whiteSpace: 'nowrap' }}>
               Claim Your Listing →
