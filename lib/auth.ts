@@ -35,8 +35,9 @@ export async function signOut() {
 }
 
 export async function getUser() {
-  const { data: { user } } = await supabaseAuth.auth.getUser();
-  return user;
+  // Use getSession for client-side checks — reads from localStorage without a network round-trip
+  const { data: { session } } = await supabaseAuth.auth.getSession();
+  return session?.user ?? null;
 }
 
 export type LboUserProfile = {
@@ -55,7 +56,11 @@ export async function getLboUserProfile(): Promise<LboUserProfile | null> {
     .select('id, email, city, role, org_id')
     .eq('id', user.id)
     .single();
-  return data as LboUserProfile | null;
+  // If no lbo_users row yet (e.g. signed up via LBC), still treat as logged in with default profile
+  if (!data) {
+    return { id: user.id, email: user.email ?? '', city: null, role: 'member', org_id: null };
+  }
+  return data as LboUserProfile;
 }
 
 export async function getSession() {
