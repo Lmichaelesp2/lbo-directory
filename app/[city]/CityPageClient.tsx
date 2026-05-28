@@ -33,7 +33,6 @@ export default function CityPageClient() {
       .from('organizations')
       .select('id, name, city, category, home_page, how_active, description')
       .eq('city', cityName)
-      .not('category', 'is', null)
       .not('archive', 'eq', true)
       .order('name')
       .then(({ data }) => {

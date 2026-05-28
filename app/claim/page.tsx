@@ -43,7 +43,6 @@ export default function ClaimPage() {
       .from('organizations')
       .select('id, name, city, category, home_page')
       .ilike('name', `%${searchQuery}%`)
-      .not('category', 'is', null)
       .limit(10);
     setResults((data as OrgResult[]) || []);
     setSearching(false);

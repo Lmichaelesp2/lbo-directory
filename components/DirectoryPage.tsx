@@ -30,7 +30,6 @@ export default function DirectoryPage() {
       .from('organizations')
       .select('*')
       .eq('city', selectedCity)
-      .not('category', 'is', null)
       .not('archive', 'eq', true)
       .order('name')
       .then(({ data }) => {
@@ -63,7 +62,7 @@ export default function DirectoryPage() {
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
             <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--color-primary)', display: 'inline-block' }}></span>
-            588 Organizations Across Texas
+            527 Organizations Across Texas
           </div>
           <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '38px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.02em', marginBottom: '16px' }}>
             Discover the organizations <em style={{ fontStyle: 'italic', color: 'var(--color-primary)' }}>behind</em> local business.
@@ -161,7 +160,7 @@ export default function DirectoryPage() {
 
       {/* Footer ticker */}
       <div style={{ background: 'var(--color-ink)', padding: '10px 32px', display: 'flex', gap: '32px', alignItems: 'center', justifyContent: 'center', marginTop: '40px' }}>
-        {[['Vol. 1 · May 2026', ''], ['588', 'Organizations Tracked'], ['4', 'Texas Cities'], ['8', 'Categories']].map(([val, label], i) => (
+        {[['Vol. 1 · May 2026', ''], ['527', 'Organizations Tracked'], ['4', 'Texas Cities'], ['8', 'Categories']].map(([val, label], i) => (
           <span key={i} style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#475569' }}>
             {label ? <><strong style={{ color: '#94a3b8' }}>{val}</strong> {label}</> : val}
           </span>

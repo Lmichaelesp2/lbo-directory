@@ -1,8 +1,8 @@
 export const CITIES = [
-  { name: 'San Antonio', slug: 'san-antonio', count: 184 },
-  { name: 'Houston',     slug: 'houston',     count: 220 },
-  { name: 'Dallas',      slug: 'dallas',      count: 92  },
-  { name: 'Austin',      slug: 'austin',      count: 92  },
+  { name: 'San Antonio', slug: 'san-antonio', count: 155 },
+  { name: 'Houston',     slug: 'houston',     count: 190 },
+  { name: 'Dallas',      slug: 'dallas',      count: 91  },
+  { name: 'Austin',      slug: 'austin',      count: 91  },
 ] as const;
 
 export type CitySlug = 'san-antonio' | 'houston' | 'dallas' | 'austin';
