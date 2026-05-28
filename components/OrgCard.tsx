@@ -62,7 +62,7 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
             <i className={`ti ${catIcon}`} style={{ fontSize: '16px', color: 'var(--fg-4)' }} />
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.3, marginBottom: '4px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.3, marginBottom: '4px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {org.name}
             </div>
             {org.category && (
@@ -89,7 +89,7 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
 
         {/* Footer */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '8px', borderTop: '1px solid var(--color-rule)', marginTop: 'auto' }}>
-          <span style={{ fontSize: '12px', color: 'var(--color-primary)', fontWeight: 600 }}>View details →</span>
+          <span style={{ fontSize: '12px', color: '#c2410c', fontWeight: 600 }}>View details →</span>
           <span style={{ fontSize: '10px', fontWeight: 500, padding: '2px 7px', borderRadius: '100px', background: 'var(--color-paper-2)', color: 'var(--fg-4)', border: '1px solid var(--color-rule)' }}>
             {org.city}
           </span>

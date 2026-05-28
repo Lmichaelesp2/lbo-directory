@@ -184,7 +184,7 @@ export default function CityPageClient() {
 
           {/* Category filter */}
           <div style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.25rem 1.5rem', marginBottom: '1.75rem' }}>
-            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--fg-4)', textAlign: 'center', marginBottom: '0.875rem' }}>
+            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--fg-2)', textAlign: 'center', marginBottom: '0.875rem' }}>
               Browse by category
             </div>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -202,11 +202,11 @@ export default function CityPageClient() {
                   <button key={cat.label}
                     onClick={() => setSelectedCategory(isActive ? null : cat.label)}
                     style={{
-                      background: isActive ? '#c2410c' : '#fff4f1',
-                      color: isActive ? '#fff' : '#c2410c',
-                      border: `1.5px solid ${isActive ? '#c2410c' : '#f5c6b5'}`,
+                      background: isActive ? '#c2410c' : 'var(--color-ink)',
+                      color: '#fff',
+                      border: 'none',
                       borderRadius: '100px',
-                      padding: '0.45rem 1rem',
+                      padding: '0.5rem 1.1rem',
                       fontSize: '0.8rem',
                       fontWeight: 600,
                       cursor: 'pointer',
@@ -216,13 +216,14 @@ export default function CityPageClient() {
                       gap: '6px',
                       fontFamily: 'var(--font-sans)',
                       transition: 'all 0.15s',
+                      opacity: isActive ? 1 : 0.75,
                     }}>
                     <i className={`ti ${meta.icon}`} style={{ fontSize: '14px' }} />
                     {meta.label}
                     {counts[cat.label] ? (
                       <span style={{
-                        background: isActive ? 'rgba(255,255,255,0.2)' : '#fff',
-                        color: isActive ? '#fff' : '#c2410c',
+                        background: 'rgba(255,255,255,0.2)',
+                        color: '#fff',
                         fontSize: '0.7rem',
                         fontWeight: 700,
                         borderRadius: '100px',
