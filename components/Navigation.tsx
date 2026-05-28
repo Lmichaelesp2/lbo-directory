@@ -55,13 +55,22 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
             ))}
           </div>
 
-          <div className="lbo-nav-right" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <div className="lbo-nav-right" style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
             <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
               style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               Events Calendar ↗
             </a>
 
-            {/* More dropdown */}
+            <Link href="/about"
+              style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+              About
+            </Link>
+            <Link href="/contact"
+              style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+              Contact
+            </Link>
+
+            {/* More dropdown — legal + sponsor */}
             <div style={{ position: 'relative' }}>
               <button
                 onClick={() => setMoreOpen(o => !o)}
@@ -73,8 +82,6 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
               {moreOpen && (
                 <div style={{ position: 'absolute', top: 'calc(100% + 6px)', right: 0, background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '10px', boxShadow: '0 4px 20px rgba(10,22,40,.10)', minWidth: '180px', zIndex: 100, overflow: 'hidden' }}>
                   {[
-                    { href: '/about',   label: 'About' },
-                    { href: '/contact', label: 'Contact' },
                     { href: '/sponsor', label: 'Sponsorship' },
                     { href: '/claim',   label: 'Claim Your Listing' },
                     { href: '/privacy', label: 'Privacy Policy' },
