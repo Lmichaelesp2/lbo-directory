@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
             Hi ${contact_name || 'there'},
           </p>
           <p style="font-size: 15px; line-height: 1.7; margin-bottom: 20px;">
-            Great news — your claim for <strong>${org_name}</strong> has been approved. Your organization is now a verified member of the <strong>${org_city} chapter</strong> and the <strong>Texas Business Organizations</strong> statewide network.
+            Great news — your claim for <strong>${org_name}</strong> has been approved. Your organization is now a verified member of the <strong>${org_city} chapter</strong> and the <strong>Texas Business Network</strong> — our statewide network of chambers, associations, and professional groups across Texas.
           </p>
 
           <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 20px; margin: 24px 0;">
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
             ${[
               `Verified listing on the Local Business Organizations directory`,
               `${org_city} city chapter membership`,
-              `Texas Business Organizations statewide membership`,
+              `Texas Business Network statewide membership`,
               `Ability to update your organization's profile and contact information`,
               `Quarterly check-ins to keep your listing current`,
             ].map(item => `

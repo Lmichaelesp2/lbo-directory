@@ -73,7 +73,7 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
 
   const MORE_LINKS = [
     { href: 'https://www.localbusinesscalendars.com', label: 'Events Calendar ↗', external: true, primary: true },
-    { href: '/texas-business-organizations', label: 'Texas Business Organizations', external: false, primary: false },
+    { href: '/texas-business-organizations', label: 'Texas Business Network', external: false, primary: false },
     { href: '/about',   label: 'About' },
     { href: '/contact', label: 'Contact' },
     { href: '/help',    label: 'Help' },

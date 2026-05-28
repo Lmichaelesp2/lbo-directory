@@ -136,6 +136,25 @@ export default function ClaimPage() {
               </p>
             </div>
 
+            {/* TBN membership callout */}
+            <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '20px 24px', marginBottom: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+                <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e', display: 'inline-block', flexShrink: 0 }}></span>
+                <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)' }}>Included with every claim</span>
+              </div>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff', marginBottom: '8px', fontFamily: 'var(--font-serif)' }}>
+                Texas Business Network membership
+              </div>
+              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,.65)', lineHeight: 1.7, marginBottom: '14px' }}>
+                When your listing is approved, your organization automatically becomes a verified member of the <strong style={{ color: '#fff' }}>Texas Business Network</strong> — a statewide network of chambers, professional associations, and networking groups across Texas. Membership is free.
+              </p>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                {['Your city chapter', 'Statewide TBN network', 'Verified member badge', 'Free to join'].map(item => (
+                  <span key={item} style={{ fontSize: '11px', fontWeight: 600, padding: '4px 10px', borderRadius: '100px', background: 'rgba(255,255,255,.1)', color: 'rgba(255,255,255,.8)', border: '1px solid rgba(255,255,255,.12)' }}>{item}</span>
+                ))}
+              </div>
+            </div>
+
             {/* What you get */}
             <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '20px 24px', marginBottom: '28px' }}>
               <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--fg-4)', marginBottom: '14px' }}>What a claimed listing includes</div>
@@ -334,20 +353,50 @@ export default function ClaimPage() {
 
         {/* Step 3 — Success */}
         {step === 'success' && (
-          <div style={{ textAlign: 'center', padding: '48px 0' }}>
-            <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#d1fae5', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', fontSize: '28px' }}>✓</div>
-            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '12px' }}>
-              Request received!
-            </h1>
-            <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.7, maxWidth: '420px', margin: '0 auto 12px' }}>
-              We've received your claim request for <strong style={{ color: 'var(--fg-1)' }}>{selectedOrg?.name}</strong>.
-            </p>
-            <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.7, maxWidth: '420px', margin: '0 auto 32px' }}>
-              Our team will review your information and reach out within <strong style={{ color: 'var(--fg-1)' }}>1–2 business days</strong> to confirm your listing and walk you through next steps.
-            </p>
-            <Link href="/" style={{ background: 'var(--color-primary)', color: '#fff', padding: '11px 24px', borderRadius: '8px', fontSize: '13px', fontWeight: 700, textDecoration: 'none' }}>
-              Back to Directory →
-            </Link>
+          <div style={{ padding: '48px 0' }}>
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+              <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#d1fae5', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', fontSize: '28px' }}>✓</div>
+              <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '28px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '12px' }}>
+                Request received!
+              </h1>
+              <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.7, maxWidth: '420px', margin: '0 auto 12px' }}>
+                We've received your claim request for <strong style={{ color: 'var(--fg-1)' }}>{selectedOrg?.name}</strong>.
+              </p>
+              <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.7, maxWidth: '420px', margin: '0 auto' }}>
+                Our team will review your information and reach out within <strong style={{ color: 'var(--fg-1)' }}>1–2 business days</strong>.
+              </p>
+            </div>
+
+            {/* TBN membership preview */}
+            <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '24px', marginBottom: '28px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '12px' }}>What happens when approved</div>
+              <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff', fontFamily: 'var(--font-serif)', marginBottom: '16px' }}>
+                You'll become a member of the Texas Business Network
+              </div>
+              {[
+                ['🏛', `${selectedOrg?.city || 'Your city'} chapter membership`, 'Your org joins the local chapter for your city — automatically.'],
+                ['🌐', 'Texas Business Network', 'Statewide network of verified chambers, associations, and professional groups.'],
+                ['✓', 'Verified member status', 'Your listing is marked as verified and claimed — the right contact is on record.'],
+                ['📬', 'Quarterly check-ins', 'We'll reach out every 90 days to keep your contact info current.'],
+              ].map(([icon, title, desc]) => (
+                <div key={title as string} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', marginBottom: '12px' }}>
+                  <span style={{ fontSize: '16px', flexShrink: 0, marginTop: '1px' }}>{icon}</span>
+                  <div>
+                    <div style={{ fontSize: '13px', fontWeight: 700, color: '#fff', marginBottom: '2px' }}>{title}</div>
+                    <div style={{ fontSize: '12px', color: 'rgba(255,255,255,.55)', lineHeight: 1.5 }}>{desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ textAlign: 'center' }}>
+              <Link href="/" style={{ background: 'var(--color-primary)', color: '#fff', padding: '11px 24px', borderRadius: '8px', fontSize: '13px', fontWeight: 700, textDecoration: 'none' }}>
+                Back to Directory →
+              </Link>
+              <p style={{ fontSize: '12px', color: 'var(--fg-4)', marginTop: '12px' }}>
+                Check your inbox — we've sent a confirmation email with next steps.
+              </p>
+            </div>
           </div>
         )}
 
