@@ -286,13 +286,6 @@ export default function OrgDetailModal({ org, onClose }: { org: Organization; on
                 </div>
               )}
 
-              {/* Claim CTA — only if not owner */}
-              {!isOwner && (
-                <div style={{ background: 'var(--color-paper)', border: '1px solid var(--color-rule)', borderRadius: '8px', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
-                  <span style={{ fontSize: '12px', color: 'var(--fg-3)' }}>Is this your organization?</span>
-                  <a href="/claim" style={{ fontSize: '12px', fontWeight: 700, color: 'var(--color-accent)', textDecoration: 'none', whiteSpace: 'nowrap' }}>Claim listing →</a>
-                </div>
-              )}
             </>
           ) : (
             /* Login gate */
@@ -318,6 +311,15 @@ export default function OrgDetailModal({ org, onClose }: { org: Organization; on
                   </button>
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* Claim link — always visible, hidden only for confirmed owners */}
+          {!isOwner && (
+            <div style={{ textAlign: 'center', paddingTop: '4px' }}>
+              <a href="/claim" style={{ fontSize: '11px', color: 'var(--fg-4)', textDecoration: 'none' }}>
+                Is this your organization? <span style={{ color: 'var(--color-primary)', fontWeight: 600 }}>Claim this listing →</span>
+              </a>
             </div>
           )}
 
