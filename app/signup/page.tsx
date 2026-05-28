@@ -1,12 +1,12 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import { signUp } from '@/lib/auth';
 import { CITIES } from '@/lib/config';
 
-export default function SignupPage() {
+function SignupForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const cityParam = searchParams.get('city') ?? '';
@@ -120,5 +120,13 @@ export default function SignupPage() {
         </form>
       </main>
     </>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: '48px', textAlign: 'center' }}>Loading...</div>}>
+      <SignupForm />
+    </Suspense>
   );
 }
