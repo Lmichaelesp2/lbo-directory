@@ -19,18 +19,10 @@ const CATEGORY_ICONS: Record<string, string> = {
   'Other':                'ti-dots-circle-horizontal',
 };
 
-const CATEGORY_COLORS: Record<string, { bg: string; color: string; border: string }> = {
-  'Chamber & Networking': { bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
-  'Technology':           { bg: '#ede9fe', color: '#6d28d9', border: '#c4b5fd' },
-  'Real Estate':          { bg: '#ecfdf5', color: '#065f46', border: '#6ee7b7' },
-  'Small Business':       { bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
-  'Other':                { bg: '#f0f9ff', color: '#0369a1', border: '#bae6fd' },
-};
 
 export default function OrgCard({ org, lean = false }: { org: Organization; lean?: boolean }) {
   const [showModal, setShowModal] = useState(false);
 
-  const catColors = CATEGORY_COLORS[org.category || ''] || CATEGORY_COLORS['Other'];
   const catIcon = CATEGORY_ICONS[org.category || ''] || 'ti-dots-circle-horizontal';
   const description = org.description ? stripHtml(org.description) : null;
 
@@ -64,17 +56,17 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
           {/* Icon avatar */}
           <div style={{
             width: '36px', height: '36px', borderRadius: '8px', flexShrink: 0,
-            background: catColors.bg, border: `1px solid ${catColors.border}`,
+            background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            <i className={`ti ${catIcon}`} style={{ fontSize: '16px', color: catColors.color }} />
+            <i className={`ti ${catIcon}`} style={{ fontSize: '16px', color: 'var(--fg-4)' }} />
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.3, marginBottom: '4px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {org.name}
             </div>
             {org.category && (
-              <span style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: catColors.color, background: catColors.bg, padding: '2px 7px', borderRadius: '100px' }}>
+              <span style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#c2410c', background: '#fff4f1', padding: '2px 7px', borderRadius: '100px' }}>
                 {org.category}
               </span>
             )}
@@ -97,7 +89,7 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
 
         {/* Footer */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '8px', borderTop: '1px solid var(--color-rule)', marginTop: 'auto' }}>
-          <span style={{ fontSize: '12px', color: catColors.color, fontWeight: 600 }}>View details →</span>
+          <span style={{ fontSize: '12px', color: 'var(--color-primary)', fontWeight: 600 }}>View details →</span>
           <span style={{ fontSize: '10px', fontWeight: 500, padding: '2px 7px', borderRadius: '100px', background: 'var(--color-paper-2)', color: 'var(--fg-4)', border: '1px solid var(--color-rule)' }}>
             {org.city}
           </span>
