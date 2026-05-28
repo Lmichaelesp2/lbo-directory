@@ -69,6 +69,10 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
               style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               Contact
             </Link>
+            <Link href="/help"
+              style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+              Help
+            </Link>
 
             {/* More dropdown — legal + sponsor */}
             <div style={{ position: 'relative' }}>
