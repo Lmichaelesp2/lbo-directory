@@ -165,13 +165,13 @@ export default function HomePage() {
               { ...STATES[2], abbr: 'GA' },
               { ...STATES[3], abbr: 'OH' },
             ].map(state => (
-              <div key={state.slug} style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '24px', opacity: state.live ? 1 : 0.55, position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', bottom: '-10px', right: '12px', fontSize: '4rem', fontWeight: 800, color: 'var(--fg-1)', opacity: 0.06, letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)' }}>
+              <div key={state.slug} style={{ background: state.live ? '#fff8f5' : 'var(--color-paper-2)', border: `1px solid ${state.live ? '#f5d5c8' : 'var(--color-rule)'}`, borderRadius: '12px', padding: '24px', opacity: state.live ? 1 : 0.55, position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', bottom: '-10px', right: '12px', fontSize: '4rem', fontWeight: 800, color: state.live ? '#c2410c' : 'var(--fg-1)', opacity: 0.07, letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)' }}>
                   {state.abbr}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px', position: 'relative' }}>
                   <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--fg-1)' }}>{state.name}</h3>
-                  <span style={{ fontSize: '0.7rem', fontWeight: 600, color: state.live ? 'var(--color-primary)' : 'var(--fg-4)', background: '#fff', padding: '3px 10px', borderRadius: '100px', border: '1px solid var(--color-rule)', whiteSpace: 'nowrap' }}>
+                  <span style={{ fontSize: '0.7rem', fontWeight: 600, color: state.live ? 'var(--color-accent)' : 'var(--fg-4)', background: '#fff', padding: '3px 10px', borderRadius: '100px', border: `1px solid ${state.live ? '#f5d5c8' : 'var(--color-rule)'}`, whiteSpace: 'nowrap' }}>
                     {state.orgCount}
                   </span>
                 </div>
@@ -179,7 +179,7 @@ export default function HomePage() {
                   {state.cities.join(' · ')}
                 </p>
                 {state.live ? (
-                  <Link href={`/${state.slug}`} style={{ fontSize: '0.8rem', color: 'var(--color-primary)', fontWeight: 600, textDecoration: 'none', position: 'relative' }}>
+                  <Link href={`/${state.slug}`} style={{ fontSize: '0.8rem', color: 'var(--color-accent)', fontWeight: 600, textDecoration: 'none', position: 'relative' }}>
                     Browse {state.name} →
                   </Link>
                 ) : (

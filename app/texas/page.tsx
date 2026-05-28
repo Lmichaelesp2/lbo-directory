@@ -108,17 +108,25 @@ export default function TexasPage() {
             Each city has its own directory, organized by category. Click your city to browse all organizations, filter by type, and discover who's active in your market.
           </p>
           <div className="lbo-city-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
-            {CITIES.map(city => (
+            {[
+              { ...CITIES[0], abbr: 'SA' },
+              { ...CITIES[1], abbr: 'HOU' },
+              { ...CITIES[2], abbr: 'DAL' },
+              { ...CITIES[3], abbr: 'AUS' },
+            ].map(city => (
               <Link key={city.slug} href={`/texas/${city.slug}`} style={{ textDecoration: 'none' }}>
-                <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px', cursor: 'pointer' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
-                    <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--fg-1)' }}>{city.name}</h3>
-                    <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-primary)', background: 'var(--color-primary-bg)', padding: '3px 10px', borderRadius: '100px' }}>{city.count} orgs</span>
+                <div style={{ background: '#fff8f5', border: '1px solid #f5d5c8', borderRadius: '12px', padding: '24px', cursor: 'pointer', position: 'relative', overflow: 'hidden' }}>
+                  <div style={{ position: 'absolute', bottom: '-10px', right: '10px', fontSize: '4rem', fontWeight: 800, color: '#c2410c', opacity: 0.07, letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)' }}>
+                    {city.abbr}
                   </div>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '14px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px', position: 'relative' }}>
+                    <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--fg-1)' }}>{city.name}</h3>
+                    <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-accent)', background: '#fff', padding: '3px 10px', borderRadius: '100px', border: '1px solid #f5d5c8' }}>{city.count} orgs</span>
+                  </div>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '14px', position: 'relative' }}>
                     {CITY_CONTENT[city.name]?.tagline}
                   </p>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--color-accent)', fontWeight: 600 }}>Browse {city.name} organizations →</span>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--color-accent)', fontWeight: 600, position: 'relative' }}>Browse {city.name} organizations →</span>
                 </div>
               </Link>
             ))}
