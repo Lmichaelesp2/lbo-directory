@@ -32,6 +32,7 @@ export type Organization = {
   group_phone_number: string | null;
   internal_type: string | null;
   member_type: string | null;
+  typical_title: string | null;
   membership_type: string | null;
   membership_fee_range: string | null;
   industries_served: string | null;

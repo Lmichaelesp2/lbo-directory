@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import { CITIES } from '@/lib/config';
+import { supabaseAuth, signOut } from '@/lib/auth';
+import type { User } from '@supabase/supabase-js';
 
 function LboCitiesDropdown({ activeCitySlug }: { activeCitySlug?: string }) {
   const [open, setOpen] = useState(false);
@@ -42,8 +44,17 @@ function LboCitiesDropdown({ activeCitySlug }: { activeCitySlug?: string }) {
 }
 
 export default function Navigation({ activeCitySlug, activeState, activeCityName }: { activeCitySlug?: string; activeState?: string; activeCityName?: string }) {
-  const [moreOpen, setMoreOpen]       = useState(false);
-  const [menuOpen, setMenuOpen]       = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    supabaseAuth.auth.getUser().then(({ data }) => setUser(data.user));
+    const { data: { subscription } } = supabaseAuth.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
 
   const today = new Date().toLocaleDateString('en-US', {
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
@@ -167,10 +178,28 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
               style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               Events Calendar ↗
             </a>
-            <Link href="/claim"
-              style={{ background: 'var(--color-accent)', color: '#fff', padding: '7px 18px', borderRadius: '6px', fontSize: '13px', fontWeight: 700, textDecoration: 'none', letterSpacing: '0.01em', whiteSpace: 'nowrap' }}>
-              Claim Your Listing →
-            </Link>
+            {user ? (
+              <>
+                <span style={{ fontSize: '12px', color: 'var(--fg-3)', maxWidth: '160px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {user.email}
+                </span>
+                <button onClick={async () => { await signOut(); setUser(null); }}
+                  style={{ background: 'none', border: '1px solid var(--color-rule)', borderRadius: '6px', padding: '6px 14px', fontSize: '12px', fontWeight: 600, color: 'var(--fg-3)', cursor: 'pointer', fontFamily: 'var(--font-sans)', whiteSpace: 'nowrap' }}>
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/login"
+                  style={{ fontSize: '13px', fontWeight: 600, color: 'var(--fg-2)', padding: '7px 14px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap', border: '1px solid var(--color-rule)' }}>
+                  Sign in
+                </Link>
+                <Link href="/signup"
+                  style={{ background: 'var(--color-accent)', color: '#fff', padding: '7px 18px', borderRadius: '6px', fontSize: '13px', fontWeight: 700, textDecoration: 'none', letterSpacing: '0.01em', whiteSpace: 'nowrap' }}>
+                  Create free account →
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
@@ -205,10 +234,26 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
             ))}
           </div>
           <div className="lbo-mobile-menu-divider" />
-          <div style={{ padding: '1rem 1.25rem' }}>
-            <Link href="/claim" className="lbo-mobile-claim-btn">
-              Claim Your Listing →
-            </Link>
+          <div style={{ padding: '1rem 1.25rem', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {user ? (
+              <>
+                <div style={{ fontSize: '12px', color: 'var(--fg-4)', marginBottom: '4px' }}>{user.email}</div>
+                <button onClick={async () => { await signOut(); setUser(null); setMenuOpen(false); }}
+                  style={{ background: 'none', border: '1px solid var(--color-rule)', borderRadius: '6px', padding: '10px 16px', fontSize: '13px', fontWeight: 600, color: 'var(--fg-2)', cursor: 'pointer', fontFamily: 'var(--font-sans)', textAlign: 'left' }}>
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/signup" className="lbo-mobile-claim-btn">
+                  Create free account →
+                </Link>
+                <Link href="/login"
+                  style={{ display: 'block', textAlign: 'center', fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)', padding: '10px', textDecoration: 'none' }}>
+                  Sign in
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}
