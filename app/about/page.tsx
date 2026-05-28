@@ -42,7 +42,7 @@ export default function AboutPage() {
             <div>
               <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.75rem' }}>Part of a larger ecosystem</h2>
               <p style={{ fontSize: '0.9rem', color: 'var(--fg-3)', lineHeight: 1.8 }}>
-                This directory is a companion to <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>Local Business Calendars</a> — a free weekly calendar of networking events, chamber mixers, and business gatherings across Texas. Many of the organizations listed here host the events tracked on that site. Together, they give you a complete picture of the business community in your city: who the organizations are, and what they're hosting.
+                This directory is a companion to <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>Local Business Calendars</a> — a free weekly calendar of networking events, chamber mixers, and business gatherings across Texas. Many of the organizations listed here host the events tracked on that site. Together, they give you a complete picture of the business community in your city: who the organizations are, and what they're hosting.
               </p>
             </div>
 

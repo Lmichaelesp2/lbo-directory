@@ -208,7 +208,7 @@ export default function CityPageClient() {
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '17px', fontWeight: 700, color: '#fff', marginBottom: '3px' }}>See what {cityName} organizations have coming up</h3>
               <p style={{ fontSize: '13px', color: '#94a3b8' }}>View upcoming events on the Local Business Calendars.</p>
             </div>
-            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer"
               style={{ background: 'var(--color-accent)', color: '#fff', padding: '10px 22px', borderRadius: '8px', fontSize: '13px', fontWeight: 700, whiteSpace: 'nowrap', textDecoration: 'none' }}>
               View the Calendar →
             </a>

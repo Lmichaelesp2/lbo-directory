@@ -75,7 +75,7 @@ export default function HomePage() {
                 <Link href="/texas" style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none' }}>
                   Browse Organizations →
                 </Link>
-                <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer"
                   style={{ background: '#fff', color: 'var(--color-primary)', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', border: '1px solid var(--color-primary)' }}>
                   See Upcoming Events ↗
                 </a>
@@ -204,7 +204,7 @@ export default function HomePage() {
                 Many of the organizations in this directory host weekly events tracked on our sister site — free to browse, delivered every Monday morning.
               </p>
             </div>
-            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer"
               style={{ background: 'var(--color-primary)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
               Browse This Week's Events ↗
             </a>

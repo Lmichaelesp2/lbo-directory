@@ -72,7 +72,7 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
   ];
 
   const MORE_LINKS = [
-    { href: 'https://www.localbusinesscalendars.com', label: 'Events Calendar ↗', external: true, primary: true },
+    { href: 'https://www.localbusinesscalendar.com', label: 'Events Calendar ↗', external: true, primary: true },
     { href: '/texas-business-network', label: 'Texas Business Network', external: false, primary: false },
     { href: '/about',   label: 'About' },
     { href: '/contact', label: 'Contact' },
@@ -176,7 +176,7 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
 
           <div className="lbo-nav-right" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             {/* Cross-link to LBC */}
-            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer"
               style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               Events Calendar ↗
             </a>

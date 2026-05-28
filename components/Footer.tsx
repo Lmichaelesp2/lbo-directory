@@ -40,14 +40,14 @@ export default function Footer({ citySlug, cityName, stateName }: FooterProps) {
             <span style={{ color: 'var(--color-primary)' }}>{cityName || stateName || 'Local'}</span>{' '}Business Organizations
           </div>
           <p className="lbo-footer-desc">{brandDesc}</p>
-          <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer" className="lbo-footer-cal-link">
+          <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer" className="lbo-footer-cal-link">
             See upcoming events on Local Business Calendars ↗
           </a>
           <div className="lbo-footer-network">
             Part of the{' '}
             <Link href="/" className="lbo-footer-network-link">Local Business Network</Link>
             {' '}·{' '}
-            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer" className="lbo-footer-network-link">Calendars</a>
+            <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer" className="lbo-footer-network-link">Calendars</a>
             {' '}·{' '}
             <Link href="/" className="lbo-footer-network-link">Organizations</Link>
           </div>

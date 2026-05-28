@@ -88,7 +88,7 @@ export default function CityPageClient() {
                 <a href="#organizations" style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none' }}>
                   Browse {cityName} →
                 </a>
-                <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer"
                   style={{ background: '#fff', color: 'var(--color-primary)', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', border: '1px solid var(--color-primary)' }}>
                   See Upcoming Events ↗
                 </a>
@@ -292,7 +292,7 @@ export default function CityPageClient() {
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '3px' }}>See what {cityName} organizations have coming up</h3>
               <p style={{ fontSize: '0.8rem', color: '#94a3b8' }}>View upcoming events on Local Business Calendars — updated weekly, free to browse.</p>
             </div>
-            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer"
               style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.75rem 1.5rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, whiteSpace: 'nowrap', textDecoration: 'none', flexShrink: 0 }}>
               View the Calendar →
             </a>

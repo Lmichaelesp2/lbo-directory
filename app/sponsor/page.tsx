@@ -113,7 +113,7 @@ export default function SponsorPage() {
           </div>
 
           <p style={{ fontSize: '0.8rem', color: 'var(--fg-4)', lineHeight: 1.7 }}>
-            You can also learn more about sponsorship on <a href="https://www.localbusinesscalendars.com/sponsor" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)' }}>Local Business Calendars</a>. Both sites share the same sponsorship structure — one inquiry covers both.
+            You can also learn more about sponsorship on <a href="https://www.localbusinesscalendar.com/sponsor" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)' }}>Local Business Calendars</a>. Both sites share the same sponsorship structure — one inquiry covers both.
           </p>
 
         </section>
