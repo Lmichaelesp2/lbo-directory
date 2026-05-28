@@ -102,20 +102,23 @@ export default function CityPageClient() {
                 <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>{loading ? '—' : orgs.length} orgs</span>
               </div>
               {PUBLIC_CATEGORIES.filter(c => c.label !== 'Other').map((cat) => {
-                const displayLabel: Record<string, string> = {
-                  'Chamber & Networking': 'Chamber +',
-                  'Technology': 'Technology +',
-                  'Real Estate': 'Real Estate +',
-                  'Small Business': 'Small Business +',
+                const catMeta: Record<string, { label: string; icon: string }> = {
+                  'Chamber & Networking': { label: 'Chamber & Networking', icon: 'ti-building-community' },
+                  'Technology':           { label: 'Technology', icon: 'ti-cpu' },
+                  'Real Estate':          { label: 'Real Estate', icon: 'ti-building' },
+                  'Small Business':       { label: 'Small Business', icon: 'ti-briefcase' },
                 };
+                const meta = catMeta[cat.label] ?? { label: cat.label, icon: 'ti-dots-circle-horizontal' };
+                const isActive = selectedCategory === cat.label;
                 return (
                   <button key={cat.label}
-                    onClick={() => setSelectedCategory(selectedCategory === cat.label ? null : cat.label)}
-                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.7rem 1.25rem', borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderBottom: '1px solid var(--color-rule)', width: '100%', background: selectedCategory === cat.label ? 'var(--color-primary-bg)' : 'transparent', cursor: 'pointer', textAlign: 'left' }}>
-                    <span style={{ fontSize: '0.875rem', fontWeight: 500, color: selectedCategory === cat.label ? 'var(--color-primary)' : 'var(--fg-1)' }}>
-                      {displayLabel[cat.label] ?? cat.label}
+                    onClick={() => setSelectedCategory(isActive ? null : cat.label)}
+                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.65rem 1.25rem', borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderBottom: '1px solid var(--color-rule)', width: '100%', background: isActive ? 'var(--color-primary-bg)' : 'transparent', cursor: 'pointer', textAlign: 'left', gap: '8px' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: 500, color: isActive ? 'var(--color-primary)' : 'var(--fg-1)' }}>
+                      <i className={`ti ${meta.icon}`} style={{ fontSize: '15px', color: isActive ? 'var(--color-primary)' : 'var(--fg-4)', flexShrink: 0 }} />
+                      {meta.label}
                     </span>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-primary)', background: 'var(--color-primary-bg)', padding: '2px 8px', borderRadius: '100px' }}>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: isActive ? 'var(--color-primary)' : 'var(--fg-3)', background: isActive ? 'var(--color-primary-bg)' : 'var(--color-paper-2)', padding: '2px 8px', borderRadius: '100px', flexShrink: 0 }}>
                       {loading ? '—' : (counts[cat.label] || 0)}
                     </span>
                   </button>
@@ -187,44 +190,39 @@ export default function CityPageClient() {
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
               {PUBLIC_CATEGORIES.map(cat => {
                 const isActive = selectedCategory === cat.label;
-                const displayLabel: Record<string, string> = {
-                  'Chamber & Networking': 'Chamber +',
-                  'Technology': 'Technology +',
-                  'Real Estate': 'Real Estate +',
-                  'Small Business': 'Small Business +',
-                  'Other': '+ More',
+                const catMeta: Record<string, { label: string; icon: string }> = {
+                  'Chamber & Networking': { label: 'Chamber', icon: 'ti-building-community' },
+                  'Technology':           { label: 'Technology', icon: 'ti-cpu' },
+                  'Real Estate':          { label: 'Real Estate', icon: 'ti-building' },
+                  'Small Business':       { label: 'Small Business', icon: 'ti-briefcase' },
+                  'Other':                { label: '+ More', icon: 'ti-dots-circle-horizontal' },
                 };
-                const catStyle: Record<string, { color: string; bg: string; border: string }> = {
-                  'Chamber & Networking': { color: '#1652f0', bg: '#eef3fe', border: '#c7d9fc' },
-                  'Technology':           { color: '#6d28d9', bg: '#ede9fe', border: '#c4b5fd' },
-                  'Real Estate':          { color: '#065f46', bg: '#ecfdf5', border: '#6ee7b7' },
-                  'Small Business':       { color: '#c2410c', bg: '#fff7ed', border: '#fed7aa' },
-                  'Other':                { color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' },
-                };
-                const cs = catStyle[cat.label] ?? { color: 'var(--fg-1)', bg: 'var(--color-paper-2)', border: 'var(--color-rule)' };
+                const meta = catMeta[cat.label] ?? { label: cat.label, icon: 'ti-dots-circle-horizontal' };
                 return (
                   <button key={cat.label}
                     onClick={() => setSelectedCategory(isActive ? null : cat.label)}
                     style={{
-                      background: isActive ? cs.color : cs.bg,
-                      color: isActive ? '#fff' : cs.color,
-                      border: `1.5px solid ${isActive ? cs.color : cs.border}`,
+                      background: isActive ? 'var(--color-ink)' : '#fff',
+                      color: isActive ? '#fff' : 'var(--fg-1)',
+                      border: `1.5px solid ${isActive ? 'var(--color-ink)' : 'var(--color-rule)'}`,
                       borderRadius: '100px',
-                      padding: '0.5rem 1.25rem',
-                      fontSize: '0.825rem',
-                      fontWeight: 700,
+                      padding: '0.45rem 1rem',
+                      fontSize: '0.8rem',
+                      fontWeight: 600,
                       cursor: 'pointer',
                       whiteSpace: 'nowrap',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '6px',
                       fontFamily: 'var(--font-sans)',
+                      transition: 'all 0.15s',
                     }}>
-                    {displayLabel[cat.label] ?? cat.label}
+                    <i className={`ti ${meta.icon}`} style={{ fontSize: '14px', opacity: isActive ? 1 : 0.5 }} />
+                    {meta.label}
                     {counts[cat.label] ? (
                       <span style={{
-                        background: isActive ? 'rgba(255,255,255,0.25)' : '#fff',
-                        color: isActive ? '#fff' : cs.color,
+                        background: isActive ? 'rgba(255,255,255,0.15)' : 'var(--color-paper-2)',
+                        color: isActive ? '#fff' : 'var(--fg-3)',
                         fontSize: '0.7rem',
                         fontWeight: 700,
                         borderRadius: '100px',
@@ -239,7 +237,7 @@ export default function CityPageClient() {
               })}
               {selectedCategory && (
                 <button onClick={() => setSelectedCategory(null)}
-                  style={{ background: 'none', border: '1.5px solid transparent', borderRadius: '100px', color: 'var(--fg-4)', cursor: 'pointer', fontSize: '0.8rem', padding: '0.5rem 0.75rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
+                  style={{ background: 'none', border: '1.5px solid transparent', borderRadius: '100px', color: 'var(--fg-4)', cursor: 'pointer', fontSize: '0.8rem', padding: '0.45rem 0.75rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
                   Clear ×
                 </button>
               )}
