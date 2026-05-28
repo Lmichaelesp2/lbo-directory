@@ -163,23 +163,27 @@ export default function OrgDetailModal({ org, onClose }: { org: Organization; on
         {/* Body */}
         <div style={{ padding: '20px 28px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
-          {/* Description — always visible */}
-          {org.description && (
-            <p style={{ fontSize: '13px', color: 'var(--fg-2)', lineHeight: 1.75, margin: 0 }}>
-              {stripHtml(org.description)}
-            </p>
-          )}
+          {isLoggedIn ? (
+            <>
+              {/* Description — logged in only */}
+              {org.description && (
+                <p style={{ fontSize: '13px', color: 'var(--fg-2)', lineHeight: 1.75, margin: 0 }}>
+                  {stripHtml(org.description)}
+                </p>
+              )}
 
-          {/* Website — always visible */}
-          {org.home_page && (
-            <div>
-              <a href={org.home_page} target="_blank" rel="noopener noreferrer"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: 'var(--color-primary)', fontWeight: 600, textDecoration: 'none', background: 'var(--color-primary-bg)', padding: '7px 14px', borderRadius: '8px' }}>
-                <i className="ti ti-external-link" style={{ fontSize: '13px' }} />
-                Visit website
-              </a>
-            </div>
-          )}
+              {/* Website — logged in only */}
+              {org.home_page && (
+                <div>
+                  <a href={org.home_page} target="_blank" rel="noopener noreferrer"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: 'var(--color-primary)', fontWeight: 600, textDecoration: 'none', background: 'var(--color-primary-bg)', padding: '7px 14px', borderRadius: '8px' }}>
+                    <i className="ti ti-external-link" style={{ fontSize: '13px' }} />
+                    Visit website
+                  </a>
+                </div>
+              )}
+            </>
+          ) : null}
 
           {isLoggedIn ? (
             <>
@@ -292,30 +296,27 @@ export default function OrgDetailModal({ org, onClose }: { org: Organization; on
             </>
           ) : (
             /* Login gate */
-            <div style={{ background: 'linear-gradient(135deg, var(--color-paper) 0%, #f0f4ff 100%)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '28px 24px', textAlign: 'center' }}>
-              <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--color-primary-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px' }}>
-                <i className="ti ti-lock" style={{ fontSize: '20px', color: 'var(--color-primary)' }} />
+            <div style={{ background: 'linear-gradient(135deg, var(--color-paper) 0%, #f0f4ff 100%)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '20px 20px', display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--color-primary-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <i className="ti ti-lock" style={{ fontSize: '18px', color: 'var(--color-primary)' }} />
               </div>
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '17px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '8px' }}>
-                Full profile is members only
-              </div>
-              <p style={{ fontSize: '13px', color: 'var(--fg-3)', lineHeight: 1.65, marginBottom: '12px' }}>
-                Create a free account to unlock:
-              </p>
-              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '20px' }}>
-                {['Contact info', 'Membership details', 'Social links', 'Who it\'s for', 'What to expect'].map(item => (
-                  <span key={item} style={{ fontSize: '11px', fontWeight: 600, color: 'var(--color-primary)', background: 'var(--color-primary-bg)', padding: '3px 10px', borderRadius: '100px' }}>{item}</span>
-                ))}
-              </div>
-              <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
-                <button onClick={() => router.push('/signup')}
-                  style={{ background: 'var(--color-accent)', color: '#fff', border: 'none', borderRadius: '8px', padding: '10px 22px', fontSize: '13px', fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>
-                  Create free account →
-                </button>
-                <button onClick={() => router.push('/login')}
-                  style={{ background: '#fff', color: 'var(--color-primary)', border: '1px solid var(--color-primary)', borderRadius: '8px', padding: '10px 20px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>
-                  Sign in
-                </button>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '15px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '4px' }}>
+                  Full profile is members only
+                </div>
+                <p style={{ fontSize: '12px', color: 'var(--fg-3)', lineHeight: 1.5, margin: '0 0 12px' }}>
+                  Free account unlocks: description, contact info, membership details, social links, and more.
+                </p>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <button onClick={() => router.push('/signup')}
+                    style={{ background: 'var(--color-accent)', color: '#fff', border: 'none', borderRadius: '7px', padding: '8px 16px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>
+                    Create free account →
+                  </button>
+                  <button onClick={() => router.push('/login')}
+                    style={{ background: '#fff', color: 'var(--color-primary)', border: '1px solid var(--color-primary)', borderRadius: '7px', padding: '8px 14px', fontSize: '12px', fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>
+                    Sign in
+                  </button>
+                </div>
               </div>
             </div>
           )}
