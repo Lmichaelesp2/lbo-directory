@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { supabase, Organization } from '@/lib/supabase';
-import { CITIES, PUBLIC_CATEGORIES, LBC_URL, CITY_SLUG_TO_NAME } from '@/lib/config';
+import { CITIES, PUBLIC_CATEGORIES, LBC_URL, CITY_SLUG_TO_NAME, CATEGORY_MAP } from '@/lib/config';
 import OrgCard from './OrgCard';
 
 const ICON_COLOR: Record<string, { bg: string; color: string }> = {
@@ -30,14 +30,17 @@ export default function DirectoryPage() {
       .from('organizations')
       .select('*')
       .eq('city', selectedCity)
-      .not('public_category', 'is', null)
+      .not('category', 'is', null)
       .not('archive', 'eq', true)
       .order('name')
       .then(({ data }) => {
         setOrgs(data || []);
-        // Build category counts
+        // Build category counts using CATEGORY_MAP to map raw values to display labels
         const c: Record<string, number> = {};
-        (data || []).forEach(o => { if (o.public_category) c[o.public_category] = (c[o.public_category] || 0) + 1; });
+        (data || []).forEach(o => {
+          const label = o.category ? CATEGORY_MAP[o.category] : null;
+          if (label) c[label] = (c[label] || 0) + 1;
+        });
         setCounts(c);
         setLoading(false);
       });
@@ -45,7 +48,8 @@ export default function DirectoryPage() {
 
   // Filter orgs
   const filtered = orgs.filter(o => {
-    const matchCat = !selectedCategory || o.public_category === selectedCategory;
+    const displayCat = o.category ? CATEGORY_MAP[o.category] : null;
+    const matchCat = !selectedCategory || displayCat === selectedCategory;
     const matchSearch = !search || o.name.toLowerCase().includes(search.toLowerCase()) || (o.description || '').toLowerCase().includes(search.toLowerCase());
     return matchCat && matchSearch;
   });

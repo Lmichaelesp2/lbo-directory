@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import OrgCard from '@/components/OrgCard';
 import { supabase, Organization } from '@/lib/supabase';
-import { CITY_SLUG_TO_NAME, PUBLIC_CATEGORIES, CITY_CONTENT } from '@/lib/config';
+import { CITY_SLUG_TO_NAME, PUBLIC_CATEGORIES, CITY_CONTENT, CATEGORY_MAP } from '@/lib/config';
 
 
 export default function CityPageClient() {
@@ -27,22 +27,26 @@ export default function CityPageClient() {
     setLoading(true);
     supabase
       .from('organizations')
-      .select('id, name, city, public_category, home_page, logo_url, claimed, how_active')
+      .select('id, name, city, category, home_page, how_active, description')
       .eq('city', cityName)
-      .not('public_category', 'is', null)
+      .not('category', 'is', null)
       .not('archive', 'eq', true)
       .order('name')
       .then(({ data }) => {
         setOrgs((data as Organization[]) || []);
         const c: Record<string, number> = {};
-        (data || []).forEach((o: any) => { if (o.public_category) c[o.public_category] = (c[o.public_category] || 0) + 1; });
+        (data || []).forEach((o: any) => {
+          const label = o.category ? CATEGORY_MAP[o.category] : null;
+          if (label) c[label] = (c[label] || 0) + 1;
+        });
         setCounts(c);
         setLoading(false);
       });
   }, [cityName]);
 
   const filtered = orgs.filter(o => {
-    const matchCat = !selectedCategory || o.public_category === selectedCategory;
+    const displayCat = o.category ? CATEGORY_MAP[o.category] : null;
+    const matchCat = !selectedCategory || displayCat === selectedCategory;
     const matchSearch = !search || o.name.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchSearch;
   });

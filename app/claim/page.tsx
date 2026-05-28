@@ -11,9 +11,8 @@ type OrgResult = {
   id: number;
   name: string;
   city: string;
-  public_category: string | null;
+  category: string | null;
   home_page: string | null;
-  claimed: boolean;
 };
 
 export default function ClaimPage() {
@@ -42,9 +41,9 @@ export default function ClaimPage() {
     setSearching(true);
     const { data } = await supabase
       .from('organizations')
-      .select('id, name, city, public_category, home_page, claimed')
+      .select('id, name, city, category, home_page')
       .ilike('name', `%${searchQuery}%`)
-      .not('public_category', 'is', null)
+      .not('category', 'is', null)
       .limit(10);
     setResults((data as OrgResult[]) || []);
     setSearching(false);
@@ -172,17 +171,13 @@ export default function ClaimPage() {
                   <div key={org.id} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '14px 16px', marginBottom: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
                     <div>
                       <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--fg-1)' }}>{org.name}</div>
-                      <div style={{ fontSize: '12px', color: 'var(--fg-3)' }}>{org.city} · {org.public_category}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--fg-3)' }}>{org.city} · {org.category}</div>
                       {org.home_page && <div style={{ fontSize: '11px', color: 'var(--fg-4)', marginTop: '2px' }}>{org.home_page}</div>}
                     </div>
-                    {org.claimed ? (
-                      <span style={{ fontSize: '11px', fontWeight: 600, padding: '3px 10px', borderRadius: '100px', background: '#d1fae5', color: '#065f46', whiteSpace: 'nowrap' }}>Already claimed</span>
-                    ) : (
                       <button onClick={() => selectOrg(org)}
                         style={{ background: 'var(--color-accent)', color: '#fff', border: 'none', borderRadius: '6px', padding: '7px 16px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--font-sans)', whiteSpace: 'nowrap' }}>
                         Claim this →
                       </button>
-                    )}
                   </div>
                 ))}
               </div>
@@ -211,7 +206,7 @@ export default function ClaimPage() {
             {/* Selected org */}
             <div style={{ background: 'var(--color-primary-bg)', border: '1px solid #c7d7fd', borderRadius: '8px', padding: '12px 16px', marginBottom: '24px' }}>
               <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--fg-1)' }}>{selectedOrg.name}</div>
-              <div style={{ fontSize: '12px', color: 'var(--fg-3)' }}>{selectedOrg.city} · {selectedOrg.public_category}</div>
+              <div style={{ fontSize: '12px', color: 'var(--fg-3)' }}>{selectedOrg.city} · {selectedOrg.category}</div>
             </div>
 
             {/* Verification notice */}
