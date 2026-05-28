@@ -74,6 +74,83 @@ a:hover { text-decoration: underline; }
 .lbo-cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 
 /* ── Mobile ── */
+/* ── Header / Nav ── */
+.lbo-header {
+  border-bottom: 1px solid var(--color-rule);
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.lbo-nav-topbar {
+  border-bottom: 1px solid var(--color-rule);
+  background: #fff;
+}
+.lbo-nav-bar {
+  background: #fff;
+}
+
+/* Hamburger — hidden on desktop, shown on mobile */
+.lbo-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--fg-1);
+  padding: 4px;
+  line-height: 1;
+}
+
+/* Mobile slide-down menu */
+.lbo-mobile-menu {
+  background: #fff;
+  border-top: 1px solid var(--color-rule);
+  box-shadow: 0 8px 24px rgba(10,22,40,.10);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+.lbo-mobile-menu-section {
+  padding: 0.75rem 0;
+}
+.lbo-mobile-menu-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-4);
+  padding: 0.5rem 1.25rem 0.25rem;
+}
+.lbo-mobile-menu-link {
+  display: block;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--fg-1);
+  text-decoration: none;
+}
+.lbo-mobile-menu-link:active { background: var(--color-paper-2); }
+.lbo-mobile-menu-divider {
+  height: 1px;
+  background: var(--color-rule);
+  margin: 0 1.25rem;
+}
+.lbo-mobile-claim-btn {
+  display: block;
+  text-align: center;
+  background: var(--color-accent);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
 /* ── Footer ── */
 .lbo-footer {
   background: var(--color-ink);
@@ -212,13 +289,9 @@ a:hover { text-decoration: underline; }
   .lbo-nav-dateline,
   .lbo-nav-orgcount { display: none !important; }
 
-  /* Nav links: scroll horizontally, hide right-side items */
-  .lbo-nav-links-inner {
-    padding: 0 0.75rem !important;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .lbo-nav-right { display: none !important; }
+  /* Show hamburger, hide desktop nav bar entirely */
+  .lbo-hamburger { display: flex !important; }
+  .lbo-nav-bar { display: none !important; }
 
   /* Hero */
   .lbo-hero-section { padding: 2rem 1.25rem 0 !important; }

@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { CITIES } from '@/lib/config';
 
 export default function Navigation({ activeCitySlug, activeState, activeCityName }: { activeCitySlug?: string; activeState?: string; activeCityName?: string }) {
-  const [moreOpen, setMoreOpen] = useState(false);
+  const [moreOpen, setMoreOpen]       = useState(false);
+  const [menuOpen, setMenuOpen]       = useState(false);
 
   const today = new Date().toLocaleDateString('en-US', {
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
@@ -16,12 +17,28 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
       ? 'Texas Business Organizations · By City & Category'
       : 'Business Organizations · By City & Category';
 
+  const NAV_LINKS = [
+    { href: '/texas',        label: 'Texas' },
+    ...CITIES.map(c => ({ href: `/texas/${c.slug}`, label: c.name })),
+  ];
+
+  const MORE_LINKS = [
+    { href: 'https://www.localbusinesscalendars.com', label: 'Events Calendar ↗', external: true, primary: true },
+    { href: '/about',   label: 'About' },
+    { href: '/contact', label: 'Contact' },
+    { href: '/help',    label: 'Help' },
+    { href: '/sponsor', label: 'Sponsorship' },
+    { href: '/claim',   label: 'Claim Your Listing' },
+    { href: '/privacy', label: 'Privacy Policy' },
+    { href: '/terms',   label: 'Terms & Conditions' },
+  ];
+
   return (
-    <header style={{ borderBottom: '1px solid var(--color-rule)', background: '#fff', position: 'sticky', top: 0, zIndex: 50 }}>
+    <header className="lbo-header">
       {/* Top bar */}
-      <div style={{ borderBottom: '1px solid var(--color-rule)', background: '#fff' }}>
+      <div className="lbo-nav-topbar">
         <div className="lbo-nav-topbar-inner">
-          <span className="lbo-nav-dateline" style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em', color: 'var(--fg-4)' }}>{today}</span>
+          <span className="lbo-nav-dateline">{today}</span>
 
           <Link href="/" style={{ textAlign: 'center', textDecoration: 'none' }}>
             <div className="lbo-nav-wordmark" style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.04em', fontFamily: 'var(--font-sans)', lineHeight: 1.1, whiteSpace: 'nowrap' }}>
@@ -32,15 +49,28 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
             </div>
           </Link>
 
+          {/* Desktop: org count | Mobile: hamburger */}
           <div className="lbo-nav-orgcount" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
             <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--color-accent)', display: 'inline-block' }}></span>
             <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)' }}>588 Organizations</span>
           </div>
+
+          <button
+            className="lbo-hamburger"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
+          >
+            {menuOpen
+              ? <i className="ti ti-x" style={{ fontSize: '1.25rem' }} />
+              : <i className="ti ti-menu-2" style={{ fontSize: '1.25rem' }} />
+            }
+          </button>
         </div>
       </div>
 
-      {/* Nav bar */}
-      <nav style={{ background: '#fff' }}>
+      {/* Desktop nav bar */}
+      <nav className="lbo-nav-bar">
         <div className="lbo-nav-links-inner">
           <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
             <Link href="/texas"
@@ -60,7 +90,6 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
               style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               Events Calendar ↗
             </a>
-
             <Link href="/about"
               style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               About
@@ -74,7 +103,7 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
               Help
             </Link>
 
-            {/* More dropdown — legal + sponsor */}
+            {/* More dropdown */}
             <div style={{ position: 'relative' }}>
               <button
                 onClick={() => setMoreOpen(o => !o)}
@@ -109,6 +138,44 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
           </div>
         </div>
       </nav>
+
+      {/* Mobile slide-down menu */}
+      {menuOpen && (
+        <div className="lbo-mobile-menu" onClick={() => setMenuOpen(false)}>
+          {/* Cities section */}
+          <div className="lbo-mobile-menu-section">
+            <div className="lbo-mobile-menu-label">Directory</div>
+            {NAV_LINKS.map(item => (
+              <Link key={item.href} href={item.href} className="lbo-mobile-menu-link"
+                style={{ fontWeight: activeCitySlug && item.href.includes(activeCitySlug) ? 700 : 500 }}>
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <div className="lbo-mobile-menu-divider" />
+          {/* All other links */}
+          <div className="lbo-mobile-menu-section">
+            <div className="lbo-mobile-menu-label">More</div>
+            {MORE_LINKS.map(item => (
+              item.external
+                ? <a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer"
+                    className="lbo-mobile-menu-link"
+                    style={{ color: item.primary ? 'var(--color-primary)' : undefined, fontWeight: item.primary ? 600 : 500 }}>
+                    {item.label}
+                  </a>
+                : <Link key={item.href} href={item.href} className="lbo-mobile-menu-link">
+                    {item.label}
+                  </Link>
+            ))}
+          </div>
+          <div className="lbo-mobile-menu-divider" />
+          <div style={{ padding: '1rem 1.25rem' }}>
+            <Link href="/claim" className="lbo-mobile-claim-btn">
+              Claim Your Listing →
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
