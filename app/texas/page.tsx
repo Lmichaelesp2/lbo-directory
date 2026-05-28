@@ -135,15 +135,16 @@ export default function TexasPage() {
           </h2>
           <div className="lbo-cat-grid">
             {[
-              { label: 'Chamber +',        sub: 'Chambers, associations & civic groups',  bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
-              { label: 'Technology +',     sub: 'Tech, startups & innovation groups',      bg: '#ede9fe', color: '#6d28d9', border: '#c4b5fd' },
-              { label: 'Real Estate +',    sub: 'Real estate, construction & design',      bg: '#ecfdf5', color: '#065f46', border: '#6ee7b7' },
-              { label: 'Small Business +', sub: 'Small biz, finance & professional svcs',  bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
-              { label: '+ More',           sub: 'Healthcare, civic & other industries',    bg: '#f0f9ff', color: '#0369a1', border: '#bae6fd' },
+              { label: 'Chamber +',        sub: 'Chambers, associations & civic groups',  icon: 'ti-building-community' },
+              { label: 'Technology +',     sub: 'Tech, startups & innovation groups',      icon: 'ti-cpu' },
+              { label: 'Real Estate +',    sub: 'Real estate, construction & design',      icon: 'ti-building' },
+              { label: 'Small Business +', sub: 'Small biz, finance & professional svcs',  icon: 'ti-briefcase' },
+              { label: '+ More',           sub: 'Healthcare, civic & other industries',    icon: 'ti-layout-grid' },
             ].map(cat => (
-              <div key={cat.label} style={{ background: cat.bg, border: `1px solid ${cat.border}`, borderRadius: '12px', padding: '18px 16px' }}>
-                <div style={{ fontSize: '0.875rem', fontWeight: 700, color: cat.color, marginBottom: '4px' }}>{cat.label}</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--fg-3)', lineHeight: 1.5 }}>{cat.sub}</div>
+              <div key={cat.label} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '18px 16px', position: 'relative', overflow: 'hidden' }}>
+                <i className={`ti ${cat.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '6px', fontSize: '2.25rem', color: 'var(--fg-1)', opacity: 0.07, pointerEvents: 'none' }} />
+                <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '4px', position: 'relative' }}>{cat.label}</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--fg-3)', lineHeight: 1.5, position: 'relative' }}>{cat.sub}</div>
               </div>
             ))}
           </div>

@@ -131,16 +131,17 @@ export default function HomePage() {
             From chambers and trade associations to networking groups and professional societies — we pull them together so you can see the full picture of who's active in your market.
           </p>
           <div className="lbo-cat-grid">
-            [
-              { label: 'Chamber +',        sub: 'Chambers, associations & civic groups',  bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
-              { label: 'Technology +',     sub: 'Tech, startups & innovation groups',      bg: '#ede9fe', color: '#6d28d9', border: '#c4b5fd' },
-              { label: 'Real Estate +',    sub: 'Real estate, construction & design',      bg: '#ecfdf5', color: '#065f46', border: '#6ee7b7' },
-              { label: 'Small Business +', sub: 'Small biz, finance & professional svcs',  bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
-              { label: '+ More',           sub: 'Healthcare, civic & other industries',    bg: '#f0f9ff', color: '#0369a1', border: '#bae6fd' },
+            {[
+              { label: 'Chamber +',        sub: 'Chambers, associations & civic groups',  icon: 'ti-building-community' },
+              { label: 'Technology +',     sub: 'Tech, startups & innovation groups',      icon: 'ti-cpu' },
+              { label: 'Real Estate +',    sub: 'Real estate, construction & design',      icon: 'ti-building' },
+              { label: 'Small Business +', sub: 'Small biz, finance & professional svcs',  icon: 'ti-briefcase' },
+              { label: '+ More',           sub: 'Healthcare, civic & other industries',    icon: 'ti-layout-grid' },
             ].map(cat => (
-              <div key={cat.label} style={{ background: cat.bg, border: `1px solid ${cat.border}`, borderRadius: '12px', padding: '18px 16px' }}>
-                <div style={{ fontSize: '0.875rem', fontWeight: 700, color: cat.color, marginBottom: '4px' }}>{cat.label}</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--fg-3)', lineHeight: 1.5 }}>{cat.sub}</div>
+              <div key={cat.label} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '18px 16px', position: 'relative', overflow: 'hidden' }}>
+                <i className={`ti ${cat.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '6px', fontSize: '2.25rem', color: 'var(--fg-1)', opacity: 0.07, pointerEvents: 'none' }} />
+                <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '4px', position: 'relative' }}>{cat.label}</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--fg-3)', lineHeight: 1.5, position: 'relative' }}>{cat.sub}</div>
               </div>
             ))}
           </div>
@@ -159,27 +160,30 @@ export default function HomePage() {
           </p>
           <div className="lbo-city-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
             {[
-              { ...STATES[0], bg: '#eef3fe', border: '#c7d9fc', accent: '#1652f0' },
-              { ...STATES[1], bg: '#ede9fe', border: '#c4b5fd', accent: '#6d28d9' },
-              { ...STATES[2], bg: '#ecfdf5', border: '#6ee7b7', accent: '#065f46' },
-              { ...STATES[3], bg: '#fff7ed', border: '#fed7aa', accent: '#c2410c' },
+              { ...STATES[0], abbr: 'TX' },
+              { ...STATES[1], abbr: 'FL' },
+              { ...STATES[2], abbr: 'GA' },
+              { ...STATES[3], abbr: 'OH' },
             ].map(state => (
-              <div key={state.slug} style={{ background: state.live ? state.bg : 'var(--color-paper-2)', border: `1px solid ${state.live ? state.border : 'var(--color-rule)'}`, borderRadius: '12px', padding: '24px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
-                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: state.live ? 'var(--fg-1)' : 'var(--fg-3)' }}>{state.name}</h3>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: state.live ? state.accent : 'var(--fg-4)', background: '#fff', padding: '3px 10px', borderRadius: '100px', border: `1px solid ${state.live ? state.border : 'var(--color-rule)'}` }}>
+              <div key={state.slug} style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '24px', opacity: state.live ? 1 : 0.55, position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', bottom: '-10px', right: '12px', fontSize: '4rem', fontWeight: 800, color: 'var(--fg-1)', opacity: 0.06, letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)' }}>
+                  {state.abbr}
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px', position: 'relative' }}>
+                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--fg-1)' }}>{state.name}</h3>
+                  <span style={{ fontSize: '0.7rem', fontWeight: 600, color: state.live ? 'var(--color-primary)' : 'var(--fg-4)', background: '#fff', padding: '3px 10px', borderRadius: '100px', border: '1px solid var(--color-rule)', whiteSpace: 'nowrap' }}>
                     {state.orgCount}
                   </span>
                 </div>
-                <p style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '12px' }}>
+                <p style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '14px', position: 'relative' }}>
                   {state.cities.join(' · ')}
                 </p>
                 {state.live ? (
-                  <Link href={`/${state.slug}`} style={{ fontSize: '0.8rem', color: state.accent, fontWeight: 600, textDecoration: 'none' }}>
+                  <Link href={`/${state.slug}`} style={{ fontSize: '0.8rem', color: 'var(--color-primary)', fontWeight: 600, textDecoration: 'none', position: 'relative' }}>
                     Browse {state.name} →
                   </Link>
                 ) : (
-                  <span style={{ fontSize: '0.8rem', color: 'var(--fg-4)', fontWeight: 500 }}>Coming soon</span>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--fg-4)', fontWeight: 500, position: 'relative' }}>Coming soon</span>
                 )}
               </div>
             ))}
