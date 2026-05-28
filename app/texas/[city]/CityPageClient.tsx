@@ -202,9 +202,9 @@ export default function CityPageClient() {
                   <button key={cat.label}
                     onClick={() => setSelectedCategory(isActive ? null : cat.label)}
                     style={{
-                      background: isActive ? 'var(--color-ink)' : '#fff',
-                      color: isActive ? '#fff' : 'var(--fg-1)',
-                      border: `1.5px solid ${isActive ? 'var(--color-ink)' : 'var(--color-rule)'}`,
+                      background: isActive ? '#c2410c' : '#fff4f1',
+                      color: isActive ? '#fff' : '#c2410c',
+                      border: `1.5px solid ${isActive ? '#c2410c' : '#f5c6b5'}`,
                       borderRadius: '100px',
                       padding: '0.45rem 1rem',
                       fontSize: '0.8rem',
@@ -217,12 +217,12 @@ export default function CityPageClient() {
                       fontFamily: 'var(--font-sans)',
                       transition: 'all 0.15s',
                     }}>
-                    <i className={`ti ${meta.icon}`} style={{ fontSize: '14px', opacity: isActive ? 1 : 0.5 }} />
+                    <i className={`ti ${meta.icon}`} style={{ fontSize: '14px' }} />
                     {meta.label}
                     {counts[cat.label] ? (
                       <span style={{
-                        background: isActive ? 'rgba(255,255,255,0.15)' : 'var(--color-paper-2)',
-                        color: isActive ? '#fff' : 'var(--fg-3)',
+                        background: isActive ? 'rgba(255,255,255,0.2)' : '#fff',
+                        color: isActive ? '#fff' : '#c2410c',
                         fontSize: '0.7rem',
                         fontWeight: 700,
                         borderRadius: '100px',

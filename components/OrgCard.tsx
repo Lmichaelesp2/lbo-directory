@@ -41,7 +41,6 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
         style={{
           background: '#fff',
           border: '1px solid var(--color-rule)',
-          borderLeft: `3px solid ${catColors.color}`,
           borderRadius: '10px',
           padding: '14px 16px',
           display: 'flex',
@@ -52,12 +51,11 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
         }}
         onMouseEnter={e => {
           (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 16px rgba(10,22,40,.10)';
-          (e.currentTarget as HTMLDivElement).style.borderColor = catColors.color;
+          (e.currentTarget as HTMLDivElement).style.borderColor = '#c2410c';
         }}
         onMouseLeave={e => {
           (e.currentTarget as HTMLDivElement).style.boxShadow = 'none';
           (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--color-rule)';
-          (e.currentTarget as HTMLDivElement).style.borderLeftColor = catColors.color;
         }}
       >
         {/* Top row */}
