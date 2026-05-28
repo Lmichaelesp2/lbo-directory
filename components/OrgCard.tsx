@@ -41,8 +41,6 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
           cursor: 'pointer',
           boxShadow: '0 1px 4px rgba(10,22,40,.06)',
           transition: 'box-shadow 0.15s, border-color 0.15s',
-          position: 'relative',
-          overflow: 'hidden',
         }}
         onMouseEnter={e => {
           (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 16px rgba(10,22,40,.10)';
@@ -53,16 +51,16 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
           (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--color-rule)';
         }}
       >
-        {/* Ghost icon watermark */}
-        <i className={`ti ${catIcon}`} style={{
-          position: 'absolute', bottom: '-4px', right: '8px',
-          fontSize: '2.5rem', color: '#c2410c', opacity: 0.12,
-          pointerEvents: 'none',
-        }} />
-
-        {/* Top row */}
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0' }}>
-          <div style={{ flex: 1, minWidth: 0, paddingRight: '32px' }}>
+        {/* Top row — large icon left, name + category right */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+          <div style={{
+            width: '48px', height: '48px', borderRadius: '10px', flexShrink: 0,
+            background: 'var(--color-primary-bg)', border: '1px solid #c7d9fc',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <i className={`ti ${catIcon}`} style={{ fontSize: '1.6rem', color: 'var(--color-primary)' }} />
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.3, marginBottom: '5px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {org.name}
             </div>
