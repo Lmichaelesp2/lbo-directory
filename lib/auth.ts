@@ -39,6 +39,25 @@ export async function getUser() {
   return user;
 }
 
+export type LboUserProfile = {
+  id: string;
+  email: string;
+  city: string | null;
+  role: string;
+  org_id: number | null;
+};
+
+export async function getLboUserProfile(): Promise<LboUserProfile | null> {
+  const user = await getUser();
+  if (!user) return null;
+  const { data } = await supabaseAuth
+    .from('lbo_users')
+    .select('id, email, city, role, org_id')
+    .eq('id', user.id)
+    .single();
+  return data as LboUserProfile | null;
+}
+
 export async function getSession() {
   const { data: { session } } = await supabaseAuth.auth.getSession();
   return session;
