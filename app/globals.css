@@ -74,6 +74,35 @@ a:hover { text-decoration: underline; }
 .lbo-cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 
 /* ── Mobile ── */
+/* ── Breadcrumb ── */
+.lbo-breadcrumb {
+  background: #f4f4f2;
+  border-bottom: 1px solid var(--color-rule);
+  padding: 0.3rem 2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  color: var(--fg-4);
+  font-family: var(--font-sans);
+  width: 100%;
+}
+.lbo-breadcrumb-link {
+  color: #6b7280;
+  text-decoration: none;
+  font-weight: 400;
+}
+.lbo-breadcrumb-link:hover { color: var(--color-primary); }
+.lbo-breadcrumb-sep {
+  margin: 0 0.3rem;
+  color: #9ca3af;
+}
+.lbo-breadcrumb-current {
+  color: var(--fg-3);
+  font-weight: 500;
+}
+@media (max-width: 768px) {
+  .lbo-breadcrumb { padding: 0.3rem 1.25rem; }
+}
+
 /* ── Header / Nav ── */
 .lbo-header {
   border-bottom: 1px solid var(--color-rule);

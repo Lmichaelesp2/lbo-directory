@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import OrgCard from '@/components/OrgCard';
 import { supabase, Organization } from '@/lib/supabase';
 import { CITY_SLUG_TO_NAME, PUBLIC_CATEGORIES, CITY_CONTENT } from '@/lib/config';
@@ -51,21 +52,18 @@ export default function CityPageClient() {
   return (
     <>
       <Navigation activeCitySlug={citySlug} activeState="texas" activeCityName={cityName} />
+      <Breadcrumb items={[
+        { label: 'Local Business Organizations', href: '/' },
+        { label: 'Texas', href: '/texas' },
+        { label: cityName },
+      ]} />
       <main style={{ flex: 1 }}>
 
-        {/* City hero — matches Texas page layout */}
+        {/* City hero */}
         <section className="lbo-hero-section" style={{ background: 'var(--color-paper)', padding: '4rem 2rem 0', borderBottom: '1px solid var(--color-rule)' }}>
           <div className="lbo-hero-grid" style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 320px', gap: '3rem', alignItems: 'start', paddingBottom: '3.5rem' }}>
 
             <div>
-              {/* Breadcrumb */}
-              <div style={{ fontSize: '13px', fontWeight: 400, color: 'var(--fg-4)', marginBottom: '1.5rem' }}>
-                <Link href="/" style={{ color: 'var(--fg-4)', textDecoration: 'none' }}>Local Business Organizations</Link>
-                <span style={{ margin: '0 6px', color: 'var(--fg-4)' }}>›</span>
-                <Link href="/texas" style={{ color: 'var(--fg-4)', textDecoration: 'none' }}>Texas</Link>
-                <span style={{ margin: '0 6px', color: 'var(--fg-4)' }}>›</span>
-                <span style={{ color: 'var(--fg-3)' }}>{cityName}</span>
-              </div>
 
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-primary)', marginBottom: '1.25rem' }}>
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--color-primary)', display: 'inline-block' }} />

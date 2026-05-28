@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import { CITIES, PUBLIC_CATEGORIES, CITY_CONTENT } from '@/lib/config';
 
 export const metadata: Metadata = {
@@ -27,6 +28,10 @@ export default function TexasPage() {
   return (
     <>
       <Navigation activeCitySlug={undefined} activeState="texas" />
+      <Breadcrumb items={[
+        { label: 'Local Business Organizations', href: '/' },
+        { label: 'Texas' },
+      ]} />
       <main style={{ flex: 1 }}>
 
         {/* Hero */}
@@ -34,12 +39,6 @@ export default function TexasPage() {
           <div className="lbo-hero-grid" style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 320px', gap: '3rem', alignItems: 'start', paddingBottom: '3.5rem' }}>
 
             <div>
-              {/* Breadcrumb */}
-              <div style={{ fontSize: '13px', fontWeight: 400, color: 'var(--fg-4)', marginBottom: '1.5rem' }}>
-                <Link href="/" style={{ color: 'var(--fg-4)', textDecoration: 'none' }}>Local Business Organizations</Link>
-                <span style={{ margin: '0 6px' }}>›</span>
-                <span style={{ color: 'var(--fg-3)' }}>Texas</span>
-              </div>
 
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-primary)', marginBottom: '1.25rem' }}>
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--color-primary)', display: 'inline-block' }} />

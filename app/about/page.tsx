@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export const metadata: Metadata = {
   title: 'About | Local Business Organizations',
@@ -12,12 +13,13 @@ export default function AboutPage() {
   return (
     <>
       <Navigation />
+      <Breadcrumb items={[
+        { label: 'Local Business Organizations', href: '/' },
+        { label: 'About' },
+      ]} />
       <main style={{ flex: 1 }}>
         <section style={{ background: 'var(--color-ink)', padding: '3rem 2rem' }}>
           <div style={{ maxWidth: '720px', margin: '0 auto' }}>
-            <div style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5b82f7', marginBottom: '0.75rem' }}>
-              <Link href="/" style={{ color: '#5b82f7', textDecoration: 'none' }}>Home</Link> › About
-            </div>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 600, color: '#fff', lineHeight: 1.2, marginBottom: '0.75rem' }}>
               About Local Business Organizations
             </h1>
