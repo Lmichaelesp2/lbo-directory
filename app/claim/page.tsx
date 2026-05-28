@@ -74,16 +74,17 @@ export default function ClaimPage() {
     const { error: err } = await supabase.from('claim_requests').insert({
       org_id: selectedOrg.id,
       org_name: selectedOrg.name,
+      org_city: selectedOrg.city,
       contact_name: form.name,
       contact_email: form.email,
       contact_phone: form.phone || null,
+      contact_title: form.title || null,
+      linkedin_url: form.linkedin || null,
+      how_connected: form.howYouKnow || null,
       message: [
-        form.title ? `Title/Role: ${form.title}` : '',
         form.emailNote ? `Email note: ${form.emailNote}` : '',
-        form.linkedin ? `LinkedIn: ${form.linkedin}` : '',
-        form.howYouKnow ? `How they know the org: ${form.howYouKnow}` : '',
         form.message ? `Additional notes: ${form.message}` : '',
-      ].filter(Boolean).join('\n'),
+      ].filter(Boolean).join('\n') || null,
       status: 'pending',
     });
 
@@ -92,6 +93,18 @@ export default function ClaimPage() {
       setSubmitting(false);
       return;
     }
+
+    // Send confirmation email to claimant
+    await fetch('/api/claim-submitted', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contact_name: form.name,
+        contact_email: form.email,
+        org_name: selectedOrg.name,
+        org_city: selectedOrg.city,
+      }),
+    });
 
     setStep('success');
     setSubmitting(false);
