@@ -80,7 +80,7 @@ export default function TexasBusinessOrganizationsPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {FEATURES.map(f => (
                 <div key={f.title} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '10px', padding: '16px 18px', position: 'relative', overflow: 'hidden' }}>
-                  <i className={`ti ${f.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '8px', fontSize: '2.25rem', color: 'var(--fg-1)', opacity: 0.07, pointerEvents: 'none' }} />
+                  <i className={`ti ${f.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '8px', fontSize: '2.25rem', color: '#c2410c', opacity: 0.18, pointerEvents: 'none' }} />
                   <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '4px', position: 'relative' }}>{f.title}</div>
                   <div style={{ fontSize: '12px', color: 'var(--fg-3)', lineHeight: 1.6, position: 'relative' }}>{f.desc}</div>
                 </div>
@@ -100,7 +100,7 @@ export default function TexasBusinessOrganizationsPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
             {CHAPTERS.map(ch => (
               <div key={ch.city} style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '10px', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', bottom: '-10px', right: '12px', fontSize: '3.75rem', fontWeight: 800, color: 'var(--fg-1)', opacity: 0.06, letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)' }}>
+                <div style={{ position: 'absolute', bottom: '-10px', right: '12px', fontSize: '3.75rem', fontWeight: 800, color: '#c2410c', opacity: 0.10, letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)' }}>
                   {ch.abbr}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
@@ -131,7 +131,7 @@ export default function TexasBusinessOrganizationsPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '36px' }}>
             {STEPS.map(s => (
               <div key={s.num} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '24px', position: 'relative', overflow: 'hidden' }}>
-                <i className={`ti ${s.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '8px', fontSize: '2.5rem', color: 'var(--fg-1)', opacity: 0.07, pointerEvents: 'none' }} />
+                <i className={`ti ${s.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '8px', fontSize: '2.5rem', color: '#c2410c', opacity: 0.18, pointerEvents: 'none' }} />
                 <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'var(--color-primary)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: 800, fontFamily: 'var(--font-serif)', marginBottom: '14px', position: 'relative' }}>{s.num}</div>
                 <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '8px', position: 'relative' }}>{s.title}</div>
                 <div style={{ fontSize: '13px', color: 'var(--fg-3)', lineHeight: 1.7, position: 'relative' }}>{s.desc}</div>
