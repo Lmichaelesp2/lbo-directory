@@ -60,7 +60,7 @@ export default function CityPageClient() {
         { label: 'Texas', href: '/texas' },
         { label: cityName },
       ]} />
-      <main style={{ flex: 1 }}>
+      <main style={{ flex: 1, background: 'var(--color-paper-2)' }}>
 
         {/* City hero */}
         <section className="lbo-hero-section" style={{ background: 'var(--color-paper)', padding: '4rem 2rem 0', borderBottom: '1px solid var(--color-rule)' }}>
@@ -270,7 +270,7 @@ export default function CityPageClient() {
           ) : filtered.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '48px', color: 'var(--fg-4)' }}>No organizations found.</div>
           ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
               {filtered.map(org => <OrgCard key={org.id} org={org} lean />)}
             </div>
           )}

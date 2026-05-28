@@ -47,6 +47,7 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
           flexDirection: 'column',
           gap: '8px',
           cursor: 'pointer',
+          boxShadow: '0 1px 4px rgba(10,22,40,.06)',
           transition: 'box-shadow 0.15s, border-color 0.15s',
         }}
         onMouseEnter={e => {
