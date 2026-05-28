@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,600;0,700;1,400;1,600&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css');
 
 @tailwind base;
@@ -18,7 +18,7 @@
   --fg-3:             #5b6678;
   --fg-4:             #94a3b8;
   --font-sans:        'Inter', system-ui, sans-serif;
-  --font-serif:       'Playfair Display', Georgia, serif;
+  --font-serif:       'Lora', Georgia, serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
