@@ -51,21 +51,17 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
           (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--color-rule)';
         }}
       >
-        {/* Top row — large icon left, name + category right */}
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-          <div style={{
-            width: '48px', height: '48px', borderRadius: '10px', flexShrink: 0,
-            background: 'var(--color-primary-bg)', border: '1px solid #c7d9fc',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <i className={`ti ${catIcon}`} style={{ fontSize: '1.6rem', color: 'var(--color-primary)' }} />
-          </div>
+        {/* Top row — ghost icon left, name + category right */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <i className={`ti ${catIcon}`} style={{
+            fontSize: '2.5rem', color: 'var(--color-primary)', opacity: 0.18, flexShrink: 0,
+          }} />
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.3, marginBottom: '5px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.3, marginBottom: '3px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {org.name}
             </div>
             {org.category && (
-              <span style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#c2410c', background: '#fff4f1', padding: '2px 7px', borderRadius: '100px' }}>
+              <span style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#c2410c' }}>
                 {org.category}
               </span>
             )}
