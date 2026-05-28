@@ -301,7 +301,7 @@ export default function OrgDetailModal({ org, onClose }: { org: Organization; on
                   Free account unlocks: description, contact info, membership details, social links, and more.
                 </p>
                 <div style={{ display: 'flex', gap: '8px' }}>
-                  <button onClick={() => router.push('/signup')}
+                  <button onClick={() => router.push(`/signup${org.city ? `?city=${encodeURIComponent(org.city)}` : ''}`)}
                     style={{ background: 'var(--color-accent)', color: '#fff', border: 'none', borderRadius: '7px', padding: '8px 16px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>
                     Create free account →
                   </button>

@@ -1,6 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import { signUp } from '@/lib/auth';
@@ -8,7 +8,9 @@ import { CITIES } from '@/lib/config';
 
 export default function SignupPage() {
   const router = useRouter();
-  const [form, setForm] = useState({ email: '', password: '', city: '' });
+  const searchParams = useSearchParams();
+  const cityParam = searchParams.get('city') ?? '';
+  const [form, setForm] = useState({ email: '', password: '', city: cityParam });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -85,12 +87,18 @@ export default function SignupPage() {
               Your city <span style={{ color: 'var(--color-accent)' }}>*</span>
             </label>
             <select required value={form.city} onChange={e => setForm(f => ({ ...f, city: e.target.value }))}
-              style={{ width: '100%', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '10px 14px', fontSize: '13px', color: form.city ? 'var(--fg-1)' : 'var(--fg-4)', outline: 'none', fontFamily: 'var(--font-sans)', boxSizing: 'border-box', appearance: 'none' }}>
+              disabled={!!cityParam}
+              style={{ width: '100%', background: cityParam ? 'var(--color-primary-bg)' : '#fff', border: `1px solid ${cityParam ? '#c7d7fd' : '#e2e8f0'}`, borderRadius: '8px', padding: '10px 14px', fontSize: '13px', color: form.city ? 'var(--fg-1)' : 'var(--fg-4)', outline: 'none', fontFamily: 'var(--font-sans)', boxSizing: 'border-box', appearance: 'none', cursor: cityParam ? 'default' : 'pointer' }}>
               <option value="">Select your city...</option>
               {CITIES.map(c => (
                 <option key={c.slug} value={c.name}>{c.name}</option>
               ))}
             </select>
+            {cityParam && (
+              <p style={{ fontSize: '11px', color: 'var(--color-primary)', marginTop: '4px' }}>
+                You'll receive the {cityParam} weekly events email.
+              </p>
+            )}
           </div>
 
           {error && (

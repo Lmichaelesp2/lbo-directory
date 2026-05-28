@@ -21,6 +21,23 @@ export async function signUp(email: string, password: string, city: string) {
     .insert({ id: data.user.id, email, city, source: 'lbo' });
 
   if (profileError) console.error('lbo_users insert error:', profileError);
+
+  // Also subscribe to the LBC Monday newsletter for their city
+  if (city) {
+    const { error: subError } = await supabaseAuth
+      .from('newsletter_subscriptions')
+      .upsert({
+        user_id:      data.user.id,
+        email:        email.trim().toLowerCase(),
+        city:         city,
+        sub_calendar: null,
+        status:       'active',
+        source:       'lbo_signup',
+      }, { onConflict: 'email,city,sub_calendar' });
+
+    if (subError) console.error('newsletter_subscriptions insert error (lbo):', subError);
+  }
+
   return { data };
 }
 
