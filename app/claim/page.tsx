@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
+import Breadcrumb from '@/components/Breadcrumb';
 import { supabase } from '@/lib/supabase';
 
 type Step = 'search' | 'form' | 'success';
@@ -103,15 +104,16 @@ export default function ClaimPage() {
   return (
     <>
       <Navigation />
+      <Breadcrumb items={[
+        { label: 'Local Business Organizations', href: '/' },
+        { label: 'Claim Your Listing' },
+      ]} />
       <main style={{ flex: 1, maxWidth: '660px', margin: '0 auto', padding: '48px 24px' }}>
 
         {/* Step 1 — Search */}
         {step === 'search' && (
           <>
             <div style={{ marginBottom: '28px' }}>
-              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '10px' }}>
-                <Link href="/" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>Home</Link> › Claim Your Listing
-              </div>
               <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '32px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '12px' }}>
                 Claim your organization listing
               </h1>

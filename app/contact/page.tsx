@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
+import Breadcrumb from '@/components/Breadcrumb';
 import { supabase } from '@/lib/supabase';
 
 const US_STATES = [
@@ -54,14 +55,15 @@ export default function ContactPage() {
   return (
     <>
       <Navigation activeCitySlug={undefined} />
+      <Breadcrumb items={[
+        { label: 'Local Business Organizations', href: '/' },
+        { label: 'Contact' },
+      ]} />
       <main style={{ flex: 1 }}>
 
         {/* Hero */}
         <section style={{ background: 'var(--color-ink)', padding: '40px 32px' }}>
           <div style={{ maxWidth: '680px', margin: '0 auto' }}>
-            <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5b82f7', marginBottom: '10px' }}>
-              <Link href="/" style={{ color: '#5b82f7', textDecoration: 'none' }}>Home</Link> › Contact
-            </div>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '34px', fontWeight: 700, color: '#fff', lineHeight: 1.2, marginBottom: '10px' }}>
               We're expanding — tell us where next
             </h1>

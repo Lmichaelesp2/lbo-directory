@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export const metadata: Metadata = {
   title: 'Help | Local Business Organizations',
@@ -50,14 +51,15 @@ export default function HelpPage() {
   return (
     <>
       <Navigation />
+      <Breadcrumb items={[
+        { label: 'Local Business Organizations', href: '/' },
+        { label: 'Help' },
+      ]} />
       <main style={{ flex: 1 }}>
 
         {/* Hero */}
         <section style={{ background: 'var(--color-ink)', padding: '3rem 2rem' }}>
           <div style={{ maxWidth: '720px', margin: '0 auto' }}>
-            <div style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5b82f7', marginBottom: '0.75rem' }}>
-              <Link href="/" style={{ color: '#5b82f7', textDecoration: 'none' }}>Home</Link> › Help
-            </div>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 600, color: '#fff', lineHeight: 1.2, marginBottom: '0.75rem' }}>
               Help & Getting Started
             </h1>
@@ -69,16 +71,12 @@ export default function HelpPage() {
 
         {/* Sections */}
         <section style={{ maxWidth: '720px', margin: '0 auto', padding: '3rem 2rem' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {SECTIONS.map((s, i) => (
-              <div key={i} style={{ display: 'flex', gap: '1.25rem', padding: '1.75rem 0', borderBottom: i < SECTIONS.length - 1 ? '1px solid var(--color-rule)' : 'none', alignItems: 'flex-start' }}>
-                <div style={{ flexShrink: 0, width: '36px', height: '36px', background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <i className={`ti ${s.icon}`} style={{ fontSize: '1rem', color: 'var(--color-primary)' }} aria-hidden="true" />
-                </div>
-                <div>
-                  <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>{s.title}</h2>
-                  <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.8 }}>{s.body}</p>
-                </div>
+              <div key={i} style={{ position: 'relative', overflow: 'hidden', background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.5rem 1.75rem' }}>
+                <i className={`ti ${s.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '6px', fontSize: '2.25rem', color: '#c2410c', opacity: 0.15, pointerEvents: 'none' }} aria-hidden="true" />
+                <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem', position: 'relative' }}>{s.title}</h2>
+                <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.8, position: 'relative' }}>{s.body}</p>
               </div>
             ))}
           </div>
