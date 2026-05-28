@@ -377,7 +377,7 @@ export default function ClaimPage() {
                 ['🏛', `${selectedOrg?.city || 'Your city'} chapter membership`, 'Your org joins the local chapter for your city — automatically.'],
                 ['🌐', 'Texas Business Network', 'Statewide network of verified chambers, associations, and professional groups.'],
                 ['✓', 'Verified member status', 'Your listing is marked as verified and claimed — the right contact is on record.'],
-                ['📬', 'Quarterly check-ins', 'We'll reach out every 90 days to keep your contact info current.'],
+                ['📬', 'Quarterly check-ins', 'We will reach out every 90 days to keep your contact info current.'],
               ].map(([icon, title, desc]) => (
                 <div key={title as string} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', marginBottom: '12px' }}>
                   <span style={{ fontSize: '16px', flexShrink: 0, marginTop: '1px' }}>{icon}</span>
