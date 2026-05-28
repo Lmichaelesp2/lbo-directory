@@ -81,14 +81,15 @@ export default function SponsorPage() {
             <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '1rem' }}>What your sponsorship includes</h2>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
               {[
-                ['Local Business Organizations', 'Featured in your city\'s organization directory under your category'],
-                ['Local Business Calendars', 'Featured on your city\'s weekly events calendar under your category'],
-                ['Weekly email newsletter', 'Included in the Monday events digest sent to subscribers in your city'],
-                ['Consistent placement', 'No rotation — your slot is yours for the duration of your sponsorship'],
-              ].map(([title, desc]) => (
-                <div key={title} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '1rem 1.25rem' }}>
-                  <div style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '0.3rem' }}>{title}</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.6 }}>{desc}</div>
+                ['ti-building-community', 'Local Business Organizations', 'Featured in your city\'s organization directory under your category'],
+                ['ti-calendar-event',     'Local Business Calendars',     'Featured on your city\'s weekly events calendar under your category'],
+                ['ti-mail',              'Weekly email newsletter',       'Included in the Monday events digest sent to subscribers in your city'],
+                ['ti-lock',              'Consistent placement',          'No rotation — your slot is yours for the duration of your sponsorship'],
+              ].map(([icon, title, desc]) => (
+                <div key={title} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '10px', padding: '1rem 1.25rem', position: 'relative', overflow: 'hidden' }}>
+                  <i className={`ti ${icon}`} style={{ position: 'absolute', bottom: '-4px', right: '6px', fontSize: '2.25rem', color: '#c2410c', opacity: 0.15, pointerEvents: 'none' }} aria-hidden="true" />
+                  <div style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '0.3rem', position: 'relative' }}>{title}</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.6, position: 'relative' }}>{desc}</div>
                 </div>
               ))}
             </div>

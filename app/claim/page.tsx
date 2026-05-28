@@ -135,7 +135,7 @@ export default function ClaimPage() {
                 ['Coming soon — $99/year', 'Paid enhanced features launching soon. Early claimants get first access.'],
               ].map(([title, desc]) => (
                 <div key={title} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', marginBottom: '10px' }}>
-                  <span style={{ color: 'var(--color-primary)', fontSize: '14px', flexShrink: 0, marginTop: '1px' }}>✓</span>
+                  <i className="ti ti-check" style={{ color: 'var(--color-accent)', fontSize: '0.95rem', flexShrink: 0, marginTop: '2px', lineHeight: 1 }} aria-hidden="true" />
                   <div>
                     <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--fg-1)' }}>{title} — </span>
                     <span style={{ fontSize: '13px', color: 'var(--fg-3)' }}>{desc}</span>
