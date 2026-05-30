@@ -29,7 +29,7 @@ const CARDS = [
   },
   {
     id: 'people',
-    accent: '#042C53',
+    accent: 'var(--color-ink)',
     icon: '1',
     label: 'People',
     sub: 'Identify your target network',
@@ -40,7 +40,7 @@ const CARDS = [
   },
   {
     id: 'content',
-    accent: '#042C53',
+    accent: 'var(--color-ink)',
     icon: '2',
     label: 'Content',
     sub: 'Produce it from events',
@@ -51,7 +51,7 @@ const CARDS = [
   },
   {
     id: 'events',
-    accent: '#042C53',
+    accent: 'var(--color-ink)',
     icon: '3',
     label: 'Events',
     sub: 'Connect through them',
@@ -62,7 +62,7 @@ const CARDS = [
   },
   {
     id: 'relationships',
-    accent: '#042C53',
+    accent: 'var(--color-ink)',
     icon: '4',
     label: 'Relationships',
     sub: 'Maintain across channels',
