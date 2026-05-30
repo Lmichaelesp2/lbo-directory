@@ -122,7 +122,8 @@ export default function HomePage() {
         </section>
 
         {/* What we track */}
-        <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+        <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>What we track</div>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
             The organizations that shape your local business community
@@ -139,18 +140,18 @@ export default function HomePage() {
               { label: '+ More',           sub: 'Healthcare, civic & other industries',    icon: 'ti-layout-grid' },
             ].map(cat => (
               <div key={cat.label} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '18px 16px', position: 'relative', overflow: 'hidden' }}>
-                <i className={`ti ${cat.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '6px', fontSize: '2.25rem', color: '#c2410c', opacity: 0.18, pointerEvents: 'none' }} />
+                <i className={`ti ${cat.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '6px', fontSize: '2.25rem', color: 'var(--fg-1)', opacity: 0.07, pointerEvents: 'none' }} />
                 <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '4px', position: 'relative' }}>{cat.label}</div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--fg-3)', lineHeight: 1.5, position: 'relative' }}>{cat.sub}</div>
               </div>
             ))}
           </div>
+        </div>
         </section>
 
-        <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)', margin: '0 2rem' }} />
-
         {/* States we cover */}
-        <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Where we cover</div>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
             States in the directory
@@ -188,15 +189,14 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        </div>
         </section>
-
-        <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)', margin: '0 2rem' }} />
 
         {/* LBC connection — full width dark band */}
         <section style={{ background: 'var(--color-ink)', padding: '3rem 2rem', margin: '0' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '2rem', flexWrap: 'wrap' }}>
             <div>
-              <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#64748b', marginBottom: '0.5rem' }}>Part of the Local Business Network</div>
+              <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#64748b', marginBottom: '0.5rem' }}>See Their Events</div>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: 600, color: '#fff', marginBottom: '0.4rem' }}>
                 Also on Local Business Calendars
               </h3>
@@ -204,7 +204,7 @@ export default function HomePage() {
                 Many of the organizations in this directory host weekly events tracked on our sister site — free to browse, delivered every Monday morning.
               </p>
             </div>
-            <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
               style={{ background: 'var(--color-primary)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
               Browse This Week's Events ↗
             </a>
@@ -212,7 +212,8 @@ export default function HomePage() {
         </section>
 
         {/* Claim CTA */}
-        <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+        <section style={{ background: '#f9f5ec', padding: '4rem 2rem' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div className="lbo-claim-row" style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '2.25rem 2.5rem' }}>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent)', marginBottom: '0.5rem' }}>For organization leaders</div>
@@ -230,6 +231,7 @@ export default function HomePage() {
               <span style={{ fontSize: '0.7rem', color: 'var(--fg-4)' }}>Free to request · 1–2 day review</span>
             </div>
           </div>
+        </div>
         </section>
 
       </main>
