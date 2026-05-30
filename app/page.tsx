@@ -64,7 +64,7 @@ export default function HomePage() {
 
               <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.25rem, 4.5vw, 3rem)', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
                 The business organizations that matter{' '}
-                <em style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--color-primary)' }}>in your city.</em>
+                <em style={{ fontStyle: 'italic', fontWeight: 400, color: '#042C53' }}>in your city.</em>
               </h1>
 
               <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '2rem' }}>
@@ -108,7 +108,7 @@ export default function HomePage() {
         </section>
 
         {/* Stats strip */}
-        <section style={{ background: 'var(--color-ink)', padding: '0.6rem 2rem' }}>
+        <section style={{ background: 'var(--color-dark-section)', padding: '0.6rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
             {[['588+', 'Verified profiles'], ['4', 'Texas cities'], ['8', 'Categories'], ['800+', 'Event sources monitored']].map(([val, label], i, arr) => (
               <>
@@ -193,7 +193,7 @@ export default function HomePage() {
         </section>
 
         {/* LBC connection — full width dark band */}
-        <section style={{ background: 'var(--color-ink)', padding: '3rem 2rem', margin: '0' }}>
+        <section style={{ background: 'var(--color-dark-section)', padding: '3rem 2rem', margin: '0' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '2rem', flexWrap: 'wrap' }}>
             <div>
               <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#64748b', marginBottom: '0.5rem' }}>See Their Events</div>

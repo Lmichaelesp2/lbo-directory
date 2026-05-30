@@ -7,6 +7,7 @@
 
 :root {
   --color-ink:        #0a1628;
+  --color-dark-section: #042C53;
   --color-primary:    #1652f0;
   --color-primary-bg: #eef3fe;
   --color-accent:     #c2410c;
@@ -182,7 +183,7 @@ a:hover { text-decoration: underline; }
 
 /* ── Footer ── */
 .lbo-footer {
-  background: var(--color-ink);
+  background: var(--color-dark-section);
   color: rgba(255,255,255,.6);
   font-family: var(--font-sans);
   font-size: 0.8rem;

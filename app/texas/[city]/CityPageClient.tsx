@@ -151,7 +151,7 @@ export default function CityPageClient() {
         </section>
 
         {/* Stats strip */}
-        <section style={{ background: 'var(--color-ink)', padding: '0.6rem 2rem' }}>
+        <section style={{ background: 'var(--color-dark-section)', padding: '0.6rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
             {[
               [loading ? '—' : String(orgs.length), 'organizations listed'],
