@@ -38,6 +38,22 @@ export async function signUp(email: string, password: string, city: string) {
     if (subError) console.error('newsletter_subscriptions insert error (lbo):', subError);
   }
 
+  // Send unified welcome email via LBC (covers both LBC + LBO)
+  try {
+    await fetch('https://businesscalendar.link/api/send-welcome', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({
+        email,
+        firstName: null,
+        city,
+        subCalendar: null,
+      }),
+    });
+  } catch (err) {
+    console.error('Welcome email error (lbo signup):', err);
+  }
+
   return { data };
 }
 
