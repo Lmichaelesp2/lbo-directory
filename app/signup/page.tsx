@@ -56,7 +56,7 @@ function SignupForm() {
             'Weekly city business digest email',
           ].map(item => (
             <div key={item} style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '6px' }}>
-              <i className="ti ti-check" style={{ color: 'var(--color-accent)', fontSize: '13px', flexShrink: 0 }} />
+              <i className="ti ti-check" style={{ color: 'var(--color-primary)', fontSize: '13px', flexShrink: 0 }} />
               <span style={{ fontSize: '13px', color: 'var(--fg-2)' }}>{item}</span>
             </div>
           ))}
@@ -66,7 +66,7 @@ function SignupForm() {
 
           <div>
             <label style={{ fontSize: '13px', fontWeight: 600, color: 'var(--fg-1)', display: 'block', marginBottom: '6px' }}>
-              Email address <span style={{ color: 'var(--color-accent)' }}>*</span>
+              Email address <span style={{ color: 'var(--color-primary)' }}>*</span>
             </label>
             <input type="email" required placeholder="you@example.com"
               value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
@@ -75,7 +75,7 @@ function SignupForm() {
 
           <div>
             <label style={{ fontSize: '13px', fontWeight: 600, color: 'var(--fg-1)', display: 'block', marginBottom: '6px' }}>
-              Password <span style={{ color: 'var(--color-accent)' }}>*</span>
+              Password <span style={{ color: 'var(--color-primary)' }}>*</span>
             </label>
             <input type="password" required placeholder="At least 8 characters" minLength={8}
               value={form.password} onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
@@ -84,7 +84,7 @@ function SignupForm() {
 
           <div>
             <label style={{ fontSize: '13px', fontWeight: 600, color: 'var(--fg-1)', display: 'block', marginBottom: '6px' }}>
-              Your city <span style={{ color: 'var(--color-accent)' }}>*</span>
+              Your city <span style={{ color: 'var(--color-primary)' }}>*</span>
             </label>
             <select required value={form.city} onChange={e => setForm(f => ({ ...f, city: e.target.value }))}
               disabled={!!cityParam}

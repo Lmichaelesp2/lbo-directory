@@ -112,13 +112,13 @@ export default function ContactPage() {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                     <div>
                       <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--fg-2)', display: 'block', marginBottom: '6px' }}>
-                        Your name <span style={{ color: 'var(--color-accent)' }}>*</span>
+                        Your name <span style={{ color: 'var(--color-primary)' }}>*</span>
                       </label>
                       <input style={inputStyle} placeholder="Jane Smith" value={form.name} onChange={set('name')} />
                     </div>
                     <div>
                       <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--fg-2)', display: 'block', marginBottom: '6px' }}>
-                        Email address <span style={{ color: 'var(--color-accent)' }}>*</span>
+                        Email address <span style={{ color: 'var(--color-primary)' }}>*</span>
                       </label>
                       <input type="email" style={inputStyle} placeholder="jane@example.com" value={form.email} onChange={set('email')} />
                     </div>
@@ -128,7 +128,7 @@ export default function ContactPage() {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                     <div>
                       <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--fg-2)', display: 'block', marginBottom: '6px' }}>
-                        City you'd like added <span style={{ color: 'var(--color-accent)' }}>*</span>
+                        City you'd like added <span style={{ color: 'var(--color-primary)' }}>*</span>
                       </label>
                       <input style={inputStyle} placeholder="e.g. Miami, Tampa, Denver" value={form.city} onChange={set('city')} />
                     </div>
