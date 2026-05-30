@@ -325,9 +325,7 @@ export default function CityPageClient() {
             ))}
           </div>
           <a
-            href="https://www.localbusinesscalendars.com/event-networking-method"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/event-networking-method"
             style={{
               display: 'inline-block',
               background: '#1a1a2e',
