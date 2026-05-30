@@ -43,14 +43,6 @@ export default function Footer({ citySlug, cityName, stateName }: FooterProps) {
           <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer" className="lbo-footer-cal-link">
             See upcoming events on Local Business Calendars ↗
           </a>
-          <div className="lbo-footer-network">
-            Part of the{' '}
-            <Link href="/" className="lbo-footer-network-link">Local Business Network</Link>
-            {' '}·{' '}
-            <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer" className="lbo-footer-network-link">Calendars</a>
-            {' '}·{' '}
-            <Link href="/" className="lbo-footer-network-link">Organizations</Link>
-          </div>
         </div>
 
         {/* Directory col */}
@@ -73,6 +65,7 @@ export default function Footer({ citySlug, cityName, stateName }: FooterProps) {
           <Link href="/sponsor" className="lbo-footer-link">Sponsorship</Link>
           <Link href="/privacy" className="lbo-footer-link">Privacy Policy</Link>
           <Link href="/terms"   className="lbo-footer-link">Terms &amp; Conditions</Link>
+          <a href="https://www.localbusinesscalendars.com/account" target="_blank" rel="noopener noreferrer" className="lbo-footer-link">Manage My Subscriptions ↗</a>
         </div>
 
       </div>

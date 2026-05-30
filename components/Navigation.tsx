@@ -182,10 +182,11 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
             </a>
             {user ? (
               <>
-                <span style={{ fontSize: '12px', color: 'var(--fg-3)', maxWidth: '160px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {user.email}
-                </span>
-                <button onClick={async () => { await signOut(); setUser(null); }}
+                <a href="https://www.localbusinesscalendars.com/account" target="_blank" rel="noopener noreferrer"
+                  style={{ fontSize: '13px', fontWeight: 600, color: 'var(--fg-2)', padding: '7px 14px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap', border: '1px solid var(--color-rule)' }}>
+                  My Account
+                </a>
+                <button onClick={async () => { await signOut(); setUser(null); window.location.href = '/'; }}
                   style={{ background: 'none', border: '1px solid var(--color-rule)', borderRadius: '6px', padding: '6px 14px', fontSize: '12px', fontWeight: 600, color: 'var(--fg-3)', cursor: 'pointer', fontFamily: 'var(--font-sans)', whiteSpace: 'nowrap' }}>
                   Sign out
                 </button>
@@ -240,7 +241,11 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
             {user ? (
               <>
                 <div style={{ fontSize: '12px', color: 'var(--fg-4)', marginBottom: '4px' }}>{user.email}</div>
-                <button onClick={async () => { await signOut(); setUser(null); setMenuOpen(false); }}
+                <a href="https://www.localbusinesscalendars.com/account" target="_blank" rel="noopener noreferrer"
+                  style={{ display: 'block', background: 'var(--color-paper)', border: '1px solid var(--color-rule)', borderRadius: '6px', padding: '10px 16px', fontSize: '13px', fontWeight: 600, color: 'var(--fg-1)', textDecoration: 'none' }}>
+                  My Account &amp; Subscriptions ↗
+                </a>
+                <button onClick={async () => { await signOut(); setUser(null); setMenuOpen(false); window.location.href = '/'; }}
                   style={{ background: 'none', border: '1px solid var(--color-rule)', borderRadius: '6px', padding: '10px 16px', fontSize: '13px', fontWeight: 600, color: 'var(--fg-2)', cursor: 'pointer', fontFamily: 'var(--font-sans)', textAlign: 'left' }}>
                   Sign out
                 </button>
