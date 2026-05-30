@@ -122,7 +122,7 @@ export default function HomePage() {
         </section>
 
         {/* What we track */}
-        <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
+        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>What we track</div>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
@@ -150,7 +150,7 @@ export default function HomePage() {
         </section>
 
         {/* States we cover */}
-        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
+        <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Where we cover</div>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
@@ -212,7 +212,7 @@ export default function HomePage() {
         </section>
 
         {/* Claim CTA */}
-        <section style={{ background: '#f9f5ec', padding: '4rem 2rem' }}>
+        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div className="lbo-claim-row" style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '2.25rem 2.5rem' }}>
             <div style={{ flex: 1 }}>
