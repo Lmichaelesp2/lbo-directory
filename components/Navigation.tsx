@@ -92,7 +92,7 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
 
           <Link href="/" style={{ textAlign: 'center', textDecoration: 'none' }}>
             <div className="lbo-nav-wordmark" style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.04em', fontFamily: 'var(--font-sans)', lineHeight: 1.1, whiteSpace: 'nowrap' }}>
-              <span style={{ color: '#042C53' }}>Local</span> Business Organizations
+              <span style={{ color: 'var(--color-primary)' }}>Local</span> Business Organizations
             </div>
             <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-4)', marginTop: '4px' }}>
               {subtitle}
