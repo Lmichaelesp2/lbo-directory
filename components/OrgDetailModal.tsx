@@ -13,11 +13,19 @@ function getInitials(name: string): string {
 }
 
 const CATEGORY_COLORS: Record<string, { bg: string; color: string; border: string }> = {
-  'Chamber & Networking': { bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
-  'Technology':           { bg: '#ede9fe', color: '#6d28d9', border: '#c4b5fd' },
-  'Real Estate':          { bg: '#ecfdf5', color: '#065f46', border: '#6ee7b7' },
-  'Small Business':       { bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
-  'Other':                { bg: '#f0f9ff', color: '#0369a1', border: '#bae6fd' },
+  'Community/Edu':     { bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
+  'Technology':        { bg: '#ede9fe', color: '#6d28d9', border: '#c4b5fd' },
+  'Real Estate':       { bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
+  'Networking':        { bg: '#f0fdf9', color: '#0f6e56', border: '#6ee7b7' },
+  'Chambers':          { bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
+  'Const/Design/Mfg': { bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
+  'Co-Working':        { bg: '#f0fdf9', color: '#0f6e56', border: '#6ee7b7' },
+  'Fed/State/Local':   { bg: '#f5f3ff', color: '#534AB7', border: '#c4b5fd' },
+  'Healthcare':        { bg: '#f0fdf9', color: '#0f6e56', border: '#6ee7b7' },
+  'Professional Svcs': { bg: '#eef3fe', color: '#1652f0', border: '#c7d9fc' },
+  'Financial':         { bg: '#f0fdf9', color: '#0f6e56', border: '#6ee7b7' },
+  'Financial Services':{ bg: '#f0fdf9', color: '#0f6e56', border: '#6ee7b7' },
+  'Other':             { bg: '#f0f9ff', color: '#0369a1', border: '#bae6fd' },
 };
 
 function Chip({ label, color = 'var(--color-primary)', bg = 'var(--color-primary-bg)' }: { label: string; color?: string; bg?: string }) {

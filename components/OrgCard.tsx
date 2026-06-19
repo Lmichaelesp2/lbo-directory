@@ -12,11 +12,21 @@ function getInitials(name: string): string {
 }
 
 const CATEGORY_ICONS: Record<string, string> = {
-  'Chamber & Networking': 'ti-building-community',
-  'Technology':           'ti-cpu',
-  'Real Estate':          'ti-building',
-  'Small Business':       'ti-briefcase',
-  'Other':                'ti-dots-circle-horizontal',
+  'Community/Edu':     'ti-school',
+  'Technology':        'ti-device-laptop',
+  'Real Estate':       'ti-building',
+  'Networking':        'ti-users',
+  'Chambers':          'ti-building-community',
+  'Const/Design/Mfg': 'ti-tools',
+  'Co-Working':        'ti-home',
+  'Fed/State/Local':   'ti-flag',
+  'Healthcare':        'ti-heart-rate-monitor',
+  'Professional Svcs': 'ti-briefcase',
+  'Financial':         'ti-coin',
+  'Financial Services':'ti-coin',
+  'Career/HR':         'ti-layout-grid',
+  'Hospitality':       'ti-layout-grid',
+  'Other':             'ti-layout-grid',
 };
 
 

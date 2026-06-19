@@ -15,31 +15,34 @@ export const CITY_SLUG_TO_NAME: Record<CitySlug, string> = {
 };
 
 export const PUBLIC_CATEGORIES = [
-  { label: 'Chamber & Networking', icon: 'ti-users',         color: 'blue'   },
-  { label: 'Technology',           icon: 'ti-device-laptop', color: 'blue'   },
-  { label: 'Real Estate',          icon: 'ti-building',      color: 'orange' },
-  { label: 'Small Business',       icon: 'ti-briefcase',     color: 'teal'   },
-  { label: 'Other',                icon: 'ti-layout-grid',   color: 'purple' },
+  { label: 'Community/Edu',     icon: 'ti-school',            color: 'blue'   },
+  { label: 'Technology',        icon: 'ti-device-laptop',     color: 'blue'   },
+  { label: 'Real Estate',       icon: 'ti-building',          color: 'orange' },
+  { label: 'Networking',        icon: 'ti-users',             color: 'teal'   },
+  { label: 'Chambers',          icon: 'ti-building-community',color: 'blue'   },
+  { label: 'Const/Design/Mfg', icon: 'ti-tools',             color: 'orange' },
+  { label: 'Co-Working',        icon: 'ti-home',              color: 'teal'   },
+  { label: 'Other',             icon: 'ti-layout-grid',       color: 'purple' },
 ] as const;
 
 export type PublicCategory = typeof PUBLIC_CATEGORIES[number]['label'];
 
-// Maps backend `category` values to public_category display labels
-// Categories mirror the 4 LBC sub-calendars so sponsors can span both properties
+// Maps backend `category` values to PUBLIC_CATEGORIES labels.
+// Financial, Healthcare, Professional Svcs, Career/HR, Hospitality → Other for now.
 export const CATEGORY_MAP: Record<string, PublicCategory> = {
-  'Chambers':           'Chamber & Networking',
-  'Networking':         'Chamber & Networking',
+  'Community/Edu':      'Community/Edu',
   'Technology':         'Technology',
   'Real Estate':        'Real Estate',
-  'Small Business':     'Small Business',
-  'Community/Edu':      'Small Business',
-  'Co-Working':         'Small Business',
-  'Financial':          'Small Business',
-  'Professional Svcs':  'Small Business',
-  'Career/HR':          'Small Business',
-  'Const/Design/Mfg':   'Other',
-  'Healthcare':         'Other',
+  'Networking':         'Networking',
+  'Chambers':           'Chambers',
+  'Const/Design/Mfg':  'Const/Design/Mfg',
+  'Co-Working':         'Co-Working',
   'Fed/State/Local':    'Other',
+  'Healthcare':         'Other',
+  'Professional Svcs':  'Other',
+  'Financial':          'Other',
+  'Financial Services': 'Other',
+  'Career/HR':          'Other',
   'Hospitality':        'Other',
   'Other':              'Other',
 };

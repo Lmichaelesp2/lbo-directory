@@ -101,22 +101,15 @@ export default function CityPageClient() {
                 <span>Browse by category</span>
                 <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>{loading ? '—' : orgs.length} orgs</span>
               </div>
-              {PUBLIC_CATEGORIES.filter(c => c.label !== 'Other').map((cat) => {
-                const catMeta: Record<string, { label: string; icon: string }> = {
-                  'Chamber & Networking': { label: 'Chamber & Networking', icon: 'ti-building-community' },
-                  'Technology':           { label: 'Technology', icon: 'ti-cpu' },
-                  'Real Estate':          { label: 'Real Estate', icon: 'ti-building' },
-                  'Small Business':       { label: 'Small Business', icon: 'ti-briefcase' },
-                };
-                const meta = catMeta[cat.label] ?? { label: cat.label, icon: 'ti-dots-circle-horizontal' };
+              {PUBLIC_CATEGORIES.map((cat) => {
                 const isActive = selectedCategory === cat.label;
                 return (
                   <button key={cat.label}
                     onClick={() => setSelectedCategory(isActive ? null : cat.label)}
                     style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.65rem 1.25rem', borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderBottom: '1px solid var(--color-rule)', width: '100%', background: isActive ? 'var(--color-primary-bg)' : 'transparent', cursor: 'pointer', textAlign: 'left', gap: '8px' }}>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: 500, color: isActive ? 'var(--color-primary)' : 'var(--fg-1)' }}>
-                      <i className={`ti ${meta.icon}`} style={{ fontSize: '15px', color: isActive ? 'var(--color-primary)' : 'var(--fg-4)', flexShrink: 0 }} />
-                      {meta.label}
+                      <i className={`ti ${cat.icon}`} style={{ fontSize: '15px', color: isActive ? 'var(--color-primary)' : 'var(--fg-4)', flexShrink: 0 }} />
+                      {cat.label}
                     </span>
                     <span style={{ fontSize: '0.75rem', fontWeight: 600, color: isActive ? 'var(--color-primary)' : 'var(--fg-3)', background: isActive ? 'var(--color-primary-bg)' : 'var(--color-paper-2)', padding: '2px 8px', borderRadius: '100px', flexShrink: 0 }}>
                       {loading ? '—' : (counts[cat.label] || 0)}
@@ -155,7 +148,7 @@ export default function CityPageClient() {
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
             {[
               [loading ? '—' : String(orgs.length), 'organizations listed'],
-              ['4', 'categories'],
+              ['8', 'categories'],
               ['Free', 'to browse'],
             ].map(([val, label], i, arr) => (
               <>
@@ -190,14 +183,6 @@ export default function CityPageClient() {
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
               {PUBLIC_CATEGORIES.map(cat => {
                 const isActive = selectedCategory === cat.label;
-                const catMeta: Record<string, { label: string; icon: string }> = {
-                  'Chamber & Networking': { label: 'Chamber', icon: 'ti-building-community' },
-                  'Technology':           { label: 'Technology', icon: 'ti-cpu' },
-                  'Real Estate':          { label: 'Real Estate', icon: 'ti-building' },
-                  'Small Business':       { label: 'Small Business', icon: 'ti-briefcase' },
-                  'Other':                { label: '+ More', icon: 'ti-dots-circle-horizontal' },
-                };
-                const meta = catMeta[cat.label] ?? { label: cat.label, icon: 'ti-dots-circle-horizontal' };
                 return (
                   <button key={cat.label}
                     onClick={() => setSelectedCategory(isActive ? null : cat.label)}
@@ -218,8 +203,8 @@ export default function CityPageClient() {
                       transition: 'all 0.15s',
                       opacity: isActive ? 1 : 0.75,
                     }}>
-                    <i className={`ti ${meta.icon}`} style={{ fontSize: '14px' }} />
-                    {meta.label}
+                    <i className={`ti ${cat.icon}`} style={{ fontSize: '14px' }} />
+                    {cat.label}
                     {counts[cat.label] ? (
                       <span style={{
                         background: 'rgba(255,255,255,0.2)',
