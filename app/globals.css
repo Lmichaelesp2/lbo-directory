@@ -338,6 +338,12 @@ a:hover { text-decoration: underline; }
   .lbo-track-checklist { grid-template-columns: 1fr !important; }
   .lbo-cat-grid { grid-template-columns: repeat(2, 1fr) !important; }
 
+  /* New homepage sections */
+  .lbo-steps-grid { grid-template-columns: 1fr !important; }
+  .lbo-why-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+  .lbo-testimonial-grid { grid-template-columns: 1fr !important; }
+  .lbo-newsletter-grid { grid-template-columns: 1fr !important; }
+
   /* CTAs: stack vertically */
   .lbo-cta-row { flex-direction: column !important; align-items: flex-start !important; }
   .lbo-claim-row { flex-direction: column !important; gap: 1.5rem !important; }
