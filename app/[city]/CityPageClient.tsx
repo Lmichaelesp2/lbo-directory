@@ -14,6 +14,40 @@ const ICON_COLOR: Record<string, { bg: string; color: string }> = {
   purple: { bg: '#f5f3ff', color: '#534AB7' },
 };
 
+const CITY_FAQ: Record<string, { question: string; answer: string }[]> = {
+  'San Antonio': [
+    { question: 'What kinds of organizations are in the San Antonio directory?', answer: 'San Antonio has a strong chamber network, several active real estate groups, BNI chapters, SCORE mentorship programs, and a growing tech community through groups like Tech Bloc SA. The directory covers all of these — organized by category.' },
+    { question: 'How do I find the right organization to join?', answer: 'Use the category filter above to narrow by type, then click into profiles to read descriptions, see membership details, and check how active each group is. Look for organizations tagged "Guest Friendly" if you want to attend before joining.' },
+    { question: 'Can I see the events these organizations are hosting?', answer: 'Yes. Subscribe free to the San Antonio weekly newsletter on Local Business Calendars to get every chamber meeting, networking mixer, and business event delivered to your inbox every Monday.' },
+    { question: 'How do I get my organization listed or updated?', answer: 'Use the Claim Your Listing button to verify your profile. Once claimed, you can update your description, contact info, logo, and membership details.' },
+  ],
+  'Houston': [
+    { question: 'What kinds of organizations are in the Houston directory?', answer: 'Houston has a deep bench of professional organizations — energy sector groups, diverse chamber networks, real estate associations, and a strong small business ecosystem through SBDC and SCORE chapters. All organized by category in this directory.' },
+    { question: 'How do I find the right organization to join?', answer: 'Use the category filter above to narrow by type, then click into profiles to read descriptions and check membership details. Look for organizations tagged "Guest Friendly" if you want to visit before committing.' },
+    { question: 'Can I see the events these organizations are hosting?', answer: 'Yes. Subscribe free to the Houston weekly newsletter on Local Business Calendars to get every networking event, chamber meeting, and business gathering delivered to your inbox every Monday.' },
+    { question: 'How do I get my organization listed or updated?', answer: 'Click Claim Your Listing on any profile to verify your organization. Once claimed, you control your description, contact info, and membership details.' },
+  ],
+  'Dallas': [
+    { question: 'What kinds of organizations are in the Dallas directory?', answer: 'Dallas has a massive professional network — one of the most active real estate association scenes in Texas, dozens of chamber and civic groups, tech and startup communities, and a robust small business ecosystem. All covered here by category.' },
+    { question: 'How do I find the right organization to join?', answer: 'Use the category filter to narrow by type — Real Estate, Technology, Chambers, etc. — then click into profiles to compare descriptions, membership fees, and activity levels.' },
+    { question: 'Can I see the events these organizations are hosting?', answer: 'Yes. Subscribe free to the Dallas weekly newsletter on Local Business Calendars to get every upcoming networking event, association meeting, and business mixer delivered to your inbox every Monday.' },
+    { question: 'How do I get my organization listed or updated?', answer: 'Use the Claim Your Listing button to verify your profile. Claimed profiles show a verified badge and allow you to update all your org details.' },
+  ],
+  'Austin': [
+    { question: 'What kinds of organizations are in the Austin directory?', answer: 'Austin has a strong tech and startup organization scene — Capital Factory, Tech Bloc, Codeup — alongside active chambers, real estate groups, and a thriving small business community. All organized by category in this directory.' },
+    { question: 'How do I find the right organization to join?', answer: 'Use the category filter above to narrow by type. The Technology category is especially strong in Austin. Click into profiles to see descriptions, meeting formats, and membership details before deciding.' },
+    { question: 'Can I see the events these organizations are hosting?', answer: 'Yes. Subscribe free to the Austin weekly newsletter on Local Business Calendars to get every tech meetup, chamber event, and networking mixer delivered to your inbox every Monday.' },
+    { question: 'How do I get my organization listed or updated?', answer: 'Click Claim Your Listing on any profile to verify your organization. Once claimed, you can update your description, contact info, logo, and membership details.' },
+  ],
+};
+
+const CITY_SUBSCRIBE_SLUGS: Record<string, string> = {
+  'San Antonio': 'san-antonio',
+  'Houston': 'houston',
+  'Dallas': 'dallas',
+  'Austin': 'austin',
+};
+
 export default function CityPageClient() {
   const params = useParams();
   const citySlug = params.city as string;
@@ -56,70 +90,91 @@ export default function CityPageClient() {
 
   if (!cityName) return <div style={{ padding: '48px', textAlign: 'center' }}>City not found.</div>;
 
+  const faqItems = CITY_FAQ[cityName] || CITY_FAQ['San Antonio'];
+  const subscribeSlug = CITY_SUBSCRIBE_SLUGS[cityName] || citySlug;
+
   return (
     <>
       <Navigation activeCitySlug={citySlug} />
       <main style={{ flex: 1 }}>
 
-        {/* City hero */}
-        <section style={{ background: '#fff', borderBottom: '1px solid var(--color-rule)', padding: '36px 32px' }}>
-          <div style={{ maxWidth: '960px', margin: '0 auto' }}>
-            <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--fg-4)', marginBottom: '10px' }}>
-              <Link href="/" style={{ color: 'var(--fg-4)', textDecoration: 'none' }}>All Cities</Link> › <span style={{ color: 'var(--fg-2)' }}>{cityName}</span>
+        {/* ── Hero ── */}
+        <section className="lbo-hero-section" style={{ background: 'var(--color-paper)', padding: '4rem 2rem 0', borderBottom: '1px solid var(--color-rule)' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto', paddingBottom: '3.5rem' }}>
+
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-primary)', marginBottom: '1.25rem' }}>
+              <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--color-primary)', display: 'inline-block' }} />
+              <Link href="/texas" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>Texas Business Directory</Link>
+              <span style={{ color: 'var(--fg-4)' }}>·</span>
+              {cityName}
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px' }}>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '2rem', alignItems: 'flex-start' }} className="lbo-hero-grid">
               <div>
-                <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '40px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.1, marginBottom: '8px' }}>
-                  <span style={{ color: 'var(--color-primary)' }}>{cityName}</span><br />
-                  Business Organizations
+                <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.25rem, 4.5vw, 3rem)', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
+                  {cityName} Business{' '}
+                  <em style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--color-primary)' }}>Organizations</em>
                 </h1>
                 {content && (
-                  <p style={{ fontSize: '13px', color: 'var(--fg-3)', fontWeight: 500, marginBottom: '0' }}>
+                  <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '2rem' }}>
                     {content.tagline}
                   </p>
                 )}
+                <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <a href={`#directory`}
+                    style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none' }}>
+                    Browse {cityName} →
+                  </a>
+                  <a href={`https://www.localbusinesscalendars.com/texas/${subscribeSlug}/subscribe`} target="_blank" rel="noopener noreferrer"
+                    style={{ background: '#fff', color: 'var(--color-primary)', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', border: '1px solid var(--color-primary)' }}>
+                    Get Weekly Events ↗
+                  </a>
+                </div>
               </div>
-              <div style={{ position: 'relative', flexShrink: 0 }}>
-                <span style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--fg-4)', fontSize: '14px', pointerEvents: 'none' }}>🔍</span>
-                <input
-                  type="text"
-                  placeholder={`Search ${cityName} organizations...`}
-                  value={search}
-                  onChange={e => setSearch(e.target.value)}
-                  style={{ background: '#fff', border: '1.5px solid #cbd5e1', borderRadius: '8px', padding: '10px 14px 10px 34px', fontSize: '13px', width: '280px', color: 'var(--fg-1)', outline: 'none', fontFamily: 'var(--font-sans)' }}
-                />
+
+              {/* Search input */}
+              <div style={{ flexShrink: 0 }}>
+                <div style={{ position: 'relative' }}>
+                  <span style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--fg-4)', fontSize: '14px', pointerEvents: 'none' }}>🔍</span>
+                  <input
+                    type="text"
+                    placeholder={`Search ${cityName} organizations...`}
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                    style={{ background: '#fff', border: '1.5px solid #cbd5e1', borderRadius: '8px', padding: '10px 14px 10px 34px', fontSize: '13px', width: '280px', color: 'var(--fg-1)', outline: 'none', fontFamily: 'var(--font-sans)' }}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Stats strip */}
-        <section style={{ background: 'var(--color-ink)', padding: '16px 32px' }}>
-          <div style={{ maxWidth: '960px', margin: '0 auto', display: 'flex', gap: '40px', alignItems: 'center' }}>
-            <div style={{ display: 'flex', gap: '32px' }}>
-              <div>
-                <span style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 700, color: '#fff' }}>{orgs.length}</span>
-                <span style={{ fontSize: '12px', color: '#94a3b8', marginLeft: '6px' }}>organizations listed</span>
-              </div>
-              <div>
-                <span style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 700, color: '#fff' }}>8</span>
-                <span style={{ fontSize: '12px', color: '#94a3b8', marginLeft: '6px' }}>categories covered</span>
-              </div>
-              <div>
-                <span style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 700, color: '#fff' }}>{Object.keys(counts).length}</span>
-                <span style={{ fontSize: '12px', color: '#94a3b8', marginLeft: '6px' }}>active category types</span>
-              </div>
-            </div>
+        {/* ── Stats strip ── */}
+        <section style={{ background: 'var(--color-dark-section)', padding: '0.6rem 2rem' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            {[
+              [String(orgs.length || '—'), 'organizations listed'],
+              ['8', 'categories covered'],
+              ['Free', 'to browse'],
+            ].map(([val, label], i, arr) => (
+              <>
+                <span key={label} style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,.65)' }}>
+                  <strong>{val}</strong> {label}
+                </span>
+                {i < arr.length - 1 && <span style={{ color: 'rgba(255,255,255,.3)', fontWeight: 300 }}>|</span>}
+              </>
+            ))}
           </div>
         </section>
 
-        <div style={{ maxWidth: '960px', margin: '0 auto', padding: '32px 24px' }}>
+        {/* ── Directory ── */}
+        <div id="directory" style={{ maxWidth: '960px', margin: '0 auto', padding: '32px 24px' }}>
 
           {/* City intro */}
           {content && (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '40px', alignItems: 'flex-start', marginBottom: '36px', paddingBottom: '32px', borderBottom: '1px solid var(--color-rule)' }}>
               <div>
-                <p style={{ fontSize: '14px', color: 'var(--fg-2)', lineHeight: 1.8, marginBottom: '0' }}>
+                <p style={{ fontSize: '14px', color: 'var(--fg-2)', lineHeight: 1.8 }}>
                   {content.intro}
                 </p>
               </div>
@@ -202,19 +257,90 @@ export default function CityPageClient() {
             </Link>
           </div>
 
-          {/* Events CTA */}
-          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '24px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '16px', gap: '24px' }}>
-            <div>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '17px', fontWeight: 700, color: '#fff', marginBottom: '3px' }}>See what {cityName} organizations have coming up</h3>
-              <p style={{ fontSize: '13px', color: '#94a3b8' }}>View upcoming events on the Local Business Calendars.</p>
-            </div>
-            <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer"
-              style={{ background: 'var(--color-accent)', color: '#fff', padding: '10px 22px', borderRadius: '8px', fontSize: '13px', fontWeight: 700, whiteSpace: 'nowrap', textDecoration: 'none' }}>
-              View the Calendar →
-            </a>
-          </div>
-
         </div>
+
+        {/* ── Newsletter signup ── */}
+        <section style={{ background: 'var(--color-dark-section)', padding: '4rem 2rem' }}>
+          <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#64748b', marginBottom: '0.5rem' }}>Free Weekly Newsletter</div>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: '#fff', lineHeight: 1.3, marginBottom: '0.75rem' }}>
+              See what {cityName} organizations are hosting{' '}
+              <em style={{ fontStyle: 'italic', fontWeight: 400 }}>every week.</em>
+            </h2>
+            <p style={{ fontSize: '0.925rem', color: '#94a3b8', lineHeight: 1.7, maxWidth: '600px', marginBottom: '2rem' }}>
+              The organizations in this directory host dozens of networking mixers, chamber meetings, and professional gatherings every week in {cityName}. Subscribe free to the Local Business Calendars weekly newsletter and get every event delivered to your inbox every Monday morning.
+            </p>
+            <a
+              href={`https://www.localbusinesscalendars.com/texas/${subscribeSlug}/subscribe`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lbo-newsletter-card"
+              style={{ maxWidth: '500px' }}
+            >
+              <div>
+                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '3px' }}>{cityName} Weekly Events Newsletter</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--fg-3)', lineHeight: 1.4 }}>Networking events, chamber mixers & business gatherings — every Monday</div>
+              </div>
+              <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-primary)', whiteSpace: 'nowrap', marginLeft: '1rem', flexShrink: 0 }}>
+                Subscribe free →
+              </span>
+            </a>
+            <p style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '1.25rem' }}>
+              Free forever · No credit card · Unsubscribe anytime · Powered by{' '}
+              <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8', textDecoration: 'none', fontWeight: 600 }}>
+                Local Business Calendars ↗
+              </a>
+            </p>
+          </div>
+        </section>
+
+        {/* ── FAQ ── */}
+        <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
+          <div style={{ maxWidth: '760px', margin: '0 auto' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>FAQ</div>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '2rem' }}>
+              About the {cityName} Directory
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {faqItems.map((item, i) => (
+                <details key={i} style={{ borderTop: '1px solid var(--color-rule)', padding: '1.1rem 0' }}>
+                  <summary style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--fg-1)', cursor: 'pointer', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+                    <span>{item.question}</span>
+                    <span style={{ fontSize: '1.1rem', color: 'var(--fg-4)', flexShrink: 0, userSelect: 'none' }}>+</span>
+                  </summary>
+                  <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.7, marginTop: '0.75rem', paddingRight: '1.5rem' }}>
+                    {item.answer}
+                  </p>
+                </details>
+              ))}
+              <div style={{ borderTop: '1px solid var(--color-rule)' }} />
+            </div>
+          </div>
+        </section>
+
+        {/* ── Claim CTA ── */}
+        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
+          <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+            <div className="lbo-claim-row" style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '2.25rem 2.5rem' }}>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent)', marginBottom: '0.5rem' }}>For organization leaders</div>
+                <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.6rem' }}>
+                  Is your {cityName} organization listed here?
+                </h2>
+                <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.7 }}>
+                  Claim your listing to take control of how you appear to {cityName} business professionals. Add your logo, update your description, and verify your contact info. Free to request — reviewed within 1–2 days.
+                </p>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center', flexShrink: 0 }}>
+                <Link href="/claim" style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                  Claim Your Listing →
+                </Link>
+                <span style={{ fontSize: '0.7rem', color: 'var(--fg-4)' }}>Free to request · 1–2 day review</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
     </>
   );
