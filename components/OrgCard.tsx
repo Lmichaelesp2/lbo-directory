@@ -43,13 +43,16 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
           background: '#fff',
           border: '1px solid var(--color-rule)',
           borderRadius: '10px',
-          padding: '14px 16px',
+          padding: '12px 14px',
           display: 'flex',
           alignItems: 'center',
-          gap: '14px',
+          gap: '10px',
           cursor: 'pointer',
           boxShadow: '0 1px 4px rgba(10,22,40,.06)',
           transition: 'box-shadow 0.15s, border-color 0.15s',
+          minWidth: 0,
+          width: '100%',
+          boxSizing: 'border-box',
         }}
         onMouseEnter={e => {
           (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 16px rgba(10,22,40,.10)';
@@ -61,25 +64,25 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
         }}
       >
         {/* Ghost icon */}
-        <i className={`ti ${catIcon}`} style={{ fontSize: '2rem', color: 'var(--color-primary)', opacity: 0.18, flexShrink: 0 }} />
+        <i className={`ti ${catIcon}`} style={{ fontSize: '1.6rem', color: 'var(--color-primary)', opacity: 0.18, flexShrink: 0 }} />
 
         {/* Name + category */}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginBottom: '3px' }}>
+        <div style={{ flex: '1 1 auto', minWidth: 0, overflow: 'hidden' }}>
+          <div style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginBottom: '3px' }}>
             {org.name}
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', overflow: 'hidden' }}>
             {org.category && (
-              <span style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-primary)' }}>
+              <span style={{ fontSize: '9.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {org.category}
               </span>
             )}
-            <span style={{ fontSize: '10px', color: 'var(--fg-4)' }}>· {org.city}</span>
+            <span style={{ fontSize: '9.5px', color: 'var(--fg-4)', whiteSpace: 'nowrap', flexShrink: 0 }}>· {org.city}</span>
           </div>
         </div>
 
         {/* View details */}
-        <span style={{ fontSize: '11px', color: 'var(--color-primary)', fontWeight: 600, flexShrink: 0 }}>View →</span>
+        <span style={{ fontSize: '10.5px', color: 'var(--color-primary)', fontWeight: 600, flexShrink: 0 }}>View →</span>
       </div>
 
       {showModal && <OrgDetailModal org={org} onClose={() => setShowModal(false)} />}
