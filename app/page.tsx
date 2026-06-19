@@ -179,7 +179,7 @@ export default function HomePage() {
               {[
                 { n: '1', head: 'Browse by city', body: 'Choose your city and see every chamber, association, networking group, and trade organization active in your market — all in one place.' },
                 { n: '2', head: 'Filter by category', body: 'Narrow by category — Networking, Technology, Real Estate, Small Business, Chambers — so you find the right organizations for your industry and goals.' },
-                { n: '3', head: 'Show up and connect', body: 'View full profiles, find contact info, and go to the events these organizations host every week. That\'s where the real connections happen.' },
+                { n: '3', head: 'Join and get involved', body: 'Find the organizations that match your goals, join the ones that fit, and participate consistently. That\'s how you build real relationships and become a known presence in your local business community.' },
               ].map(step => (
                 <div key={step.n} style={{ background: 'var(--color-paper)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
                   <div style={{ position: 'absolute', bottom: '-12px', right: '10px', fontSize: '4.5rem', fontWeight: 800, color: 'var(--color-primary)', opacity: 0.07, lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)', letterSpacing: '-0.05em' }}>{step.n}</div>
