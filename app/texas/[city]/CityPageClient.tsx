@@ -178,9 +178,23 @@ export default function CityPageClient() {
             <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
               {loading ? 'Organizations' : orgs.length} Organizations in {cityName}, by Category
             </h2>
-            <p style={{ fontSize: '0.9rem', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '1.5rem', maxWidth: '640px' }}>
+            <p style={{ fontSize: '0.9rem', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '1.25rem', maxWidth: '640px' }}>
               Every chamber, association, and networking group we've tracked in {cityName} — sorted into 8 categories. Select one below to narrow the list, or scroll past it to browse everything.
             </p>
+
+            <div style={{ position: 'relative', maxWidth: '420px', marginBottom: '1.5rem' }}>
+              <span style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--fg-4)', fontSize: '14px', pointerEvents: 'none' }}>🔍</span>
+              <input
+                type="text"
+                placeholder={`Search ${cityName} organizations by name...`}
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '8px', padding: '0.7rem 1rem 0.7rem 2.4rem', fontSize: '0.875rem', width: '100%', color: 'var(--fg-1)', outline: 'none', fontFamily: 'var(--font-sans)', boxSizing: 'border-box', boxShadow: '0 1px 3px rgba(10,22,40,.05)' }}
+                onFocus={e => { (e.currentTarget as HTMLInputElement).style.borderColor = 'var(--color-primary)'; }}
+                onBlur={e => { (e.currentTarget as HTMLInputElement).style.borderColor = 'var(--color-rule)'; }}
+              />
+            </div>
+
             <div className="lbo-cat-filter-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
               {PUBLIC_CATEGORIES.map(cat => {
                 const isActive = selectedCategory === cat.label;
