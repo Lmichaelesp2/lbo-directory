@@ -244,18 +244,18 @@ export default function CityPageClient() {
           </div>
 
           {/* Slim account prompt */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', background: 'var(--color-primary-bg)', border: '1px solid #c7d7fd', borderRadius: '8px', padding: '10px 16px', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '0.8rem', color: 'var(--color-primary)', lineHeight: 1.5 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', background: '#fdf1ec', border: '1px solid #f3cdb8', borderRadius: '8px', padding: '10px 16px', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '0.8rem', color: 'var(--color-accent)', lineHeight: 1.5 }}>
               <i className="ti ti-lock" style={{ marginRight: '6px' }} />
               <strong>Free account</strong> unlocks full profiles, contact info, and the weekly {cityName} events newsletter.
             </span>
             <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
               <Link href={`/signup?city=${encodeURIComponent(cityName)}`}
-                style={{ background: 'var(--color-primary)', color: '#fff', padding: '6px 14px', borderRadius: '6px', fontSize: '0.775rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                style={{ background: 'var(--color-accent)', color: '#fff', padding: '6px 14px', borderRadius: '6px', fontSize: '0.775rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
                 Create account →
               </Link>
               <Link href="/login"
-                style={{ background: '#fff', color: 'var(--color-primary)', padding: '6px 14px', borderRadius: '6px', fontSize: '0.775rem', fontWeight: 600, textDecoration: 'none', border: '1px solid var(--color-primary)', whiteSpace: 'nowrap' }}>
+                style={{ background: '#fff', color: 'var(--color-accent)', padding: '6px 14px', borderRadius: '6px', fontSize: '0.775rem', fontWeight: 600, textDecoration: 'none', border: '1px solid var(--color-accent)', whiteSpace: 'nowrap' }}>
                 Sign in
               </Link>
             </div>
