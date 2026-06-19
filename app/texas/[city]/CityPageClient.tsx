@@ -288,8 +288,51 @@ export default function CityPageClient() {
             </Link>
           </div>
 
-          {/* Testimonials — trust beat right before the conversion ask */}
-          <div style={{ marginTop: '2rem' }}>
+          {/* Unified account + events CTA */}
+          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '2rem', marginTop: '1.75rem' }}>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.45)', marginBottom: '0.5rem' }}>Free Account — {cityName}</div>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, color: '#fff', marginBottom: '0.5rem', lineHeight: 1.3 }}>
+                See the full directory and what these organizations are hosting every week.
+              </h3>
+              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, maxWidth: '540px' }}>
+                Create a free account to unlock complete organization profiles — contact info, membership details, social links, and more. You'll also be automatically subscribed to the <strong style={{ color: 'rgba(255,255,255,0.85)' }}>{cityName} weekly business events newsletter</strong> so you never miss what's coming up.
+              </p>
+            </div>
+
+            {/* What you get */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '1.5rem' }}>
+              {[
+                'Full organization profiles — contact info, phone, email, address',
+                'Membership type, fee range, and how to join',
+                `Weekly ${cityName} business events digest — every Monday`,
+              ].map(item => (
+                <div key={item} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                  <i className="ti ti-check" style={{ color: 'var(--color-accent)', fontSize: '0.875rem', marginTop: '2px', flexShrink: 0 }} />
+                  <span style={{ fontSize: '0.825rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.5 }}>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+              <Link href={`/signup?city=${encodeURIComponent(cityName)}`}
+                style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                Create free account →
+              </Link>
+              <a href={`https://www.localbusinesscalendars.com/texas/${citySlug}`} target="_blank" rel="noopener noreferrer"
+                style={{ fontSize: '0.825rem', color: 'rgba(255,255,255,0.55)', textDecoration: 'none', fontWeight: 600 }}>
+                Browse upcoming events ↗
+              </a>
+            </div>
+
+            <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)', marginTop: '1rem' }}>
+              Already have an account?{' '}
+              <Link href="/login" style={{ color: 'rgba(255,255,255,0.5)', fontWeight: 600, textDecoration: 'none' }}>Sign in →</Link>
+            </p>
+          </div>
+
+          {/* Testimonials — trust beat right after the conversion ask */}
+          <div style={{ marginTop: '2.5rem' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-3)', marginBottom: '0.75rem' }}>
               What people are saying
             </div>
@@ -331,49 +374,6 @@ export default function CityPageClient() {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Unified account + events CTA */}
-          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '2rem', marginTop: '1.5rem' }}>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.45)', marginBottom: '0.5rem' }}>Free Account — {cityName}</div>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, color: '#fff', marginBottom: '0.5rem', lineHeight: 1.3 }}>
-                See the full directory and what these organizations are hosting every week.
-              </h3>
-              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, maxWidth: '540px' }}>
-                Create a free account to unlock complete organization profiles — contact info, membership details, social links, and more. You'll also be automatically subscribed to the <strong style={{ color: 'rgba(255,255,255,0.85)' }}>{cityName} weekly business events newsletter</strong> so you never miss what's coming up.
-              </p>
-            </div>
-
-            {/* What you get */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '1.5rem' }}>
-              {[
-                'Full organization profiles — contact info, phone, email, address',
-                'Membership type, fee range, and how to join',
-                `Weekly ${cityName} business events digest — every Monday`,
-              ].map(item => (
-                <div key={item} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                  <i className="ti ti-check" style={{ color: 'var(--color-accent)', fontSize: '0.875rem', marginTop: '2px', flexShrink: 0 }} />
-                  <span style={{ fontSize: '0.825rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.5 }}>{item}</span>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <Link href={`/signup?city=${encodeURIComponent(cityName)}`}
-                style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
-                Create free account →
-              </Link>
-              <a href={`https://www.localbusinesscalendars.com/texas/${citySlug}`} target="_blank" rel="noopener noreferrer"
-                style={{ fontSize: '0.825rem', color: 'rgba(255,255,255,0.55)', textDecoration: 'none', fontWeight: 600 }}>
-                Browse upcoming events ↗
-              </a>
-            </div>
-
-            <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)', marginTop: '1rem' }}>
-              Already have an account?{' '}
-              <Link href="/login" style={{ color: 'rgba(255,255,255,0.5)', fontWeight: 600, textDecoration: 'none' }}>Sign in →</Link>
-            </p>
           </div>
 
         </div>
