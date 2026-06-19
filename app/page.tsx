@@ -167,16 +167,50 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── 4. What we track (categories) ── */}
+        {/* ── 4. What's in the directory (states + categories combined) ── */}
         <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>What we track</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>What's in the directory</div>
             <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
               The organizations that shape your local business community
             </h2>
             <p style={{ fontSize: '0.925rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '600px' }}>
-              From chambers and trade associations to networking groups and professional societies — we pull them together so you can see the full picture of who's active in your market.
+              Starting with four major Texas cities — 588+ verified organizations across chambers, associations, networking groups, and trade organizations, organized by category.
             </p>
+
+            {/* States grid */}
+            <div className="lbo-city-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px', marginBottom: '1.5rem' }}>
+              {[
+                { ...STATES[0], abbr: 'TX' },
+                { ...STATES[1], abbr: 'FL' },
+                { ...STATES[2], abbr: 'GA' },
+                { ...STATES[3], abbr: 'OH' },
+              ].map(state => (
+                <div key={state.slug} style={{ background: state.live ? '#fff8f5' : 'var(--color-paper-2)', border: `1px solid ${state.live ? '#f5d5c8' : 'var(--color-rule)'}`, borderRadius: '12px', padding: '24px', opacity: state.live ? 1 : 0.55, position: 'relative', overflow: 'hidden' }}>
+                  <div style={{ position: 'absolute', bottom: '-10px', right: '12px', fontSize: '4rem', fontWeight: 800, color: state.live ? '#c2410c' : 'var(--fg-1)', opacity: 0.07, letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)' }}>
+                    {state.abbr}
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px', position: 'relative' }}>
+                    <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--fg-1)' }}>{state.name}</h3>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 600, color: state.live ? 'var(--color-accent)' : 'var(--fg-4)', background: '#fff', padding: '3px 10px', borderRadius: '100px', border: `1px solid ${state.live ? '#f5d5c8' : 'var(--color-rule)'}`, whiteSpace: 'nowrap' }}>
+                      {state.orgCount}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '14px', position: 'relative' }}>
+                    {state.cities.join(' · ')}
+                  </p>
+                  {state.live ? (
+                    <Link href={`/${state.slug}`} style={{ fontSize: '0.8rem', color: 'var(--color-accent)', fontWeight: 600, textDecoration: 'none', position: 'relative' }}>
+                      Browse {state.name} →
+                    </Link>
+                  ) : (
+                    <span style={{ fontSize: '0.8rem', color: 'var(--fg-4)', fontWeight: 500, position: 'relative' }}>Coming soon</span>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Category cards */}
             <div className="lbo-cat-grid">
               {[
                 { label: 'Chamber +',        sub: 'Chambers, associations & civic groups',  icon: 'ti-building-community' },
@@ -226,50 +260,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── 6. States we cover ── */}
-        <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Where we cover</div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
-              States in the directory
-            </h2>
-            <p style={{ fontSize: '0.925rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '560px' }}>
-              Starting with Texas — four major cities, 588+ organizations verified. More states coming soon.
-            </p>
-            <div className="lbo-city-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
-              {[
-                { ...STATES[0], abbr: 'TX' },
-                { ...STATES[1], abbr: 'FL' },
-                { ...STATES[2], abbr: 'GA' },
-                { ...STATES[3], abbr: 'OH' },
-              ].map(state => (
-                <div key={state.slug} style={{ background: state.live ? '#fff8f5' : 'var(--color-paper-2)', border: `1px solid ${state.live ? '#f5d5c8' : 'var(--color-rule)'}`, borderRadius: '12px', padding: '24px', opacity: state.live ? 1 : 0.55, position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ position: 'absolute', bottom: '-10px', right: '12px', fontSize: '4rem', fontWeight: 800, color: state.live ? '#c2410c' : 'var(--fg-1)', opacity: 0.07, letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)' }}>
-                    {state.abbr}
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px', position: 'relative' }}>
-                    <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--fg-1)' }}>{state.name}</h3>
-                    <span style={{ fontSize: '0.7rem', fontWeight: 600, color: state.live ? 'var(--color-accent)' : 'var(--fg-4)', background: '#fff', padding: '3px 10px', borderRadius: '100px', border: `1px solid ${state.live ? '#f5d5c8' : 'var(--color-rule)'}`, whiteSpace: 'nowrap' }}>
-                      {state.orgCount}
-                    </span>
-                  </div>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '14px', position: 'relative' }}>
-                    {state.cities.join(' · ')}
-                  </p>
-                  {state.live ? (
-                    <Link href={`/${state.slug}`} style={{ fontSize: '0.8rem', color: 'var(--color-accent)', fontWeight: 600, textDecoration: 'none', position: 'relative' }}>
-                      Browse {state.name} →
-                    </Link>
-                  ) : (
-                    <span style={{ fontSize: '0.8rem', color: 'var(--fg-4)', fontWeight: 500, position: 'relative' }}>Coming soon</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── 7. Newsletter signup + LBC connection (combined) ── */}
+        {/* ── 6. Newsletter signup + LBC connection (combined) ── */}
         <section style={{ background: 'var(--color-dark-section)', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#64748b', marginBottom: '0.5rem' }}>Free Weekly Newsletter</div>
@@ -308,25 +299,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── 8. Sponsor teaser ── */}
-        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ background: 'var(--color-dark-section)', borderRadius: '16px', padding: '3rem', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#64748b', marginBottom: '0.75rem' }}>Community Supported</div>
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: '#fff', lineHeight: 1.3, marginBottom: '1rem', maxWidth: '600px', margin: '0 auto 1rem' }}>
-                Local Business Organizations Is Free — and Sponsors Make That Possible
-              </h2>
-              <p style={{ fontSize: '0.875rem', color: '#94a3b8', lineHeight: 1.7, maxWidth: '520px', margin: '0 auto 1.75rem' }}>
-                Thousands of business professionals use this directory every week to find organizations, research their local market, and decide where to invest their time. Sponsors keep it free for everyone — with exclusive category visibility and a direct connection to the professionals in their space.
-              </p>
-              <Link href="/sponsor" style={{ display: 'inline-block', background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none' }}>
-                Learn About Sponsorship →
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* ── 9. FAQ ── */}
+        {/* ── 7. FAQ ── */}
         <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '760px', margin: '0 auto' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>FAQ</div>
@@ -350,7 +323,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── 10. Claim CTA ── */}
+        {/* ── 8. Claim CTA ── */}
         <section style={{ background: '#fff', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <div className="lbo-claim-row" style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '2.25rem 2.5rem' }}>
