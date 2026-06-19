@@ -85,9 +85,9 @@ export default function CityPageClient() {
                 <a href="#organizations" style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none' }}>
                   Browse {cityName} →
                 </a>
-                <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer"
+                <a href={`https://www.localbusinesscalendars.com/texas/${citySlug}`} target="_blank" rel="noopener noreferrer"
                   style={{ background: '#fff', color: 'var(--color-primary)', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', border: '1px solid var(--color-primary)' }}>
-                  See Upcoming Events ↗
+                  See {cityName} Events ↗
                 </a>
               </div>
             </div>
