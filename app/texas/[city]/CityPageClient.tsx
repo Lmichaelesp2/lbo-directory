@@ -168,82 +168,6 @@ export default function CityPageClient() {
           </div>
         </section>
 
-        {/* What's in this city's directory — category breakdown with real counts */}
-        <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>What's in the directory</div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
-              The organizations that shape {cityName}'s business community
-            </h2>
-            <p style={{ fontSize: '0.925rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '600px' }}>
-              {loading ? `${cityName}'s` : `${orgs.length}+`} verified organizations across chambers, associations, networking groups, and trade organizations — organized by category so you know exactly where to start.
-            </p>
-            <div className="lbo-cat-grid">
-              {PUBLIC_CATEGORIES.map(cat => (
-                <button
-                  key={cat.label}
-                  onClick={() => {
-                    setSelectedCategory(cat.label);
-                    document.getElementById('organizations')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '18px 16px', position: 'relative', overflow: 'hidden', textAlign: 'left', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}
-                >
-                  <i className={`ti ${cat.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '6px', fontSize: '2.25rem', color: 'var(--fg-1)', opacity: 0.07, pointerEvents: 'none' }} />
-                  <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '4px', position: 'relative' }}>{cat.label}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: 600, position: 'relative' }}>{loading ? '—' : (counts[cat.label] || 0)} orgs</div>
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-3)', marginBottom: '0.75rem' }}>
-              What people are saying
-            </div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.3, marginBottom: '2rem', maxWidth: '600px' }}>
-              Professionals across Texas are using this directory{' '}
-              <em style={{ fontStyle: 'italic', fontWeight: 400 }}>to find where they belong.</em>
-            </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }} className="lbo-testimonial-grid">
-              {[
-                {
-                  quote: `I had no idea how many organizations were active in ${cityName} until I found this directory. It completely changed how I approach networking.`,
-                  name: 'Rachel M.',
-                  location: `${cityName}, TX`,
-                },
-                {
-                  quote: `Finally a single place to see every chamber, association, and networking group in ${cityName}. This saved me hours of searching.`,
-                  name: 'David K.',
-                  location: `${cityName}, TX`,
-                },
-                {
-                  quote: `I used this to find three new organizations to join in ${cityName}. The category breakdown made it easy to find exactly the right fit.`,
-                  name: 'Priya S.',
-                  location: `${cityName}, TX`,
-                },
-              ].map(t => (
-                <div key={t.name} style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.5rem' }}>
-                  <div style={{ display: 'flex', gap: '2px', marginBottom: '0.75rem' }}>
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent)" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/>
-                      </svg>
-                    ))}
-                  </div>
-                  <blockquote style={{ fontSize: '0.875rem', color: 'var(--fg-2)', lineHeight: 1.65, marginBottom: '1rem', fontStyle: 'italic' }}>"{t.quote}"</blockquote>
-                  <div>
-                    <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--fg-1)' }}>— {t.name}</div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--fg-4)', marginTop: '2px' }}>{t.location}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <div id="organizations" style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem 2rem', boxSizing: 'border-box', overflow: 'hidden', background: 'var(--color-paper-2)' }}>
 
           {/* What you'll find here — moved inline below hero */}
@@ -370,8 +294,53 @@ export default function CityPageClient() {
             </Link>
           </div>
 
+          {/* Testimonials — trust beat right before the conversion ask */}
+          <div style={{ marginTop: '2rem' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-3)', marginBottom: '0.75rem' }}>
+              What people are saying
+            </div>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.3, marginBottom: '1.25rem', maxWidth: '600px' }}>
+              Professionals across {cityName} are using this directory{' '}
+              <em style={{ fontStyle: 'italic', fontWeight: 400 }}>to find where they belong.</em>
+            </h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', minWidth: 0 }} className="lbo-testimonial-grid">
+              {[
+                {
+                  quote: `I had no idea how many organizations were active in ${cityName} until I found this directory. It completely changed how I approach networking.`,
+                  name: 'Rachel M.',
+                  location: `${cityName}, TX`,
+                },
+                {
+                  quote: `Finally a single place to see every chamber, association, and networking group in ${cityName}. This saved me hours of searching.`,
+                  name: 'David K.',
+                  location: `${cityName}, TX`,
+                },
+                {
+                  quote: `I used this to find three new organizations to join in ${cityName}. The category breakdown made it easy to find exactly the right fit.`,
+                  name: 'Priya S.',
+                  location: `${cityName}, TX`,
+                },
+              ].map(t => (
+                <div key={t.name} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.25rem', minWidth: 0 }}>
+                  <div style={{ display: 'flex', gap: '2px', marginBottom: '0.6rem' }}>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent)" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/>
+                      </svg>
+                    ))}
+                  </div>
+                  <blockquote style={{ fontSize: '0.825rem', color: 'var(--fg-2)', lineHeight: 1.6, marginBottom: '0.85rem', fontStyle: 'italic' }}>"{t.quote}"</blockquote>
+                  <div>
+                    <div style={{ fontSize: '0.775rem', fontWeight: 700, color: 'var(--fg-1)' }}>— {t.name}</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--fg-4)', marginTop: '2px' }}>{t.location}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Unified account + events CTA */}
-          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '2rem', marginTop: '1rem' }}>
+          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '2rem', marginTop: '1.5rem' }}>
             <div style={{ marginBottom: '1.5rem' }}>
               <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.45)', marginBottom: '0.5rem' }}>Free Account — {cityName}</div>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, color: '#fff', marginBottom: '0.5rem', lineHeight: 1.3 }}>
