@@ -6,7 +6,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import OrgCard from '@/components/OrgCard';
-import { supabase, Organization } from '@/lib/supabase';
+import { Organization } from '@/lib/supabase';
 import { CITY_SLUG_TO_NAME, PUBLIC_CATEGORIES, CITY_CONTENT, CATEGORY_MAP } from '@/lib/config';
 
 
@@ -25,15 +25,10 @@ export default function CityPageClient() {
   useEffect(() => {
     if (!cityName) return;
     setLoading(true);
-    supabase
-      .from('organizations')
-      .select('id, name, city, category, group_type, description, home_page, calendar_website, facebook_url, instagram_url, linkedin_url, how_active, verified, group_address, group_zipcode, group_contact, group_email, group_phone_number, typical_title, membership_type, membership_fee_range, industries_served, event_format, event_size, formality, primary_value, guest_friendly, founded_year, national_affiliate, ai_match_tags')
-      .eq('city', cityName)
-      .not('archive', 'eq', true)
-      .order('name')
-      .limit(1000)
-      .then(({ data }) => {
-        setOrgs((data as Organization[]) || []);
+    fetch(`/api/organizations?city=${encodeURIComponent(cityName)}`)
+      .then(r => r.json())
+      .then((data: Organization[]) => {
+        setOrgs(data || []);
         const c: Record<string, number> = {};
         (data || []).forEach((o: any) => {
           const label = o.category ? CATEGORY_MAP[o.category] : null;
@@ -41,7 +36,8 @@ export default function CityPageClient() {
         });
         setCounts(c);
         setLoading(false);
-      });
+      })
+      .catch(() => setLoading(false));
   }, [cityName]);
 
   const filtered = orgs.filter(o => {

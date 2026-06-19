@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { supabase, Organization } from '@/lib/supabase';
+import { Organization } from '@/lib/supabase';
 import { CITIES, PUBLIC_CATEGORIES, LBC_URL, CITY_SLUG_TO_NAME, CATEGORY_MAP } from '@/lib/config';
 import OrgCard from './OrgCard';
 
@@ -23,19 +23,13 @@ export default function DirectoryPage() {
   const [loading, setLoading] = useState(true);
   const [counts, setCounts] = useState<Record<string, number>>({});
 
-  // Load orgs for selected city
+  // Load orgs for selected city via API route (uses service role, no row cap)
   useEffect(() => {
     setLoading(true);
-    supabase
-      .from('organizations')
-      .select('*')
-      .eq('city', selectedCity)
-      .not('archive', 'eq', true)
-      .order('name')
-      .limit(1000)
-      .then(({ data }) => {
+    fetch(`/api/organizations?city=${encodeURIComponent(selectedCity)}`)
+      .then(r => r.json())
+      .then((data: Organization[]) => {
         setOrgs(data || []);
-        // Build category counts using CATEGORY_MAP to map raw values to display labels
         const c: Record<string, number> = {};
         (data || []).forEach(o => {
           const label = o.category ? CATEGORY_MAP[o.category] : null;
@@ -43,7 +37,8 @@ export default function DirectoryPage() {
         });
         setCounts(c);
         setLoading(false);
-      });
+      })
+      .catch(() => setLoading(false));
   }, [selectedCity]);
 
   // Filter orgs
