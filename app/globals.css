@@ -72,6 +72,8 @@ a:hover { text-decoration: underline; }
 .lbo-track-checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .lbo-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .lbo-claim-row { display: flex; gap: 2.5rem; align-items: center; }
+.lbo-newsletter-card { display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid var(--color-rule); border-radius: 12px; padding: 1.25rem 1.5rem; text-decoration: none; transition: border-color 0.15s; }
+.lbo-newsletter-card:hover { border-color: var(--color-primary); }
 .lbo-cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 
 /* ── Mobile ── */
@@ -340,6 +342,7 @@ a:hover { text-decoration: underline; }
 
   /* New homepage sections */
   .lbo-steps-grid { grid-template-columns: 1fr !important; }
+  .lbo-newsletter-card { grid-template-columns: 1fr !important; }
   .lbo-why-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
   .lbo-testimonial-grid { grid-template-columns: 1fr !important; }
   .lbo-newsletter-grid { grid-template-columns: 1fr !important; }

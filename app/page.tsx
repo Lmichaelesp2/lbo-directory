@@ -383,9 +383,7 @@ export default function HomePage() {
                   href={`https://www.localbusinesscalendars.com/texas/${city.slug}/subscribe`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.25rem 1.5rem', textDecoration: 'none', transition: 'border-color 0.15s' }}
-                  onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--color-primary)')}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--color-rule)')}
+                  className="lbo-newsletter-card"
                 >
                   <div>
                     <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '3px' }}>{city.name}</div>
