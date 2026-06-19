@@ -95,38 +95,25 @@ export default function CityPageClient() {
               </div>
             </div>
 
-            {/* Right panel — category counts */}
+            {/* Right panel — stats + search */}
             <div className="lbo-hero-city-panel" style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(10,22,40,.07)' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-3)', padding: '0.75rem 1.25rem', borderBottom: '1px solid var(--color-rule)', background: 'var(--color-paper-2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span>Browse by category</span>
+                <span>{cityName} Directory</span>
                 <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>{loading ? '—' : orgs.length} orgs</span>
               </div>
-              {PUBLIC_CATEGORIES.map((cat) => {
-                const isActive = selectedCategory === cat.label;
-                return (
-                  <button key={cat.label}
-                    onClick={() => setSelectedCategory(isActive ? null : cat.label)}
-                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.65rem 1.25rem', borderTop: 'none', borderLeft: 'none', borderRight: 'none', borderBottom: '1px solid var(--color-rule)', width: '100%', background: isActive ? 'var(--color-primary-bg)' : 'transparent', cursor: 'pointer', textAlign: 'left', gap: '8px' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: 500, color: isActive ? 'var(--color-primary)' : 'var(--fg-1)' }}>
-                      <i className={`ti ${cat.icon}`} style={{ fontSize: '15px', color: isActive ? 'var(--color-primary)' : 'var(--fg-4)', flexShrink: 0 }} />
-                      {cat.label}
-                    </span>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: isActive ? 'var(--color-primary)' : 'var(--fg-3)', background: isActive ? 'var(--color-primary-bg)' : 'var(--color-paper-2)', padding: '2px 8px', borderRadius: '100px', flexShrink: 0 }}>
-                      {loading ? '—' : (counts[cat.label] || 0)}
-                    </span>
-                  </button>
-                );
-              })}
-              <button
-                onClick={() => setSelectedCategory(selectedCategory === 'Other' ? null : 'Other')}
-                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.7rem 1.25rem', width: '100%', background: selectedCategory === 'Other' ? 'var(--color-primary-bg)' : 'transparent', border: 'none', borderBottom: '1px solid var(--color-rule)', cursor: 'pointer', textAlign: 'left' }}>
-                <span style={{ fontSize: '0.875rem', fontWeight: 500, color: selectedCategory === 'Other' ? 'var(--color-primary)' : 'var(--fg-3)', fontStyle: 'italic' }}>+ More categories</span>
-                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--fg-4)', background: 'var(--color-paper-2)', padding: '2px 8px', borderRadius: '100px' }}>
-                  {loading ? '—' : (counts['Other'] || 0)}
-                </span>
-              </button>
-              {/* Search */}
-              <div style={{ padding: '0.75rem 1.25rem' }}>
+              <div style={{ padding: '1rem 1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {[
+                  { label: 'Categories', value: '8' },
+                  { label: 'Verified profiles', value: String(orgs.filter(o => o.verified).length || '—') },
+                  { label: 'Free to browse', value: 'Yes' },
+                ].map(stat => (
+                  <div key={stat.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.825rem' }}>
+                    <span style={{ color: 'var(--fg-3)' }}>{stat.label}</span>
+                    <span style={{ fontWeight: 700, color: 'var(--fg-1)' }}>{stat.value}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ padding: '0 1.25rem 1rem', borderTop: '1px solid var(--color-rule)', paddingTop: '0.75rem' }}>
                 <div style={{ position: 'relative' }}>
                   <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: 'var(--fg-4)', fontSize: '13px', pointerEvents: 'none' }}>🔍</span>
                   <input
@@ -176,58 +163,56 @@ export default function CityPageClient() {
           )}
 
           {/* Category filter */}
-          <div style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.25rem 1.5rem', marginBottom: '1.75rem' }}>
-            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--fg-2)', textAlign: 'center', marginBottom: '0.875rem' }}>
-              Browse by category
+          <div style={{ marginBottom: '1.75rem' }}>
+            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--fg-4)', marginBottom: '0.75rem' }}>
+              Filter by category
             </div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <div className="lbo-cat-filter-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
               {PUBLIC_CATEGORIES.map(cat => {
                 const isActive = selectedCategory === cat.label;
                 return (
                   <button key={cat.label}
                     onClick={() => setSelectedCategory(isActive ? null : cat.label)}
                     style={{
-                      background: isActive ? '#c2410c' : 'var(--color-ink)',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: '100px',
-                      padding: '0.5rem 1.1rem',
-                      fontSize: '0.8rem',
-                      fontWeight: 600,
+                      background: isActive ? 'var(--color-primary-bg)' : '#fff',
+                      border: isActive ? '1.5px solid var(--color-primary)' : '1px solid var(--color-rule)',
+                      borderRadius: '10px',
+                      padding: '0.875rem 1rem',
                       cursor: 'pointer',
-                      whiteSpace: 'nowrap',
+                      textAlign: 'left',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '6px',
+                      gap: '10px',
                       fontFamily: 'var(--font-sans)',
-                      transition: 'all 0.15s',
-                      opacity: isActive ? 1 : 0.75,
+                      transition: 'border-color 0.15s, background 0.15s',
                     }}>
-                    <i className={`ti ${cat.icon}`} style={{ fontSize: '14px' }} />
-                    {cat.label}
-                    {counts[cat.label] ? (
+                    <i className={`ti ${cat.icon}`} style={{ fontSize: '1.1rem', color: isActive ? 'var(--color-primary)' : 'var(--fg-3)', flexShrink: 0 }} />
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: '0.8rem', fontWeight: 600, color: isActive ? 'var(--color-primary)' : 'var(--fg-1)', lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{cat.label}</div>
+                      <div style={{ fontSize: '0.7rem', color: isActive ? 'var(--color-primary)' : 'var(--fg-4)', marginTop: '2px' }}>{loading ? '—' : (counts[cat.label] || 0)} orgs</div>
+                    </div>
+                    {isActive && (
                       <span style={{
-                        background: 'rgba(255,255,255,0.2)',
+                        background: 'var(--color-primary)',
                         color: '#fff',
-                        fontSize: '0.7rem',
+                        fontSize: '0.65rem',
                         fontWeight: 700,
                         borderRadius: '100px',
                         padding: '1px 7px',
-                        lineHeight: 1.5,
-                      }}>
-                        {counts[cat.label]}
-                      </span>
+                        lineHeight: 1.6,
+                        flexShrink: 0,
+                      }}>✓</span>
                     ) : null}
                   </button>
                 );
               })}
-              {selectedCategory && (
-                <button onClick={() => setSelectedCategory(null)}
-                  style={{ background: 'none', border: '1.5px solid transparent', borderRadius: '100px', color: 'var(--fg-4)', cursor: 'pointer', fontSize: '0.8rem', padding: '0.45rem 0.75rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
-                  Clear ×
-                </button>
-              )}
             </div>
+            {selectedCategory && (
+              <button onClick={() => setSelectedCategory(null)}
+                style={{ marginTop: '8px', background: 'none', border: 'none', color: 'var(--fg-4)', cursor: 'pointer', fontSize: '0.75rem', padding: '0', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
+                ← Clear filter
+              </button>
+            )}
           </div>
 
           {/* Results header */}
