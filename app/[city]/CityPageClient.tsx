@@ -69,6 +69,7 @@ export default function CityPageClient() {
       .eq('city', cityName)
       .not('archive', 'eq', true)
       .order('name')
+      .limit(1000)
       .then(({ data }) => {
         setOrgs((data as Organization[]) || []);
         const c: Record<string, number> = {};

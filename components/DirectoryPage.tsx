@@ -32,6 +32,7 @@ export default function DirectoryPage() {
       .eq('city', selectedCity)
       .not('archive', 'eq', true)
       .order('name')
+      .limit(1000)
       .then(({ data }) => {
         setOrgs(data || []);
         // Build category counts using CATEGORY_MAP to map raw values to display labels
