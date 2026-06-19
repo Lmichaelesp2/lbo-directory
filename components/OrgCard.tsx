@@ -34,7 +34,6 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
   const [showModal, setShowModal] = useState(false);
 
   const catIcon = CATEGORY_ICONS[org.category || ''] || 'ti-dots-circle-horizontal';
-  const description = org.description ? stripHtml(org.description) : null;
 
   return (
     <>
@@ -46,8 +45,8 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
           borderRadius: '10px',
           padding: '14px 16px',
           display: 'flex',
-          flexDirection: 'column',
-          gap: '8px',
+          alignItems: 'center',
+          gap: '14px',
           cursor: 'pointer',
           boxShadow: '0 1px 4px rgba(10,22,40,.06)',
           transition: 'box-shadow 0.15s, border-color 0.15s',
@@ -61,44 +60,26 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
           (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--color-rule)';
         }}
       >
-        {/* Top row — ghost icon left, name + category right */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <i className={`ti ${catIcon}`} style={{
-            fontSize: '2.5rem', color: 'var(--color-primary)', opacity: 0.18, flexShrink: 0,
-          }} />
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.3, marginBottom: '3px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              {org.name}
-            </div>
+        {/* Ghost icon */}
+        <i className={`ti ${catIcon}`} style={{ fontSize: '2rem', color: 'var(--color-primary)', opacity: 0.18, flexShrink: 0 }} />
+
+        {/* Name + category */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginBottom: '3px' }}>
+            {org.name}
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             {org.category && (
               <span style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-primary)' }}>
                 {org.category}
               </span>
             )}
+            <span style={{ fontSize: '10px', color: 'var(--fg-4)' }}>· {org.city}</span>
           </div>
         </div>
 
-        {/* Description — always shown, hard truncated at 2 lines */}
-        {description ? (
-          <p style={{
-            fontSize: '12px', color: 'var(--fg-3)', lineHeight: 1.55, margin: 0,
-            display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
-          }}>
-            {description}
-          </p>
-        ) : (
-          <p style={{ fontSize: '12px', color: 'var(--fg-4)', lineHeight: 1.55, margin: 0, fontStyle: 'italic' }}>
-            Login to view full profile →
-          </p>
-        )}
-
-        {/* Footer */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '8px', borderTop: '1px solid var(--color-rule)', marginTop: 'auto' }}>
-          <span style={{ fontSize: '12px', color: 'var(--color-primary)', fontWeight: 600 }}>View details →</span>
-          <span style={{ fontSize: '10px', fontWeight: 500, padding: '2px 7px', borderRadius: '100px', background: 'var(--color-paper-2)', color: 'var(--fg-4)', border: '1px solid var(--color-rule)' }}>
-            {org.city}
-          </span>
-        </div>
+        {/* View details */}
+        <span style={{ fontSize: '11px', color: 'var(--color-primary)', fontWeight: 600, flexShrink: 0 }}>View →</span>
       </div>
 
       {showModal && <OrgDetailModal org={org} onClose={() => setShowModal(false)} />}
