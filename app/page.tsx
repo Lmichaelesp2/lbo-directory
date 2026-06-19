@@ -15,34 +15,10 @@ export const metadata: Metadata = {
 };
 
 const STATES = [
-  {
-    name: 'Texas',
-    slug: 'texas',
-    cities: ['San Antonio', 'Houston', 'Dallas', 'Austin'],
-    orgCount: '588+',
-    live: true,
-  },
-  {
-    name: 'Florida',
-    slug: 'florida',
-    cities: ['Miami', 'Orlando', 'Tampa', 'Jacksonville'],
-    orgCount: 'Coming soon',
-    live: false,
-  },
-  {
-    name: 'Georgia',
-    slug: 'georgia',
-    cities: ['Atlanta', 'Savannah', 'Augusta'],
-    orgCount: 'Coming soon',
-    live: false,
-  },
-  {
-    name: 'Ohio',
-    slug: 'ohio',
-    cities: ['Columbus', 'Cleveland', 'Cincinnati'],
-    orgCount: 'Coming soon',
-    live: false,
-  },
+  { name: 'Texas',   slug: 'texas',   cities: ['San Antonio', 'Houston', 'Dallas', 'Austin'], orgCount: '588+',        live: true  },
+  { name: 'Florida', slug: 'florida', cities: ['Miami', 'Orlando', 'Tampa', 'Jacksonville'],  orgCount: 'Coming soon', live: false },
+  { name: 'Georgia', slug: 'georgia', cities: ['Atlanta', 'Savannah', 'Augusta'],             orgCount: 'Coming soon', live: false },
+  { name: 'Ohio',    slug: 'ohio',    cities: ['Columbus', 'Cleveland', 'Cincinnati'],         orgCount: 'Coming soon', live: false },
 ];
 
 const TESTIMONIALS = [
@@ -66,11 +42,11 @@ const TESTIMONIALS = [
 const FAQ_ITEMS = [
   {
     question: 'Is it free to browse the directory?',
-    answer: 'Yes — browsing the directory and seeing organization listings is completely free. Create a free account to unlock full profiles including contact info, descriptions, social links, and membership details.',
+    answer: 'Yes — browsing the directory is completely free. Create a free account to unlock full profiles including contact info, descriptions, social links, and membership details.',
   },
   {
     question: 'How do I claim my organization\'s listing?',
-    answer: 'Click "Claim Your Listing" on any organization profile or use the link in the navigation. It\'s free to request — we review and verify within 1–2 business days.',
+    answer: 'Click "Claim Your Listing" on any organization profile or use the link in the navigation. Free to request — reviewed and verified within 1–2 business days.',
   },
   {
     question: 'How do you find and verify organizations?',
@@ -78,11 +54,11 @@ const FAQ_ITEMS = [
   },
   {
     question: 'Which cities and states do you cover?',
-    answer: 'We currently cover four major Texas cities: San Antonio, Houston, Dallas, and Austin, with 588+ verified organizations. More states are coming soon — contact us to request your city.',
+    answer: 'We currently cover four major Texas cities — San Antonio, Houston, Dallas, and Austin — with 588+ verified organizations. More states are coming soon.',
   },
   {
     question: 'Can I see the events these organizations host?',
-    answer: 'Yes! Many of the organizations in this directory host weekly events tracked on our sister site, Local Business Calendars. Subscribe free to get every upcoming event delivered to your inbox every Monday morning.',
+    answer: 'Yes. Many organizations in this directory host weekly events tracked on our sister site, Local Business Calendars. Subscribe free to get every upcoming event in your city delivered every Monday morning.',
   },
 ];
 
@@ -99,32 +75,28 @@ export default function HomePage() {
       <Navigation />
       <main style={{ flex: 1 }}>
 
-        {/* ── Hero ── */}
+        {/* ── 1. Hero ── */}
         <section className="lbo-hero-section" style={{ background: 'var(--color-paper)', padding: '4rem 2rem 0', borderBottom: '1px solid var(--color-rule)' }}>
           <div className="lbo-hero-grid" style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 320px', gap: '3rem', alignItems: 'start', paddingBottom: '3.5rem' }}>
-
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-primary)', marginBottom: '1.25rem' }}>
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--color-primary)', display: 'inline-block' }} />
-                Business Organizations Directory
+                Business Organizations Directory · Texas
               </div>
-
               <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.25rem, 4.5vw, 3rem)', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.15, letterSpacing: '-0.025em', marginBottom: '1.25rem' }}>
                 The business organizations that matter{' '}
                 <em style={{ fontStyle: 'italic', fontWeight: 400, color: '#042C53' }}>in your city.</em>
               </h1>
-
               <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '2rem' }}>
                 A curated directory of chambers of commerce, professional associations, networking groups, and trade organizations — organized by city and category so you know who's out there and where to plug in.
               </p>
-
               <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
                 <Link href="/texas" style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none' }}>
                   Browse Organizations →
                 </Link>
                 <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
                   style={{ background: '#fff', color: 'var(--color-primary)', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', border: '1px solid var(--color-primary)' }}>
-                  See Upcoming Events ↗
+                  See This Week's Events ↗
                 </a>
               </div>
             </div>
@@ -150,14 +122,18 @@ export default function HomePage() {
                 <span style={{ fontSize: '0.825rem', fontWeight: 500, color: 'var(--color-primary)', fontStyle: 'italic' }}>Request a city →</span>
               </Link>
             </div>
-
           </div>
         </section>
 
-        {/* ── Stats strip ── */}
+        {/* ── 2. Stats strip ── */}
         <section style={{ background: 'var(--color-dark-section)', padding: '0.6rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            {[['588+', 'Verified profiles'], ['4', 'Texas cities'], ['8', 'Categories'], ['800+', 'Event sources monitored']].map(([val, label], i, arr) => (
+            {[
+              ['588+', 'Organizations verified'],
+              ['4',    'Texas cities covered'],
+              ['8',    'Industry categories'],
+              ['Free', 'To browse & join'],
+            ].map(([val, label], i, arr) => (
               <>
                 <span key={label} style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,.65)' }}>
                   <strong>{val}</strong> {label}
@@ -168,20 +144,20 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── How it works (3 steps) ── */}
+        {/* ── 3. How it works (3 steps) ── */}
         <section style={{ background: '#fff', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>How it works</div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '1.75rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '1.75rem' }}>
               Find Where to Plug In — in 3 Steps
             </h2>
             <div className="lbo-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
               {[
                 { n: '1', head: 'Browse by city', body: 'Choose your city and see every chamber, association, networking group, and trade organization active in your market — all in one place.' },
-                { n: '2', head: 'Filter by category', body: 'Narrow by category — Networking, Technology, Real Estate, Small Business, Chambers — so you find the right organizations for your industry and goals.' },
+                { n: '2', head: 'Filter by category', body: 'Narrow by category — Networking, Technology, Real Estate, Small Business, Chambers — to find the right organizations for your industry and goals.' },
                 { n: '3', head: 'Join and get involved', body: 'Find the organizations that match your goals, join the ones that fit, and participate consistently. That\'s how you build real relationships and become a known presence in your local business community.' },
               ].map(step => (
-                <div key={step.n} style={{ background: 'var(--color-paper)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
+                <div key={step.n} style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
                   <div style={{ position: 'absolute', bottom: '-12px', right: '10px', fontSize: '4.5rem', fontWeight: 800, color: 'var(--color-primary)', opacity: 0.07, lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)', letterSpacing: '-0.05em' }}>{step.n}</div>
                   <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '0.5rem', position: 'relative' }}>{step.head}</h3>
                   <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.6, position: 'relative' }}>{step.body}</p>
@@ -191,14 +167,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── What we track ── */}
+        {/* ── 4. What we track (categories) ── */}
         <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>What we track</div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
               The organizations that shape your local business community
             </h2>
-            <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '600px' }}>
+            <p style={{ fontSize: '0.925rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '600px' }}>
               From chambers and trade associations to networking groups and professional societies — we pull them together so you can see the full picture of who's active in your market.
             </p>
             <div className="lbo-cat-grid">
@@ -219,72 +195,19 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── Why section (problem / what we do / what you get) ── */}
-        <section style={{ padding: '5rem 2rem', background: '#fff', borderTop: '1px solid var(--color-rule)' }}>
+        {/* ── 5. Testimonials ── */}
+        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontWeight: 600, color: 'var(--fg-1)', letterSpacing: '-0.02em', marginBottom: '0.85rem', lineHeight: 1.3 }}>
-                Organizations are scattered.{' '}
-                <em style={{ fontStyle: 'italic', fontWeight: 400, color: '#042C53' }}>We organize them.</em>
-              </h2>
-              <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', maxWidth: '620px', margin: '0 auto', lineHeight: 1.7 }}>
-                Local business organizations are spread across city websites, LinkedIn pages, Facebook groups, and Eventbrite listings. Here's how Local Business Organizations helps you find them.
-              </p>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-3)', marginBottom: '0.75rem' }}>
+              What people are saying
             </div>
-            <div className="lbo-why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0', borderTop: '2px solid var(--fg-1)' }}>
-              {[
-                {
-                  n: '01',
-                  head: 'The problem',
-                  body: 'Chambers, associations, and networking groups each have their own website, social page, or email list — with no single source to see who\'s active in your city.',
-                },
-                {
-                  n: '02',
-                  head: 'What we do',
-                  body: 'We research and verify every local business organization in each city, then organize them by category so you can see the full landscape of who\'s out there.',
-                },
-                {
-                  n: '03',
-                  head: 'What you get',
-                  body: 'A complete, curated directory — free to browse. Find the right organizations to join, claim your listing, and see the events they host every week.',
-                },
-              ].map((col, i) => (
-                <div key={col.n} style={{ padding: '2.25rem 2rem 2.25rem 0', borderRight: i < 2 ? '1px solid var(--color-rule)' : 'none', paddingLeft: i === 0 ? 0 : '2rem', position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ position: 'absolute', bottom: '-10px', right: '8px', fontSize: '5rem', fontWeight: 800, color: 'var(--fg-1)', opacity: 0.06, lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)', letterSpacing: '-0.05em' }}>{col.n}</div>
-                  <div style={{ fontSize: '3.5rem', fontWeight: 800, color: 'var(--fg-1)', opacity: 0.08, lineHeight: 1, marginBottom: '1rem', letterSpacing: '-0.04em', fontFamily: 'var(--font-sans)' }}>{col.n}</div>
-                  <h3 style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '0.75rem', fontFamily: 'var(--font-sans)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{col.head}</h3>
-                  <p style={{ fontSize: '0.95rem', color: 'var(--fg-3)', lineHeight: 1.7 }}>{col.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Stats + Testimonials ── */}
-        <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <p style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-3)', marginBottom: '0.75rem' }}>
-              BY THE NUMBERS · TEXAS, 2026
-            </p>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.3rem, 2.5vw, 1.75rem)', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.3, marginBottom: '2rem', maxWidth: '600px' }}>
-              Local Business Organizations is used by professionals across{' '}
-              <em style={{ fontStyle: 'italic', fontWeight: 400 }}>every major Texas metro.</em>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.3, marginBottom: '2rem', maxWidth: '600px' }}>
+              Professionals across Texas are using this directory{' '}
+              <em style={{ fontStyle: 'italic', fontWeight: 400 }}>to find where they belong.</em>
             </h2>
-
-            {/* Stats row */}
-            <div style={{ display: 'flex', gap: '3rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
-              {[['588+', 'Verified org profiles'], ['4', 'Texas cities covered'], ['8', 'Industry categories'], ['800+', 'Event sources monitored']].map(([num, label]) => (
-                <div key={label}>
-                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2.25rem', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1 }}>{num}</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--fg-3)', marginTop: '4px', letterSpacing: '0.02em' }}>{label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Testimonials */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }} className="lbo-testimonial-grid">
               {TESTIMONIALS.map(t => (
-                <div key={t.name} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.5rem' }}>
+                <div key={t.name} style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.5rem' }}>
                   <div style={{ display: 'flex', gap: '2px', marginBottom: '0.75rem' }}>
                     {Array.from({ length: 5 }).map((_, i) => (
                       <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent)" xmlns="http://www.w3.org/2000/svg">
@@ -303,15 +226,15 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── States we cover ── */}
-        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
+        {/* ── 6. States we cover ── */}
+        <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Where we cover</div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
               States in the directory
             </h2>
-            <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '560px' }}>
-              We're starting with Texas — four major cities, 588+ organizations already verified. More states are coming soon.
+            <p style={{ fontSize: '0.925rem', color: 'var(--fg-3)', lineHeight: 1.7, marginBottom: '1.75rem', maxWidth: '560px' }}>
+              Starting with Texas — four major cities, 588+ organizations verified. More states coming soon.
             </p>
             <div className="lbo-city-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
               {[
@@ -346,38 +269,18 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── LBC connection — dark band ── */}
-        <section style={{ background: 'var(--color-dark-section)', padding: '3rem 2rem' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '2rem', flexWrap: 'wrap' }}>
-            <div>
-              <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#64748b', marginBottom: '0.5rem' }}>See Their Events</div>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: 600, color: '#fff', marginBottom: '0.4rem' }}>
-                Also on Local Business Calendars
-              </h3>
-              <p style={{ fontSize: '0.875rem', color: '#94a3b8', lineHeight: 1.6, maxWidth: '520px' }}>
-                Many of the organizations in this directory host weekly events tracked on our sister site — free to browse, delivered every Monday morning.
-              </p>
-            </div>
-            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
-              style={{ background: 'var(--color-primary)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
-              Browse This Week's Events ↗
-            </a>
-          </div>
-        </section>
-
-        {/* ── City Newsletter Signup ── */}
-        <section style={{ background: 'var(--color-paper)', padding: '4rem 2rem' }}>
+        {/* ── 7. Newsletter signup + LBC connection (combined) ── */}
+        <section style={{ background: 'var(--color-dark-section)', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Free Weekly Newsletter</div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem, 2.5vw, 1.85rem)', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.25, marginBottom: '0.75rem' }}>
-              See what these organizations are doing{' '}
+            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#64748b', marginBottom: '0.5rem' }}>Free Weekly Newsletter</div>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: '#fff', lineHeight: 1.3, marginBottom: '0.75rem' }}>
+              See what these organizations are hosting{' '}
               <em style={{ fontStyle: 'italic', fontWeight: 400 }}>every week.</em>
             </h2>
-            <p style={{ fontSize: '0.925rem', color: 'var(--fg-3)', lineHeight: 1.7, maxWidth: '600px', marginBottom: '2rem' }}>
-              The organizations in this directory host hundreds of events every week — networking mixers, chamber meetings, tech meetups, real estate gatherings, and more. Subscribe free to your city's weekly newsletter and get every event delivered to your inbox every Monday morning.
+            <p style={{ fontSize: '0.925rem', color: '#94a3b8', lineHeight: 1.7, maxWidth: '600px', marginBottom: '2rem' }}>
+              The organizations in this directory host hundreds of networking mixers, chamber meetings, tech meetups, and real estate gatherings every week. Subscribe free to your city's weekly newsletter on Local Business Calendars and get every event delivered to your inbox every Monday morning.
             </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', marginBottom: '1.5rem' }} className="lbo-newsletter-grid">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', marginBottom: '1.25rem' }} className="lbo-newsletter-grid">
               {CITY_NEWSLETTERS.map(city => (
                 <a
                   key={city.slug}
@@ -396,22 +299,21 @@ export default function HomePage() {
                 </a>
               ))}
             </div>
-
-            <p style={{ fontSize: '0.75rem', color: 'var(--fg-4)' }}>
+            <p style={{ fontSize: '0.75rem', color: '#64748b' }}>
               Free forever · No credit card · Unsubscribe anytime · Powered by{' '}
-              <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'none', fontWeight: 600 }}>
-                Local Business Calendars
+              <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8', textDecoration: 'none', fontWeight: 600 }}>
+                Local Business Calendars ↗
               </a>
             </p>
           </div>
         </section>
 
-        {/* ── Sponsor teaser ── */}
-        <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
+        {/* ── 8. Sponsor teaser ── */}
+        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <div style={{ background: 'var(--color-dark-section)', borderRadius: '16px', padding: '3rem', textAlign: 'center' }}>
               <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#64748b', marginBottom: '0.75rem' }}>Community Supported</div>
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.3rem, 2.5vw, 1.75rem)', fontWeight: 600, color: '#fff', lineHeight: 1.3, marginBottom: '1rem', maxWidth: '600px', margin: '0 auto 1rem' }}>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: '#fff', lineHeight: 1.3, marginBottom: '1rem', maxWidth: '600px', margin: '0 auto 1rem' }}>
                 Local Business Organizations Is Free — and Sponsors Make That Possible
               </h2>
               <p style={{ fontSize: '0.875rem', color: '#94a3b8', lineHeight: 1.7, maxWidth: '520px', margin: '0 auto 1.75rem' }}>
@@ -424,14 +326,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── FAQ ── */}
-        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
+        {/* ── 9. FAQ ── */}
+        <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '760px', margin: '0 auto' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>FAQ</div>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '2rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '2rem' }}>
               Frequently Asked Questions
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
               {FAQ_ITEMS.map((item, i) => (
                 <details key={i} style={{ borderTop: '1px solid var(--color-rule)', padding: '1.1rem 0' }}>
                   <summary style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--fg-1)', cursor: 'pointer', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
@@ -448,10 +350,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── Claim CTA ── */}
-        <section style={{ background: 'var(--color-paper-2)', padding: '4rem 2rem' }}>
+        {/* ── 10. Claim CTA ── */}
+        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div className="lbo-claim-row" style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '2.25rem 2.5rem' }}>
+            <div className="lbo-claim-row" style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '2.25rem 2.5rem' }}>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent)', marginBottom: '0.5rem' }}>For organization leaders</div>
                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.6rem' }}>
