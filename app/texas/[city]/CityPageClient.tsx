@@ -212,6 +212,24 @@ export default function CityPageClient() {
             )}
           </div>
 
+          {/* Slim account prompt */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', background: 'var(--color-primary-bg)', border: '1px solid #c7d7fd', borderRadius: '8px', padding: '10px 16px', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '0.8rem', color: 'var(--color-primary)', lineHeight: 1.5 }}>
+              <i className="ti ti-lock" style={{ marginRight: '6px' }} />
+              <strong>Free account</strong> unlocks full profiles, contact info, and the weekly {cityName} events newsletter.
+            </span>
+            <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
+              <Link href={`/signup?city=${encodeURIComponent(cityName)}`}
+                style={{ background: 'var(--color-primary)', color: '#fff', padding: '6px 14px', borderRadius: '6px', fontSize: '0.775rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                Create account →
+              </Link>
+              <Link href="/login"
+                style={{ background: '#fff', color: 'var(--color-primary)', padding: '6px 14px', borderRadius: '6px', fontSize: '0.775rem', fontWeight: 600, textDecoration: 'none', border: '1px solid var(--color-primary)', whiteSpace: 'nowrap' }}>
+                Sign in
+              </Link>
+            </div>
+          </div>
+
           {/* Results header */}
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '1rem', paddingBottom: '0.75rem', borderBottom: '1px solid var(--color-rule)' }}>
             <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 600, color: 'var(--fg-1)' }}>
