@@ -343,6 +343,9 @@ a:hover { text-decoration: underline; }
   /* Category filter grid */
   .lbo-cat-filter-grid { grid-template-columns: repeat(2, 1fr) !important; }
 
+  /* Org results grid */
+  .lbo-org-grid { grid-template-columns: 1fr !important; }
+
   /* New homepage sections */
   .lbo-steps-grid { grid-template-columns: 1fr !important; }
   .lbo-newsletter-card { grid-template-columns: 1fr !important; }
