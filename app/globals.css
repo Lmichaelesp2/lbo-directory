@@ -203,14 +203,16 @@ a:hover { text-decoration: underline; }
 }
 .lbo-footer-nav-link {
   font-size: 0.8rem;
-  font-weight: 600;
-  color: #fff;
-  background: rgba(255,255,255,.08);
+  font-weight: 700;
+  color: var(--color-dark-section);
+  background: #fff;
   padding: 0.4rem 1rem;
   border-radius: 6px;
   text-decoration: none;
   white-space: nowrap;
+  transition: background 0.15s;
 }
+.lbo-footer-nav-link:hover { background: #e8edf5; }
 .lbo-footer-nav-soon {
   font-size: 0.8rem;
   color: rgba(255,255,255,.25);
@@ -235,7 +237,7 @@ a:hover { text-decoration: underline; }
 }
 .lbo-footer-desc {
   font-size: 0.8rem;
-  color: rgba(255,255,255,.5);
+  color: rgba(255,255,255,.68);
   line-height: 1.7;
   max-width: 340px;
   margin-bottom: 1rem;
@@ -270,11 +272,11 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255,255,255,.35);
+  color: rgba(255,255,255,.5);
   margin-bottom: 0.25rem;
 }
 .lbo-footer-link {
-  color: rgba(255,255,255,.6);
+  color: rgba(255,255,255,.75);
   text-decoration: none;
   font-size: 0.8rem;
 }
