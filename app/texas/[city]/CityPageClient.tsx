@@ -145,7 +145,7 @@ export default function CityPageClient() {
           </div>
         </section>
 
-        <div id="organizations" style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem 2rem' }}>
+        <div id="organizations" style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem 2rem', boxSizing: 'border-box', overflow: 'hidden' }}>
 
           {/* What you'll find here — moved inline below hero */}
           {content && (
@@ -238,7 +238,7 @@ export default function CityPageClient() {
           ) : filtered.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '48px', color: 'var(--fg-4)' }}>No organizations found.</div>
           ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', minWidth: 0 }}>
               {filtered.map(org => <OrgCard key={org.id} org={org} lean />)}
             </div>
           )}
