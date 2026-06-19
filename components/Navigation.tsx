@@ -73,7 +73,7 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
 
   const MORE_LINKS = [
     { href: 'https://www.localbusinesscalendar.com', label: 'Events Calendar ↗', external: true, primary: true },
-    { href: '/event-networking-method', label: 'Event Networking Method', external: false, primary: false },
+    // { href: '/event-networking-method', label: 'Event Networking Method', external: false, primary: false }, // hidden until rollout
     { href: '/about',   label: 'About' },
     { href: '/contact', label: 'Contact' },
     { href: '/help',    label: 'Help' },
