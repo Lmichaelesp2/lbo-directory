@@ -170,23 +170,17 @@ export default function CityPageClient() {
 
         <div id="organizations" style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem 2rem', boxSizing: 'border-box', overflow: 'hidden', background: 'var(--color-paper-2)' }}>
 
-          {/* What you'll find here — moved inline below hero */}
-          {content && (
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '2rem', paddingBottom: '1.5rem', borderBottom: '1px solid var(--color-rule)' }}>
-              {content.highlights.map(h => (
-                <div key={h} style={{ display: 'flex', gap: '6px', alignItems: 'center', background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '100px', padding: '4px 12px' }}>
-                  <span style={{ color: 'var(--color-primary)', fontSize: '11px' }}>✓</span>
-                  <span style={{ fontSize: '0.775rem', color: 'var(--fg-2)', fontWeight: 500 }}>{h}</span>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Category filter */}
+          {/* Browse the directory — heading + category filter */}
           <div style={{ marginBottom: '1.75rem' }}>
-            <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--fg-4)', marginBottom: '0.75rem' }}>
-              Filter by category
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>
+              Browse the directory
             </div>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>
+              {loading ? 'Organizations' : orgs.length} Organizations in {cityName}, by Category
+            </h2>
+            <p style={{ fontSize: '0.9rem', color: 'var(--fg-3)', lineHeight: 1.6, marginBottom: '1.5rem', maxWidth: '640px' }}>
+              Every chamber, association, and networking group we've tracked in {cityName} — sorted into 8 categories. Select one below to narrow the list, or scroll past it to browse everything.
+            </p>
             <div className="lbo-cat-filter-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
               {PUBLIC_CATEGORIES.map(cat => {
                 const isActive = selectedCategory === cat.label;
