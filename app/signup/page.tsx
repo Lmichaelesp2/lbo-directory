@@ -21,7 +21,12 @@ function SignupForm() {
     setError('');
     const { error: err } = await signUp(form.email, form.password, form.city);
     if (err) {
-      setError(err.message);
+      const msg = err.message || '';
+      if (msg.toLowerCase().includes('already registered') || msg.toLowerCase().includes('already been registered')) {
+        setError('__already_registered__');
+      } else {
+        setError(msg);
+      }
       setLoading(false);
       return;
     }
@@ -101,11 +106,21 @@ function SignupForm() {
             )}
           </div>
 
-          {error && (
+          {error && error === '__already_registered__' ? (
+            <div style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '8px', padding: '14px 16px', fontSize: '13px', color: '#1e40af', lineHeight: 1.6 }}>
+              <strong>You already have an account.</strong>
+              <br />
+              Your email is registered across both <strong>Local Business Organizations</strong> and <strong>Local Business Calendars</strong> — they share the same login.
+              <br /><br />
+              <Link href="/login" style={{ color: 'var(--color-primary)', fontWeight: 700, textDecoration: 'underline' }}>
+                Sign in here →
+              </Link>
+            </div>
+          ) : error ? (
             <div style={{ background: '#fff1f2', border: '1px solid #fecdd3', borderRadius: '8px', padding: '10px 14px', fontSize: '13px', color: '#be123c' }}>
               {error}
             </div>
-          )}
+          ) : null}
 
           <button type="submit" disabled={loading}
             style={{ background: 'var(--color-accent)', color: '#fff', border: 'none', borderRadius: '8px', padding: '13px 24px', fontSize: '14px', fontWeight: 700, cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'var(--font-sans)', opacity: loading ? 0.7 : 1, marginTop: '4px' }}>
