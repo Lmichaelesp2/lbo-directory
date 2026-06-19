@@ -202,7 +202,7 @@ export default function CityPageClient() {
                         lineHeight: 1.6,
                         flexShrink: 0,
                       }}>✓</span>
-                    ) : null}
+                    )}
                   </button>
                 );
               })}
