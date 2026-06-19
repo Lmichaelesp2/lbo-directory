@@ -343,7 +343,7 @@ a:hover { text-decoration: underline; }
   /* New homepage sections */
   .lbo-steps-grid { grid-template-columns: 1fr !important; }
   .lbo-newsletter-card { grid-template-columns: 1fr !important; }
-  .lbo-why-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+  .lbo-why-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
   .lbo-testimonial-grid { grid-template-columns: 1fr !important; }
   .lbo-newsletter-grid { grid-template-columns: 1fr !important; }
 

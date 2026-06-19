@@ -220,18 +220,18 @@ export default function HomePage() {
         </section>
 
         {/* ── Why section (problem / what we do / what you get) ── */}
-        <section style={{ background: '#fff', padding: '4rem 2rem' }}>
+        <section style={{ padding: '5rem 2rem', background: '#fff', borderTop: '1px solid var(--color-rule)' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ maxWidth: '680px', marginBottom: '2.5rem' }}>
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem, 2.5vw, 1.85rem)', fontWeight: 600, color: 'var(--fg-1)', lineHeight: 1.25, marginBottom: '0.75rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontWeight: 600, color: 'var(--fg-1)', letterSpacing: '-0.02em', marginBottom: '0.85rem', lineHeight: 1.3 }}>
                 Organizations are scattered.{' '}
-                <em style={{ fontStyle: 'italic', fontWeight: 400 }}>We organize them.</em>
+                <em style={{ fontStyle: 'italic', fontWeight: 400, color: '#042C53' }}>We organize them.</em>
               </h2>
-              <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.7 }}>
+              <p style={{ fontSize: '1.05rem', color: 'var(--fg-3)', maxWidth: '620px', margin: '0 auto', lineHeight: 1.7 }}>
                 Local business organizations are spread across city websites, LinkedIn pages, Facebook groups, and Eventbrite listings. Here's how Local Business Organizations helps you find them.
               </p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }} className="lbo-why-grid">
+            <div className="lbo-why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0', borderTop: '2px solid var(--fg-1)' }}>
               {[
                 {
                   n: '01',
@@ -248,11 +248,12 @@ export default function HomePage() {
                   head: 'What you get',
                   body: 'A complete, curated directory — free to browse. Find the right organizations to join, claim your listing, and see the events they host every week.',
                 },
-              ].map(col => (
-                <div key={col.n}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.12em', color: 'var(--color-primary)', marginBottom: '0.75rem', opacity: 0.6 }}>{col.n}</div>
-                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '0.5rem' }}>{col.head}</h3>
-                  <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.7 }}>{col.body}</p>
+              ].map((col, i) => (
+                <div key={col.n} style={{ padding: '2.25rem 2rem 2.25rem 0', borderRight: i < 2 ? '1px solid var(--color-rule)' : 'none', paddingLeft: i === 0 ? 0 : '2rem', position: 'relative', overflow: 'hidden' }}>
+                  <div style={{ position: 'absolute', bottom: '-10px', right: '8px', fontSize: '5rem', fontWeight: 800, color: 'var(--fg-1)', opacity: 0.06, lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)', letterSpacing: '-0.05em' }}>{col.n}</div>
+                  <div style={{ fontSize: '3.5rem', fontWeight: 800, color: 'var(--fg-1)', opacity: 0.08, lineHeight: 1, marginBottom: '1rem', letterSpacing: '-0.04em', fontFamily: 'var(--font-sans)' }}>{col.n}</div>
+                  <h3 style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '0.75rem', fontFamily: 'var(--font-sans)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{col.head}</h3>
+                  <p style={{ fontSize: '0.95rem', color: 'var(--fg-3)', lineHeight: 1.7 }}>{col.body}</p>
                 </div>
               ))}
             </div>
