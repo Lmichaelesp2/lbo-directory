@@ -167,9 +167,6 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
                   {[
                     { href: '/texas-business-network', label: 'Texas Business Network' },
                     { href: '/sponsor', label: 'Sponsorship' },
-                    { href: '/privacy', label: 'Privacy Policy' },
-                    { href: '/terms',   label: 'Terms & Conditions' },
-                    { href: '/organization-challenge', label: 'Organization Challenge' },
                   ].map(item => (
                     <Link key={item.href} href={item.href}
                       style={{ display: 'block', padding: '0.6rem 1rem', fontSize: '13px', fontWeight: 500, color: 'var(--fg-1)', textDecoration: 'none', borderBottom: '1px solid var(--color-rule)' }}
