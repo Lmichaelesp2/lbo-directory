@@ -109,7 +109,7 @@ export default function OrganizationChallengePage() {
               The Organization Challenge
             </p>
             <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.15, marginBottom: '1.25rem', color: 'var(--fg-1)' }}>
-              Find the right 3–4 organizations. Go deep. Build your network from the inside.
+              Find the right organizations. Go deep. Build your network from the inside.
             </h1>
             <p style={{ fontSize: '1.125rem', lineHeight: 1.7, color: 'var(--fg-2)', marginBottom: '2rem' }}>
               Most professionals join too many organizations and go deep in none of them. This four-stage challenge walks you through finding, evaluating, and committing to the organizations that will actually build the right network for your business — using the Local Business Networking Method.
