@@ -126,22 +126,13 @@ export default function OrganizationChallengePage() {
         </section>
 
         {/* Stats bar */}
-        <div style={{ background: 'var(--color-ink)', padding: '0.85rem 2rem' }}>
+        <div style={{ background: '#0a1628', padding: '0.85rem 2rem' }}>
           <div style={{ maxWidth: 960, margin: '0 auto', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
             <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#94a3b8' }}>4 STAGES</span>
             <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#94a3b8' }}>DEFINE · RESEARCH · EVALUATE · GET ACTIVE</span>
             <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#94a3b8' }}>FREE TO START</span>
           </div>
         </div>
-
-        {/* The goal */}
-        <section style={{ background: 'var(--color-paper-2)', borderBottom: '1px solid var(--color-rule)', padding: '2.5rem 2rem' }}>
-          <div style={{ maxWidth: 960, margin: '0 auto' }}>
-            <p style={{ color: 'var(--fg-2)', fontSize: '1.05rem', lineHeight: 1.75 }}>
-              Most professionals join too many organizations and go deep in none of them. This challenge is about doing the opposite — selecting fewer organizations, committing fully, and becoming the kind of member people remember and refer. The relationships that grow your business come from depth, not breadth.
-            </p>
-          </div>
-        </section>
 
         {/* Stages */}
         {STAGES.map((stage, i) => (
