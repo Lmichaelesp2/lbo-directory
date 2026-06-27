@@ -125,6 +125,15 @@ export default function OrganizationChallengePage() {
           </div>
         </section>
 
+        {/* Stats bar */}
+        <div style={{ background: 'var(--color-ink)', padding: '0.85rem 2rem' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#94a3b8' }}>4 STAGES</span>
+            <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#94a3b8' }}>DEFINE · RESEARCH · EVALUATE · GET ACTIVE</span>
+            <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#94a3b8' }}>FREE TO START</span>
+          </div>
+        </div>
+
         {/* The goal */}
         <section style={{ background: 'var(--color-paper-2)', borderBottom: '1px solid var(--color-rule)', padding: '2.5rem 2rem' }}>
           <div style={{ maxWidth: 960, margin: '0 auto' }}>
