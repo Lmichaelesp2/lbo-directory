@@ -104,7 +104,7 @@ export default function OrganizationChallengePage() {
 
         {/* Hero */}
         <section style={{ background: 'var(--color-paper)', borderBottom: '1px solid var(--color-rule)', padding: '4rem 2rem 3.5rem' }}>
-          <div style={{ maxWidth: 720, margin: '0 auto' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto' }}>
             <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '0.75rem' }}>
               The Organization Challenge
             </p>
@@ -127,7 +127,7 @@ export default function OrganizationChallengePage() {
 
         {/* The goal */}
         <section style={{ background: 'var(--color-paper-2)', borderBottom: '1px solid var(--color-rule)', padding: '2.5rem 2rem' }}>
-          <div style={{ maxWidth: 720, margin: '0 auto' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto' }}>
             <p style={{ color: 'var(--fg-2)', fontSize: '1.05rem', lineHeight: 1.75 }}>
               Most professionals join too many organizations and go deep in none of them. This challenge is about doing the opposite — selecting fewer organizations, committing fully, and becoming the kind of member people remember and refer. The relationships that grow your business come from depth, not breadth.
             </p>
@@ -146,7 +146,7 @@ export default function OrganizationChallengePage() {
               scrollMarginTop: '80px',
             }}
           >
-            <div style={{ maxWidth: 720, margin: '0 auto' }}>
+            <div style={{ maxWidth: 960, margin: '0 auto' }}>
 
               {/* Stage header */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
@@ -219,7 +219,7 @@ export default function OrganizationChallengePage() {
 
         {/* The method */}
         <section style={{ background: 'var(--color-ink)', padding: '4rem 2rem' }}>
-          <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto', textAlign: 'center' }}>
             <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5b82f7', marginBottom: '0.75rem' }}>
               Built on the method
             </p>
@@ -239,7 +239,7 @@ export default function OrganizationChallengePage() {
 
         {/* TBN CTA */}
         <section style={{ background: 'var(--color-paper)', borderTop: '1px solid var(--color-rule)', padding: '4rem 2rem' }}>
-          <div style={{ maxWidth: 720, margin: '0 auto' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto' }}>
             <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '0.75rem' }}>
               Texas Business Network
             </p>

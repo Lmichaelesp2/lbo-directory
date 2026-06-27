@@ -73,7 +73,7 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
 
   const MORE_LINKS = [
     { href: 'https://www.localbusinesscalendar.com', label: 'Events Calendar ↗', external: true, primary: true },
-    // { href: '/event-networking-method', label: 'Event Networking Method', external: false, primary: false }, // hidden until rollout
+    { href: '/organization-challenge', label: 'Organization Challenge', external: false, primary: false },
     { href: '/about',   label: 'About' },
     { href: '/contact', label: 'Contact' },
     { href: '/help',    label: 'Help' },
@@ -165,6 +165,7 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
                     { href: '/sponsor', label: 'Sponsorship' },
                     { href: '/privacy', label: 'Privacy Policy' },
                     { href: '/terms',   label: 'Terms & Conditions' },
+                    { href: '/organization-challenge', label: 'Organization Challenge' },
                   ].map(item => (
                     <Link key={item.href} href={item.href}
                       style={{ display: 'block', padding: '0.6rem 1rem', fontSize: '13px', fontWeight: 500, color: 'var(--fg-1)', textDecoration: 'none', borderBottom: '1px solid var(--color-rule)' }}
