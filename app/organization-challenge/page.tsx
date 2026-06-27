@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'The Organization Challenge | Local Business Organizations',
-  description: 'Find, evaluate, and commit to the 3–4 organizations that will actually build your network. A four-stage challenge built on the Local Business Networking Method.',
+  description: 'Find, evaluate, and commit to the organizations that will actually build your network. A four-stage challenge built on the Local Business Networking Method.',
   alternates: { canonical: '/organization-challenge' },
 };
 
@@ -13,9 +13,9 @@ const STAGES = [
   {
     number: '1',
     pillar: 'People',
-    title: 'Define who you want in your network',
-    body: 'Before you look at a single organization, get clear on exactly who belongs in your network. Prospects who will buy from you. Referral partners who will send you clients. Connectors who open doors to many. The more specific you are about the person, the easier it is to find the rooms where they already gather — and the organizations that will actually build your business.',
-    callout: 'The mistake most people make is joining organizations first and figuring out who they want to meet later. Reverse it.',
+    title: 'Know who you want in your network before you look at any organization',
+    body: 'Before you browse a single directory listing, get clear on exactly who belongs in your network — prospects who will buy from you, referral partners who will send you clients, and connectors who open doors to many. The reason this comes first is simple: the right organization for you is the one your people already belong to. Without a clear picture of who you want to meet, you will join the most visible organizations instead of the most valuable ones.',
+    callout: 'The mistake most people make is joining organizations first and figuring out who they want to meet later. Reverse it — the person comes before the organization.',
     checks: [
       'Write out your ideal prospect — industry, role, company size',
       'Identify your best referral partner types',
@@ -25,58 +25,58 @@ const STAGES = [
   {
     number: '2',
     pillar: 'People',
-    title: 'Research — map every organization where your people gather',
-    body: 'Build the widest possible map before you commit to anything. Chambers of commerce, industry associations, networking groups, trade organizations, civic groups — find them all. The goal at this stage is not to filter, it\'s to discover. You can\'t evaluate what you don\'t know exists. Cast wide, then narrow.',
-    callout: 'The Local Business Organizations directory is built for exactly this step — 588+ verified organizations across Texas organized by city and category.',
+    title: 'Map every organization where your people gather',
+    body: 'Now build the widest possible map of organizations before you commit to anything. Chambers of commerce, industry associations, trade organizations, networking groups, civic groups — find them all. The goal at this stage is not to filter, it\'s to discover. You cannot evaluate what you do not know exists. The events hosted by these organizations are where you will do your actual networking — so the more organizations you discover now, the more options you will have when you start attending.',
+    callout: 'The Local Business Organizations directory is built for exactly this step — verified organizations across Texas organized by city and category.',
     checks: [
       'Browse the directory by city and category',
-      'List every org where your target personas are likely to be',
-      'Note which ones have subgroups, committees, or industry-specific tracks',
+      'List every organization where your target personas are likely to be members',
+      'Note which ones have committees, subgroups, or industry-specific tracks',
     ],
   },
   {
     number: '3',
     pillar: 'Participation',
-    title: 'Evaluate — attend before you commit',
-    body: 'Never join an organization without attending as a guest first. One visit tells you more than any website. When you\'re in the room, you\'re not just networking — you\'re evaluating. Four things determine whether this organization is worth your time and membership investment:',
+    title: 'Attend as a guest before you commit to any membership',
+    body: 'Never join an organization without attending at least one of their events as a guest first. One visit tells you more than any website. When you are in the room, you are not just networking — you are evaluating whether this organization deserves your membership. Four things determine whether it is worth your time and money:',
     evalCriteria: [
       {
         label: 'Are your people actually in the room?',
-        detail: 'Not just sometimes — consistently. The right organization has a reliable, recurring membership that matches your target network.',
+        detail: 'Not just sometimes — consistently. The right organization has a reliable, recurring membership that matches your target network. If you do not see your people at the events, the membership will not build the right relationships.',
       },
       {
-        label: 'Are there subgroups, committees, or industry tracks?',
-        detail: 'The best organizations have internal structure — ambassador programs, industry councils, committees, leadership tracks — that let you go deeper than just attending monthly meetings.',
+        label: 'Are there committees, subgroups, or industry tracks?',
+        detail: 'The best organizations have internal structure that lets you go deeper than attending monthly meetings — ambassador programs, industry councils, committees, and leadership tracks where you can take on a visible role.',
       },
       {
         label: 'Is there a real path to active membership?',
-        detail: 'You\'re not looking for a place to pay dues and show up occasionally. You want an organization where you can take on a visible role and become someone people know.',
+        detail: 'You are not looking for a place to pay dues and show up occasionally. You want an organization where you can become someone people know — which requires structure that supports active involvement.',
       },
       {
         label: 'Is the investment worth what you see?',
-        detail: 'Time and money are finite. A $500/year membership in the right organization is worth more than five $100 memberships in the wrong ones.',
+        detail: 'Time and money are finite. A membership in the right organization — even an expensive one — is worth more than several memberships in the wrong ones.',
       },
     ],
-    callout: 'Commit narrow. The method recommends 3–4 organizations — not 10. Depth in a few places outperforms a shallow presence everywhere.',
+    callout: 'Commit narrow. Go deep in a small number of organizations rather than spreading yourself thin across many. Depth is where the relationships that turn into business actually form.',
     checks: [
-      'Attend at least one event at each org as a guest',
-      'Ask members directly: what do you get out of being here?',
-      'Identify at least one committee or subgroup you could join',
+      'Attend at least one event at each organization you are evaluating',
+      'Ask current members directly: what do you get out of being here?',
+      'Identify at least one committee or subgroup you could join if you became a member',
     ],
   },
   {
     number: '4',
     pillar: 'Relationships',
-    title: 'Get Active — build relationships through the organization\'s structure',
-    body: 'Joining an organization is not the finish line — it\'s the starting line. Relationship building inside an organization doesn\'t happen through email and social media. It happens through the internal channels that the organization itself provides. The more embedded you become in the structure, the more relationships compound around you automatically.',
+    title: 'Get active inside the organization\'s structure — not just its events',
+    body: 'Joining an organization is the starting line, not the finish line. The relationships that grow inside an organization do not come from attending meetings — they come from working alongside the same people, in the same committees and programs, over time. The more embedded you become in the organization\'s internal structure, the more your reputation and relationships compound automatically.',
     activeChannels: [
       {
         label: 'Committees',
-        detail: 'Join a committee and you\'re suddenly working alongside the same people every month toward a shared goal. Nothing builds trust faster than doing something together.',
+        detail: 'Join a committee and you are suddenly working toward a shared goal with the same people every month. Nothing builds trust faster than doing something together, repeatedly.',
       },
       {
         label: 'Ambassador & volunteer programs',
-        detail: 'These roles put you at the front of the room — greeting new members, welcoming guests, representing the organization. High visibility, high trust, zero sales pitch needed.',
+        detail: 'These roles put you at the front of the room — welcoming guests, greeting new members, representing the organization. High visibility, high trust, and no sales pitch required.',
       },
       {
         label: 'Industry subgroups & councils',
@@ -84,14 +84,14 @@ const STAGES = [
       },
       {
         label: 'Leadership tracks',
-        detail: 'Board positions, committee chairs, event leadership. These are the roles that turn you from a member into a pillar — someone others introduce to newcomers and send referrals toward.',
+        detail: 'Board positions, committee chairs, event leadership. These are the roles that turn you from a member into a pillar — the person others introduce to newcomers and route referrals toward.',
       },
     ],
-    callout: 'Stay top of mind by re-sharing what you\'re already doing. Post about the meetings you attend, the committees you serve on, the events you help run. You\'re already there — let your network see it.',
+    callout: 'Every event the organization runs is a chance to show up, be useful, and be seen. Attend consistently, volunteer when you can, and let your network see the work you are doing inside these organizations.',
     checks: [
-      'Join at least one committee or subgroup in each committed org',
+      'Join at least one committee or subgroup in each organization you commit to',
       'Volunteer for an event, orientation, or ambassador role',
-      'Post about your involvement — a photo, a recap, a takeaway',
+      'Post about your involvement — a photo from a meeting, a recap of a committee session, a takeaway from an event you helped run',
     ],
   },
 ];
@@ -112,7 +112,7 @@ export default function OrganizationChallengePage() {
               Find the right organizations. Go deep. Build your network from the inside.
             </h1>
             <p style={{ fontSize: '1.125rem', lineHeight: 1.7, color: 'var(--fg-2)', marginBottom: '2rem' }}>
-              Most professionals join too many organizations and go deep in none of them. This four-stage challenge walks you through finding, evaluating, and committing to the organizations that will actually build the right network for your business — using the Local Business Networking Method.
+              Most professionals join too many organizations and go deep in none of them. This four-stage challenge walks you through finding, evaluating, and committing to the right organizations for your business — using the Local Business Networking Method.
             </p>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <a href="#stage-1" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: 'var(--color-accent)', color: '#fff', padding: '0.75rem 1.5rem', borderRadius: 8, fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none' }}>
