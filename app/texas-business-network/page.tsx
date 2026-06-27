@@ -1,149 +1,442 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
-import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Texas Business Network | Now Forming — Statewide Membership',
-  description: 'Texas Business Network is a statewide membership network connecting chambers, networking groups, and professional associations across every major Texas city. Now forming — claim your listing to join.',
-};
+const CITIES = ['San Antonio', 'Austin', 'Dallas', 'Houston'];
 
-const CHAPTERS = [
-  { city: 'San Antonio', slug: 'san-antonio', abbr: 'SA',  status: 'founding' },
-  { city: 'Houston',     slug: 'houston',     abbr: 'HOU', status: 'forming'  },
-  { city: 'Dallas',      slug: 'dallas',      abbr: 'DAL', status: 'forming'  },
-  { city: 'Austin',      slug: 'austin',      abbr: 'AUS', status: 'forming'  },
+const INDUSTRIES = [
+  'Real Estate',
+  'Insurance',
+  'Financial Advisory / Wealth Management',
+  'HR / Staffing / Executive Recruiting',
+  'Technology / IT Services',
+  'Mortgage / Lending',
+  'CPA / Accounting',
+  'Legal',
+  'Other',
 ];
 
-const FEATURES = [
-  { icon: 'ti-building-community', title: 'City Chapters',       desc: "Each city has its own chapter — San Antonio, Houston, Dallas, and Austin. Your organization is a member of your city's chapter automatically when you join." },
-  { icon: 'ti-network',            title: 'Statewide Network',   desc: 'All city chapters roll up into the Texas Business Network, creating cross-city visibility and connection across the state.' },
-  { icon: 'ti-circle-check',       title: 'Verified Listings',   desc: 'Members have verified, claimed listings — not just scraped data. The right person is accountable for keeping information current.' },
-  { icon: 'ti-mail',               title: 'Quarterly Check-ins', desc: 'We reach out every 90 days to confirm your contact info is still accurate. Stale data is the enemy of a useful directory.' },
+const PILLARS = [
+  {
+    label: 'People',
+    svg: (
+      <svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="13" r="6" stroke="var(--color-ink)" strokeWidth="2.5" opacity="0.18"/>
+        <path d="M8 34c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="var(--color-ink)" strokeWidth="2.5" strokeLinecap="round" opacity="0.18"/>
+      </svg>
+    ),
+    title: 'Know exactly who belongs in your network — before you walk into any room.',
+    body: 'We profile your ideal prospects, referral partners, connectors, and existing customers. Then we map the organizations and events in your city where those people already gather. You stop wasting evenings in the wrong rooms.',
+  },
+  {
+    label: 'Content',
+    svg: (
+      <svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="8" width="28" height="20" rx="3" stroke="var(--color-ink)" strokeWidth="2.5" opacity="0.18"/>
+        <path d="M13 16h14M13 22h8" stroke="var(--color-ink)" strokeWidth="2.5" strokeLinecap="round" opacity="0.18"/>
+      </svg>
+    ),
+    title: "Turn the events you're already attending into content that keeps you visible.",
+    body: "You don't need to create content from scratch. Every event you attend is content waiting to be shared — a photo, a takeaway, a quick recap. We show you the simplest possible process so the people who couldn't be there remember who was.",
+  },
+  {
+    label: 'Participation',
+    svg: (
+      <svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 6L6 16v20h28V16L20 6z" stroke="var(--color-ink)" strokeWidth="2.5" strokeLinejoin="round" opacity="0.18"/>
+        <rect x="15" y="24" width="10" height="12" rx="1" stroke="var(--color-ink)" strokeWidth="2.5" opacity="0.18"/>
+      </svg>
+    ),
+    title: 'Work the right organizations and events with depth — not just attendance.',
+    body: 'We tell you which chamber, which networking group, which industry association is worth your time and money. Then we guide you on how to show up: when to join, when to lead, and how to become a recognized presence people trust.',
+  },
+  {
+    label: 'Relationships',
+    svg: (
+      <svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 34C20 34 6 26 6 16a7 7 0 0114 0 7 7 0 0114 0c0 10-14 18-14 18z" stroke="var(--color-ink)" strokeWidth="2.5" strokeLinejoin="round" opacity="0.18"/>
+      </svg>
+    ),
+    title: 'Stay top of mind after every room empties — until contacts become clients.',
+    body: 'Most networking dies in the follow-up. We give you a simple maintenance system — email, social, and the AI assistant checking in weekly — so the relationships you build keep compounding long after the event ends.',
+  },
 ];
 
-const STEPS = [
-  { num: '1', icon: 'ti-search',      title: 'Find your organization', desc: 'Search for your organization in the Local Business Organizations directory. We already have 500+ Texas organizations listed.' },
-  { num: '2', icon: 'ti-id-badge',    title: 'Claim your listing',     desc: 'Submit a claim request with your contact information. Our team verifies your connection to the organization within 1–2 business days.' },
-  { num: '3', icon: 'ti-star',        title: 'You are a member',       desc: 'Once approved, your organization becomes a verified member of your city chapter and the Texas Business Network. Free to start.' },
-];
+export default function TexasBusinessNetworkPage() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [city, setCity] = useState('');
+  const [industry, setIndustry] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-export default function TexasBusinessOrganizationsPage() {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus('loading');
+    try {
+      const res = await fetch('https://localbusinesscalendars.com/api/tbn-waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, city, industry }),
+      });
+      if (!res.ok) throw new Error();
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
+  }
+
   return (
     <>
       <Navigation />
       <main style={{ flex: 1 }}>
 
-        {/* Hero */}
-        <section style={{ background: 'var(--color-ink)', padding: '64px 32px 56px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
-          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.12)', borderRadius: '100px', padding: '5px 14px', marginBottom: '24px' }}>
-              <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e', display: 'inline-block', flexShrink: 0 }}></span>
-              <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,.7)' }}>Now Forming · Founding Members Welcome</span>
-            </div>
-            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.25rem, 5vw, 3.25rem)', fontWeight: 700, color: '#fff', lineHeight: 1.1, letterSpacing: '-0.025em', marginBottom: '20px' }}>
+        {/* ── Hero ── */}
+        <section style={{ background: 'var(--color-paper)', borderBottom: '1px solid var(--color-rule)', padding: '4rem 2rem 3.5rem' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto' }}>
+            <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '0.75rem' }}>
               Texas Business Network
-            </h1>
-            <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,.65)', lineHeight: 1.75, maxWidth: '600px', marginBottom: '32px' }}>
-              A statewide membership network connecting chambers of commerce, professional associations, and networking groups across every major Texas city. One network. Four cities. Thousands of organizations.
             </p>
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <Link href="/claim"
-                style={{ background: 'var(--color-accent)', color: '#fff', padding: '13px 28px', borderRadius: '8px', fontSize: '14px', fontWeight: 700, textDecoration: 'none' }}>
-                Claim your listing to join →
-              </Link>
-              <Link href="/"
-                style={{ background: 'rgba(255,255,255,.08)', color: '#fff', padding: '13px 28px', borderRadius: '8px', fontSize: '14px', fontWeight: 600, textDecoration: 'none', border: '1px solid rgba(255,255,255,.15)' }}>
-                Browse the directory
-              </Link>
+            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700, lineHeight: 1.15, marginBottom: '1.25rem', color: 'var(--color-ink)', maxWidth: 800 }}>
+              We do the research. You build the relationships.
+            </h1>
+            <p style={{ fontSize: '1.125rem', lineHeight: 1.75, color: 'var(--fg-2)', marginBottom: '2rem', maxWidth: 680 }}>
+              An exclusive membership for established business professionals in Texas who are serious about growing through the right relationships — not random networking. A proven framework, an AI assistant, and expert guidance, all pointed at one goal: 100 people in your network who know you, trust you, and send you business.
+            </p>
+            <a href="#waitlist" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: 'var(--color-accent)', color: '#fff', padding: '0.75rem 1.75rem', borderRadius: 8, fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none' }}>
+              Join the waitlist →
+            </a>
+          </div>
+        </section>
+
+        {/* ── Stats bar ── */}
+        <div style={{ background: 'var(--color-ink)', padding: '0.85rem 2rem' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto', display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>25 MEMBERS PER CITY</span>
+            <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>4 TEXAS CITIES</span>
+            <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>APPLICATION REQUIRED</span>
+          </div>
+        </div>
+
+        {/* ── Problem ── */}
+        <section style={{ background: 'var(--color-paper-2)', borderBottom: '1px solid var(--color-rule)', padding: '4rem 2rem' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto' }}>
+            <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '0.75rem' }}>
+              The problem
+            </p>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', lineHeight: 1.2, color: 'var(--color-ink)', marginBottom: '1.25rem', maxWidth: 720 }}>
+              Most professionals know they should be networking. Very few do it strategically.
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '2rem' }}>
+              {[
+                'They go to random events and hope the right person shows up.',
+                'They collect cards but never build a real follow-up system.',
+                'They join organizations without knowing which ones are worth their time.',
+                "They don't know what to do at events beyond showing up.",
+                "They want to stay top of mind but don't produce any content.",
+                'They network in one city but do business across Texas.',
+              ].map(problem => (
+                <div key={problem} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                  <span style={{ color: 'var(--color-accent)', fontWeight: 700, flexShrink: 0, marginTop: '2px', fontSize: '1.1rem' }}>✕</span>
+                  <p style={{ color: 'var(--fg-2)', fontSize: '0.975rem', lineHeight: 1.65, margin: 0 }}>{problem}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: '2rem', padding: '1.25rem 1.5rem', background: 'var(--color-ink)', borderRadius: 10 }}>
+              <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1.05rem', lineHeight: 1.7, margin: 0, fontWeight: 500 }}>
+                TBN solves all of this — not with a course to watch, but with personalized, ongoing guidance delivered on a consistent cadence.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* What is TBN */}
-        <section style={{ padding: '64px 32px', maxWidth: '860px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'start' }}>
-            <div>
-              <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '14px' }}>What is TBN?</div>
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.2, marginBottom: '16px' }}>
-                One network for every business organization in Texas
-              </h2>
-              <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.8, marginBottom: '16px' }}>
-                The Texas Business Network (TBN) is a statewide membership network built on top of the Local Business Organizations directory. When your organization claims its listing, you become part of both your <strong style={{ color: 'var(--fg-1)' }}>local city chapter</strong> and the broader <strong style={{ color: 'var(--fg-1)' }}>Texas Business Network</strong>.
-              </p>
-              <p style={{ fontSize: '14px', color: 'var(--fg-3)', lineHeight: 1.8 }}>
-                Membership is free to start. Our goal is to create a verified, current, and connected record of every active business organization across the state — something that has never existed before.
+        {/* ── What you get ── */}
+        <section style={{ background: 'var(--color-paper)', borderBottom: '1px solid var(--color-rule)', padding: '4rem 2rem' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto' }}>
+            <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '0.75rem' }}>
+              What you get
+            </p>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 700, lineHeight: 1.2, color: 'var(--color-ink)', marginBottom: '0.5rem' }}>
+              Everything you need to build the right network — and nothing you don't.
+            </h2>
+            <p style={{ fontSize: '1.05rem', color: 'var(--fg-2)', lineHeight: 1.7, marginBottom: '3rem', maxWidth: 680 }}>
+              Your membership includes the framework that tells you what to do, the app that keeps you on track, and Louis — who knows the Texas networking landscape and tells you exactly where to show up.
+            </p>
+
+            {/* Four pillars */}
+            {PILLARS.map((pillar) => (
+              <div key={pillar.label} style={{
+                display: 'grid',
+                gridTemplateColumns: '64px 1fr',
+                gap: '1.5rem',
+                padding: '2rem 0',
+                borderTop: '1px solid var(--color-rule)',
+                alignItems: 'start',
+              }}>
+                <div style={{
+                  width: 64, height: 64, borderRadius: 12,
+                  border: '1.5px solid var(--color-rule)',
+                  background: 'var(--color-paper-2)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                }}>
+                  {pillar.svg}
+                </div>
+                <div>
+                  <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '0.3rem' }}>{pillar.label}</p>
+                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)', fontWeight: 700, lineHeight: 1.25, color: 'var(--color-ink)', marginBottom: '0.6rem' }}>
+                    {pillar.title}
+                  </h3>
+                  <p style={{ fontSize: '0.975rem', lineHeight: 1.75, color: 'var(--fg-2)', margin: 0 }}>
+                    {pillar.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+
+            {/* AI assistant + Louis */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '2.5rem' }}>
+              <div style={{ background: '#eef3fe', border: '1px solid #c7d7fc', borderRadius: 10, padding: '1.5rem' }}>
+                <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1652f0', marginBottom: '0.5rem' }}>AI-Powered Assistant</p>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--color-ink)', marginBottom: '0.5rem' }}>Your personal networking assistant — always on.</h3>
+                <p style={{ fontSize: '0.95rem', lineHeight: 1.7, color: 'var(--fg-2)', margin: 0 }}>
+                  Knows your goals, tracks your progress, surfaces events matched to your profile, and checks in weekly: <em>"You set a goal to attend one event. Did you go? Who'd you meet?"</em> The AI handles the cadence so you don't have to.
+                </p>
+              </div>
+              <div style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: 10, padding: '1.5rem' }}>
+                <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '0.5rem' }}>Direct Access to Louis</p>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--color-ink)', marginBottom: '0.5rem' }}>Strategy, judgment, and the human moments the AI cannot replace.</h3>
+                <p style={{ fontSize: '0.95rem', lineHeight: 1.7, color: 'var(--fg-2)', margin: 0 }}>
+                  Periodic group touchpoints and direct access for guidance, questions, and accountability. Louis knows the local networking landscape in Texas — the right chambers, the right mixers, the right industry groups — better than any individual member does.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── The Goal ── */}
+        <section style={{ background: 'var(--color-ink)', padding: '4rem 2rem' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto' }}>
+            <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5b82f7', marginBottom: '0.75rem' }}>
+              The 12-month goal
+            </p>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 700, color: '#fff', marginBottom: '1rem', maxWidth: 720 }}>
+              100 people in your network who know you, trust you, and send you business.
+            </h2>
+            <p style={{ color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, marginBottom: '2.5rem', fontSize: '1.05rem', maxWidth: 680 }}>
+              The pace is simple and sustainable: one event a week, two new people per event. The program is built around making that happen consistently — so you're always the first person someone thinks of when they're ready to buy or refer.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem', marginBottom: '2.5rem' }}>
+              {[
+                { stat: '52', label: 'Events per year' },
+                { stat: '2', label: 'New people per event' },
+                { stat: '100+', label: 'Network goal at 12 months' },
+                { stat: '2–3%', label: 'Ready to buy at any moment' },
+              ].map(({ stat, label }) => (
+                <div key={label} style={{ textAlign: 'center', padding: '1.5rem', background: 'rgba(255,255,255,0.05)', borderRadius: 10, border: '1px solid rgba(255,255,255,0.08)' }}>
+                  <p style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', fontWeight: 700, color: '#fff', margin: '0 0 0.25rem' }}>{stat}</p>
+                  <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600, margin: 0 }}>{label}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: '1.25rem 1.5rem' }}>
+              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.975rem', lineHeight: 1.7, margin: 0 }}>
+                <strong style={{ color: '#fff' }}>The 2–3% reality — and why the math still works.</strong> At any moment, only 2–3% of the people in your network are ready to buy. A real estate agent with 100 warm relationships has 2–3 home sales in the pipeline at all times. An insurance broker with 100 contacts has consistent book-of-business growth. The goal of staying top of mind is simple: when someone enters that window, you are the first person they call.
               </p>
             </div>
+          </div>
+        </section>
 
-            {/* Feature cards — ghost Tabler icons */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {FEATURES.map(f => (
-                <div key={f.title} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '10px', padding: '16px 18px', position: 'relative', overflow: 'hidden' }}>
-                  <i className={`ti ${f.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '8px', fontSize: '2.25rem', color: '#c2410c', opacity: 0.18, pointerEvents: 'none' }} />
-                  <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '4px', position: 'relative' }}>{f.title}</div>
-                  <div style={{ fontSize: '12px', color: 'var(--fg-3)', lineHeight: 1.6, position: 'relative' }}>{f.desc}</div>
+        {/* ── Who it's for ── */}
+        <section style={{ background: 'var(--color-paper)', borderBottom: '1px solid var(--color-rule)', padding: '4rem 2rem' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto' }}>
+            <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '0.75rem' }}>
+              Who this is for
+            </p>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 700, lineHeight: 1.2, color: 'var(--color-ink)', marginBottom: '2rem', maxWidth: 680 }}>
+              Established professionals where one new relationship can justify months of membership fees.
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+              <div>
+                <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-ink)', marginBottom: '1rem' }}>TBN is built for</p>
+                {[
+                  'Real Estate — residential agents, commercial brokers, investors',
+                  'Insurance — life, health, commercial, P&C',
+                  'Financial Advisory — wealth management, retirement planning',
+                  'HR / Staffing / Executive Recruiting',
+                  'Technology / IT Services / SaaS',
+                  'Mortgage brokers, CPAs, attorneys, and other high-value advisors',
+                ].map(item => (
+                  <div key={item} style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start', marginBottom: '0.6rem' }}>
+                    <span style={{ color: 'var(--color-accent)', fontWeight: 700, flexShrink: 0, marginTop: '2px' }}>✓</span>
+                    <p style={{ color: 'var(--fg-2)', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>{item}</p>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-ink)', marginBottom: '1rem' }}>TBN is not for</p>
+                {[
+                  'Someone brand new to their industry with no client base yet',
+                  'Someone unwilling to attend events or join organizations',
+                  'Someone looking for a passive membership to read content',
+                  'Someone who sees $100/month as a significant budget question',
+                ].map(item => (
+                  <div key={item} style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start', marginBottom: '0.6rem' }}>
+                    <span style={{ color: 'var(--fg-4)', fontWeight: 700, flexShrink: 0, marginTop: '2px' }}>✕</span>
+                    <p style={{ color: 'var(--fg-4)', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>{item}</p>
+                  </div>
+                ))}
+                <div style={{ marginTop: '1.5rem', padding: '1rem 1.25rem', background: 'var(--color-paper-2)', borderRadius: 8, border: '1px solid var(--color-rule)' }}>
+                  <p style={{ color: 'var(--fg-2)', fontSize: '0.9rem', lineHeight: 1.65, margin: 0 }}>
+                    TBN is not open enrollment. Every prospective member goes through a qualifying conversation. Members feel they earned their spot — not that they bought their way in.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── A typical week ── */}
+        <section style={{ background: 'var(--color-paper-2)', borderBottom: '1px solid var(--color-rule)', padding: '4rem 2rem' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto' }}>
+            <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '0.75rem' }}>
+              What membership looks like
+            </p>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 700, lineHeight: 1.2, color: 'var(--color-ink)', marginBottom: '2rem' }}>
+              A typical week as a TBN member.
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {[
+                { day: 'Monday', label: 'Weekly check-in', detail: "Your AI assistant asks: \"You set a goal to attend one event this week. What's on your calendar?\" It surfaces 2–3 events matched to your profile and reminds you who you still owe a follow-up." },
+                { day: 'Mid-week', label: 'Event guidance', detail: "You get a short note on what to look for at Thursday's mixer — which industries are likely in the room, a conversation opener worth trying, and a reminder to grab a photo you can post afterward." },
+                { day: 'Event night', label: 'You show up — we told you exactly why this room matters', detail: "You already know why this event is worth your time, who you're looking for, and what to do when you find them. You're not just attending. You're working the room." },
+                { day: 'Next morning', label: 'Follow-up nudge', detail: "Your assistant checks in: \"You went to the Chamber mixer last night — who'd you meet?\" You log two names. It schedules their follow-up reminder for 48 hours from now and prompts you to post a quick recap." },
+                { day: 'End of month', label: 'Progress milestone', detail: "You're at 34 contacts in your network. The system marks the milestone and shows you the pace to 50. Louis sends a short note on what to focus on next." },
+              ].map(({ day, label, detail }) => (
+                <div key={day} style={{
+                  display: 'grid',
+                  gridTemplateColumns: '110px 1fr',
+                  gap: '1.25rem',
+                  padding: '1.25rem',
+                  background: 'var(--color-paper)',
+                  borderRadius: 10,
+                  border: '1px solid var(--color-rule)',
+                  alignItems: 'start',
+                }}>
+                  <div style={{ textAlign: 'center', paddingTop: '0.15rem' }}>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-accent)' }}>{day}</span>
+                  </div>
+                  <div>
+                    <p style={{ fontWeight: 700, color: 'var(--color-ink)', fontSize: '0.975rem', marginBottom: '0.3rem' }}>{label}</p>
+                    <p style={{ color: 'var(--fg-2)', fontSize: '0.93rem', lineHeight: 1.7, margin: 0 }}>{detail}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)', margin: '0 32px' }} />
+        {/* ── Waitlist form ── */}
+        <section id="waitlist" style={{ background: 'var(--color-paper)', borderBottom: '1px solid var(--color-rule)', padding: '4rem 2rem', scrollMarginTop: '80px' }}>
+          <div style={{ maxWidth: 640, margin: '0 auto' }}>
+            <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '0.75rem' }}>
+              Join the waitlist
+            </p>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 700, lineHeight: 1.2, color: 'var(--color-ink)', marginBottom: '0.75rem' }}>
+              Request a spot in your city.
+            </h2>
+            <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--fg-2)', marginBottom: '2rem' }}>
+              Cohorts are capped at 25 members per city. When a spot opens that matches your industry, Louis will reach out directly to schedule a qualifying conversation.
+            </p>
 
-        {/* City chapters — ghost abbreviation cards */}
-        <section style={{ padding: '64px 32px', maxWidth: '860px', margin: '0 auto' }}>
-          <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '14px' }}>City Chapters</div>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.2, marginBottom: '32px' }}>
-            Four Texas cities. One network.
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-            {CHAPTERS.map(ch => (
-              <div key={ch.city} style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '10px', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', bottom: '-10px', right: '12px', fontSize: '3.75rem', fontWeight: 800, color: '#c2410c', opacity: 0.10, letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)' }}>
-                  {ch.abbr}
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
-                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--fg-1)', margin: 0 }}>{ch.city}</h3>
-                  <span style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', padding: '3px 10px', borderRadius: '100px', background: ch.status === 'founding' ? '#fef3c7' : 'var(--color-primary-bg)', color: ch.status === 'founding' ? '#92400e' : 'var(--color-primary)', flexShrink: 0 }}>
-                    {ch.status === 'founding' ? 'Founding Chapter' : 'Now Forming'}
-                  </span>
-                </div>
-                <p style={{ fontSize: '13px', color: 'var(--fg-3)', lineHeight: 1.6, margin: 0, position: 'relative' }}>
-                  {ch.city} chapter of the Texas Business Network — open to all verified business organizations in the {ch.city} metro area.
+            {status === 'success' ? (
+              <div style={{ padding: '2rem', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 10, textAlign: 'center' }}>
+                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: '#166534', marginBottom: '0.5rem' }}>You're on the list.</p>
+                <p style={{ color: '#166534', fontSize: '0.95rem', lineHeight: 1.65, margin: 0 }}>
+                  Check your inbox for a confirmation. When a spot opens in your city, Louis will reach out directly.
                 </p>
-                <Link href={`/texas/${ch.slug}`} style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)', textDecoration: 'none', marginTop: '4px', position: 'relative' }}>
-                  Browse {ch.city} organizations →
-                </Link>
               </div>
-            ))}
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Name</label>
+                    <input
+                      type="text"
+                      required
+                      value={name}
+                      onChange={e => setName(e.target.value)}
+                      placeholder="Your full name"
+                      style={{ width: '100%', padding: '0.7rem 0.9rem', border: '1px solid var(--color-rule)', borderRadius: 8, fontSize: '0.975rem', color: 'var(--color-ink)', boxSizing: 'border-box', outline: 'none', background: 'var(--color-paper)' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Email</label>
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      placeholder="you@yourcompany.com"
+                      style={{ width: '100%', padding: '0.7rem 0.9rem', border: '1px solid var(--color-rule)', borderRadius: 8, fontSize: '0.975rem', color: 'var(--color-ink)', boxSizing: 'border-box', outline: 'none', background: 'var(--color-paper)' }}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Your City</label>
+                  <select
+                    required
+                    value={city}
+                    onChange={e => setCity(e.target.value)}
+                    style={{ width: '100%', padding: '0.7rem 0.9rem', border: '1px solid var(--color-rule)', borderRadius: 8, fontSize: '0.975rem', color: city ? 'var(--color-ink)' : 'var(--fg-4)', boxSizing: 'border-box', background: 'var(--color-paper)', outline: 'none' }}
+                  >
+                    <option value="">Select your city</option>
+                    {CITIES.map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Your Industry</label>
+                  <select
+                    required
+                    value={industry}
+                    onChange={e => setIndustry(e.target.value)}
+                    style={{ width: '100%', padding: '0.7rem 0.9rem', border: '1px solid var(--color-rule)', borderRadius: 8, fontSize: '0.975rem', color: industry ? 'var(--color-ink)' : 'var(--fg-4)', boxSizing: 'border-box', background: 'var(--color-paper)', outline: 'none' }}
+                  >
+                    <option value="">Select your industry</option>
+                    {INDUSTRIES.map(ind => <option key={ind} value={ind}>{ind}</option>)}
+                  </select>
+                </div>
+                {status === 'error' && (
+                  <p style={{ color: '#dc2626', fontSize: '0.9rem', margin: 0 }}>Something went wrong. Email Louis directly at <a href="mailto:themobilecoach@gmail.com" style={{ color: 'var(--color-accent)' }}>themobilecoach@gmail.com</a>.</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  style={{ background: status === 'loading' ? 'var(--fg-4)' : 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: 8, fontWeight: 600, fontSize: '0.975rem', border: 'none', cursor: status === 'loading' ? 'not-allowed' : 'pointer', textAlign: 'center' }}
+                >
+                  {status === 'loading' ? 'Submitting…' : 'Request my spot →'}
+                </button>
+                <p style={{ fontSize: '0.82rem', color: 'var(--fg-4)', margin: 0, lineHeight: 1.6 }}>
+                  This is not a purchase. Joining the waitlist starts a conversation. Louis will follow up personally when a spot opens that matches your profile.
+                </p>
+              </form>
+            )}
           </div>
         </section>
 
-        <hr style={{ border: 'none', borderTop: '1px solid var(--color-rule)', margin: '0 32px' }} />
-
-        {/* How to join — ghost Tabler icon step cards */}
-        <section style={{ padding: '64px 32px', maxWidth: '860px', margin: '0 auto' }}>
-          <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '14px' }}>How to Join</div>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.2, marginBottom: '32px' }}>
-            Three steps to membership
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '36px' }}>
-            {STEPS.map(s => (
-              <div key={s.num} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '24px', position: 'relative', overflow: 'hidden' }}>
-                <i className={`ti ${s.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '8px', fontSize: '2.5rem', color: '#c2410c', opacity: 0.18, pointerEvents: 'none' }} />
-                <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'var(--color-primary)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: 800, fontFamily: 'var(--font-serif)', marginBottom: '14px', position: 'relative' }}>{s.num}</div>
-                <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '8px', position: 'relative' }}>{s.title}</div>
-                <div style={{ fontSize: '13px', color: 'var(--fg-3)', lineHeight: 1.7, position: 'relative' }}>{s.desc}</div>
-              </div>
-            ))}
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <Link href="/claim"
-              style={{ background: 'var(--color-accent)', color: '#fff', padding: '13px 32px', borderRadius: '8px', fontSize: '14px', fontWeight: 700, textDecoration: 'none', display: 'inline-block' }}>
-              Claim your listing →
+        {/* ── Bottom CTA ── */}
+        <section style={{ background: 'var(--color-ink)', padding: '3.5rem 2rem' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '1rem' }}>
+            <p style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.25rem, 3vw, 1.75rem)', fontWeight: 700, color: '#fff', margin: 0 }}>
+              Not ready for TBN? Start with the free directory.
+            </p>
+            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.975rem', lineHeight: 1.65, maxWidth: 520, margin: 0 }}>
+              Local Business Organizations is a free directory of 500+ networking groups, chambers, and industry associations across Texas — organized by city.
+            </p>
+            <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', padding: '0.75rem 1.5rem', borderRadius: 8, fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none' }}>
+              Browse organizations in your city →
             </Link>
-            <p style={{ fontSize: '12px', color: 'var(--fg-4)', marginTop: '12px' }}>Free membership · No dues · Verification required</p>
           </div>
         </section>
 
