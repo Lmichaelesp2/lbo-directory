@@ -108,7 +108,7 @@ export default function OrganizationChallengePage() {
             <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '0.75rem' }}>
               The Organization Challenge
             </p>
-            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.15, marginBottom: '1.25rem', color: 'var(--fg-1)' }}>
+            <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700, lineHeight: 1.15, marginBottom: '1.25rem', color: 'var(--fg-1)' }}>
               Find the right organizations. Go deep. Build your network from the inside.
             </h1>
             <p style={{ fontSize: '1.125rem', lineHeight: 1.7, color: 'var(--fg-2)', marginBottom: '2rem' }}>
