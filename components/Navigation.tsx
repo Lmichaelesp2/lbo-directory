@@ -44,7 +44,6 @@ function LboCitiesDropdown({ activeCitySlug }: { activeCitySlug?: string }) {
 }
 
 export default function Navigation({ activeCitySlug, activeState, activeCityName }: { activeCitySlug?: string; activeState?: string; activeCityName?: string }) {
-  const [moreOpen, setMoreOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
@@ -152,32 +151,10 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
               style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               Help
             </Link>
-
-            {/* More dropdown */}
-            <div style={{ position: 'relative' }}>
-              <button
-                onClick={() => setMoreOpen(o => !o)}
-                onBlur={() => setTimeout(() => setMoreOpen(false), 150)}
-                style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', background: 'none', border: 'none', cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: 'var(--font-sans)', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                More
-                <span style={{ fontSize: '10px', color: 'var(--fg-4)' }}>▾</span>
-              </button>
-              {moreOpen && (
-                <div style={{ position: 'absolute', top: 'calc(100% + 6px)', left: 0, background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '10px', boxShadow: '0 4px 20px rgba(10,22,40,.10)', minWidth: '180px', zIndex: 100, overflow: 'hidden' }}>
-                  {[
-                    { href: '/texas-business-network', label: 'Texas Business Network' },
-                    { href: '/sponsor', label: 'Sponsorship' },
-                  ].map(item => (
-                    <Link key={item.href} href={item.href}
-                      style={{ display: 'block', padding: '0.6rem 1rem', fontSize: '13px', fontWeight: 500, color: 'var(--fg-1)', textDecoration: 'none', borderBottom: '1px solid var(--color-rule)' }}
-                      onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-paper)')}
-                      onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+            <Link href="/sponsor"
+              style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+              Sponsors
+            </Link>
           </div>
 
           <div className="lbo-nav-right" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
