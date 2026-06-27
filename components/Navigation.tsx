@@ -136,14 +136,10 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
             {/* Cities dropdown */}
             <LboCitiesDropdown activeCitySlug={activeCitySlug} />
 
-            <Link href="/training"
-              style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-              Training
-            </Link>
-            <Link href="/organization-challenge"
-              style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-              Org Challenge
-            </Link>
+            {/* Training and Org Challenge — hidden until ready to launch
+            <Link href="/training" ...>Training</Link>
+            <Link href="/organization-challenge" ...>Org Challenge</Link>
+            */}
             <Link href="/about"
               style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               About
