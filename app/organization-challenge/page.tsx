@@ -127,19 +127,9 @@ export default function OrganizationChallengePage() {
 
         {/* The goal */}
         <section style={{ background: 'var(--color-paper-2)', borderBottom: '1px solid var(--color-rule)', padding: '2.5rem 2rem' }}>
-          <div style={{ maxWidth: 720, margin: '0 auto', display: 'flex', gap: '3rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            {[
-              { number: '3–4', label: 'Organizations to commit to' },
-              { number: '1+', label: 'Active role per organization' },
-              { number: '100', label: 'Network connections in 12 months' },
-            ].map(stat => (
-              <div key={stat.label}>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2.25rem', fontWeight: 700, color: 'var(--color-primary)', lineHeight: 1 }}>{stat.number}</div>
-                <div style={{ fontSize: '0.85rem', color: 'var(--fg-3)', marginTop: '0.25rem' }}>{stat.label}</div>
-              </div>
-            ))}
-            <p style={{ color: 'var(--fg-2)', fontSize: '0.95rem', lineHeight: 1.6, maxWidth: 360 }}>
-              The goal is not to join as many organizations as possible. It is to go deep in the right few — and let the relationships compound from the inside out.
+          <div style={{ maxWidth: 720, margin: '0 auto' }}>
+            <p style={{ color: 'var(--fg-2)', fontSize: '1.05rem', lineHeight: 1.75 }}>
+              Most professionals join too many organizations and go deep in none of them. This challenge is about doing the opposite — selecting fewer organizations, committing fully, and becoming the kind of member people remember and refer. The relationships that grow your business come from depth, not breadth.
             </p>
           </div>
         </section>
