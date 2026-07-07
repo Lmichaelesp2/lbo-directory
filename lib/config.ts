@@ -47,7 +47,7 @@ export const CATEGORY_MAP: Record<string, PublicCategory> = {
   'Other':              'Other',
 };
 
-export const LBC_URL = process.env.NEXT_PUBLIC_LBC_URL || 'https://www.localbusinesscalendar.com';
+export const LBC_URL = process.env.NEXT_PUBLIC_LBC_URL || 'https://www.localbusinesscalendars.com';
 
 export const CITY_CONTENT: Record<string, {
   tagline: string;

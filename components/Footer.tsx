@@ -40,7 +40,7 @@ export default function Footer({ citySlug, cityName, stateName }: FooterProps) {
             <span style={{ color: 'var(--color-primary)' }}>{cityName || stateName || 'Local'}</span>{' '}Business Organizations
           </div>
           <p className="lbo-footer-desc">{brandDesc}</p>
-          <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer" className="lbo-footer-cal-link">
+          <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer" className="lbo-footer-cal-link">
             See upcoming events on Local Business Calendars ↗
           </a>
         </div>
@@ -62,7 +62,7 @@ export default function Footer({ citySlug, cityName, stateName }: FooterProps) {
           <Link href="/about"   className="lbo-footer-link">About</Link>
           <Link href="/contact" className="lbo-footer-link">Contact</Link>
           <Link href="/claim"   className="lbo-footer-link">Claim Your Listing</Link>
-          <Link href="/sponsor" className="lbo-footer-link">Sponsorship</Link>
+          <Link href="/sponsor" className="lbo-footer-link">Partnership</Link>
           <Link href="/privacy" className="lbo-footer-link">Privacy Policy</Link>
           <Link href="/terms"   className="lbo-footer-link">Terms &amp; Conditions</Link>
           <a href="https://www.localbusinesscalendars.com/account" target="_blank" rel="noopener noreferrer" className="lbo-footer-link">Manage My Subscriptions ↗</a>

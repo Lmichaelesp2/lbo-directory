@@ -136,20 +136,20 @@ export default function ClaimPage() {
               </p>
             </div>
 
-            {/* TBN membership callout */}
+            {/* TBOA membership callout */}
             <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '20px 24px', marginBottom: '20px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e', display: 'inline-block', flexShrink: 0 }}></span>
                 <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)' }}>Included with every claim</span>
               </div>
               <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff', marginBottom: '8px', fontFamily: 'var(--font-serif)' }}>
-                Texas Business Network membership
+                Texas Business Organizations Alliance membership
               </div>
               <p style={{ fontSize: '13px', color: 'rgba(255,255,255,.65)', lineHeight: 1.7, marginBottom: '14px' }}>
-                When your listing is approved, your organization automatically becomes a verified member of the <strong style={{ color: '#fff' }}>Texas Business Network</strong> — a statewide network of chambers, professional associations, and networking groups across Texas. Membership is free.
+                When your listing is approved, your organization automatically becomes a verified member of the <strong style={{ color: '#fff' }}>Texas Business Organizations Alliance</strong> — a statewide network of chambers, professional associations, and networking groups across Texas. Membership is free.
               </p>
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                {['Your city chapter', 'Statewide TBN network', 'Verified member badge', 'Free to join'].map(item => (
+                {['Your city chapter', 'Statewide TBOA network', 'Verified member badge', 'Free to join'].map(item => (
                   <span key={item} style={{ fontSize: '11px', fontWeight: 600, padding: '4px 10px', borderRadius: '100px', background: 'rgba(255,255,255,.1)', color: 'rgba(255,255,255,.8)', border: '1px solid rgba(255,255,255,.12)' }}>{item}</span>
                 ))}
               </div>
@@ -164,7 +164,7 @@ export default function ClaimPage() {
                 ['Contact details', 'Phone number, email address, and physical address if applicable'],
                 ['Social links', 'LinkedIn, Facebook, Instagram — all in one place'],
                 ['Priority placement', 'Claimed listings appear above unclaimed ones in search results'],
-                ['Coming soon — $99/year', 'Paid enhanced features launching soon. Early claimants get first access.'],
+                ['Free to claim right now', 'Claiming is free today. Enhanced listings will be $99/year when they launch — early claimants get first access.'],
               ].map(([title, desc]) => (
                 <div key={title} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', marginBottom: '10px' }}>
                   <i className="ti ti-check" style={{ color: 'var(--color-accent)', fontSize: '0.95rem', flexShrink: 0, marginTop: '2px', lineHeight: 1 }} aria-hidden="true" />
@@ -367,15 +367,15 @@ export default function ClaimPage() {
               </p>
             </div>
 
-            {/* TBN membership preview */}
+            {/* TBOA membership preview */}
             <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '24px', marginBottom: '28px' }}>
               <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: '12px' }}>What happens when approved</div>
               <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff', fontFamily: 'var(--font-serif)', marginBottom: '16px' }}>
-                You'll become a member of the Texas Business Network
+                You'll become a member of the Texas Business Organizations Alliance
               </div>
               {[
                 ['🏛', `${selectedOrg?.city || 'Your city'} chapter membership`, 'Your org joins the local chapter for your city — automatically.'],
-                ['🌐', 'Texas Business Network', 'Statewide network of verified chambers, associations, and professional groups.'],
+                ['🌐', 'Texas Business Organizations Alliance', 'Statewide network of verified chambers, associations, and professional groups.'],
                 ['✓', 'Verified member status', 'Your listing is marked as verified and claimed — the right contact is on record.'],
                 ['📬', 'Quarterly check-ins', 'We will reach out every 90 days to keep your contact info current.'],
               ].map(([icon, title, desc]) => (

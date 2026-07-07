@@ -45,7 +45,7 @@ function LboCitiesDropdown({ activeCitySlug }: { activeCitySlug?: string }) {
 
 export default function Navigation({ activeCitySlug, activeState, activeCityName }: { activeCitySlug?: string; activeState?: string; activeCityName?: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [sponsorsOpen, setSponsorsOpen] = useState(false);
+  const [partnersOpen, setPartnersOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -72,12 +72,12 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
   ];
 
   const MORE_LINKS = [
-    { href: 'https://www.localbusinesscalendar.com', label: 'Events Calendar ↗', external: true, primary: true },
+    { href: 'https://www.localbusinesscalendars.com', label: 'Events Calendar ↗', external: true, primary: true },
     { href: '/organization-challenge', label: 'Organization Challenge', external: false, primary: false },
     { href: '/about',   label: 'About' },
     { href: '/contact', label: 'Contact' },
     { href: '/help',    label: 'Help' },
-    { href: '/sponsor', label: 'Sponsorship' },
+    { href: '/sponsor', label: 'Partnership' },
     { href: '/claim',   label: 'Claim Your Listing' },
     { href: '/privacy', label: 'Privacy Policy' },
     { href: '/terms',   label: 'Terms & Conditions' },
@@ -154,26 +154,26 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
             </Link>
             <div style={{ position: 'relative' }}>
               <button
-                onClick={() => setSponsorsOpen(o => !o)}
-                onBlur={() => setTimeout(() => setSponsorsOpen(false), 150)}
+                onClick={() => setPartnersOpen(o => !o)}
+                onBlur={() => setTimeout(() => setPartnersOpen(false), 150)}
                 style={{ fontSize: '13px', fontWeight: 500, color: 'var(--fg-2)', padding: '4px 12px', borderRadius: '6px', background: 'none', border: 'none', cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: 'var(--font-sans)', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                Sponsors
+                Partners
                 <span style={{ fontSize: '10px', color: 'var(--fg-4)' }}>▾</span>
               </button>
-              {sponsorsOpen && (
+              {partnersOpen && (
                 <div style={{ position: 'absolute', top: 'calc(100% + 6px)', left: 0, background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '10px', boxShadow: '0 4px 20px rgba(10,22,40,.10)', minWidth: '220px', zIndex: 100, overflow: 'hidden' }}>
-                  <a href="https://localbusinesscalendars.com/sponsors" target="_blank" rel="noopener noreferrer"
+                  <a href="https://www.localbusinesscalendars.com/partners" target="_blank" rel="noopener noreferrer"
                     style={{ display: 'block', padding: '0.7rem 1rem', textDecoration: 'none', borderBottom: '1px solid var(--color-rule)' }}
                     onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-paper)')}
                     onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
-                    <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '2px' }}>Our Sponsors</div>
+                    <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '2px' }}>Our Partners</div>
                     <div style={{ fontSize: '12px', color: 'var(--fg-3)' }}>Meet the organizations that make this free</div>
                   </a>
                   <Link href="/sponsor"
                     style={{ display: 'block', padding: '0.7rem 1rem', textDecoration: 'none' }}
                     onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-paper)')}
                     onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
-                    <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '2px' }}>Become a Sponsor</div>
+                    <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '2px' }}>Become a Partner</div>
                     <div style={{ fontSize: '12px', color: 'var(--fg-3)' }}>Reach local business professionals every week</div>
                   </Link>
                 </div>
@@ -183,7 +183,7 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
 
           <div className="lbo-nav-right" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             {/* Cross-link to LBC */}
-            <a href="https://www.localbusinesscalendar.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.localbusinesscalendars.com" target="_blank" rel="noopener noreferrer"
               style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-primary)', padding: '4px 12px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               Events Calendar ↗
             </a>
