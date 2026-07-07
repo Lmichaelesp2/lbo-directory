@@ -114,19 +114,18 @@ export default function CityPageClient({ initialOrgs, eventsByOrg }: Props = {})
 
             {/* Right panel — stats + search */}
             <div className="lbo-hero-city-panel" style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(10,22,40,.07)' }}>
-              <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-3)', padding: '0.75rem 1.25rem', borderBottom: '1px solid var(--color-rule)', background: 'var(--color-paper-2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span>{cityName} Directory</span>
-                <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>{loading ? '—' : orgs.length} orgs</span>
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-3)', padding: '0.75rem 1.25rem', borderBottom: '1px solid var(--color-rule)', background: 'var(--color-paper-2)' }}>
+                {cityName}
               </div>
               <div style={{ padding: '1rem 1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {[
-                  { label: 'Categories', value: '8' },
-                  { label: 'Verified profiles', value: String(orgs.filter(o => o.verified).length || '—') },
-                  { label: 'Free to browse', value: 'Yes' },
+                  { label: 'Organizations', value: loading ? '—' : String(orgs.length), accent: true },
+                  { label: 'Categories', value: '8', accent: false },
+                  { label: "This week's events", value: totalEventCount > 0 ? String(totalEventCount) : '—', accent: false },
                 ].map(stat => (
                   <div key={stat.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.825rem' }}>
                     <span style={{ color: 'var(--fg-3)' }}>{stat.label}</span>
-                    <span style={{ fontWeight: 700, color: 'var(--fg-1)' }}>{stat.value}</span>
+                    <span style={{ fontWeight: 700, color: stat.accent ? 'var(--color-primary)' : 'var(--fg-1)' }}>{stat.value}</span>
                   </div>
                 ))}
               </div>
