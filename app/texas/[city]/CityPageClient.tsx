@@ -336,8 +336,8 @@ export default function CityPageClient({ initialOrgs, eventsByOrg }: Props = {})
             </Link>
           </div>
 
-          {/* Free account CTA — light, compact */}
-          <div style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.5rem 1.75rem', marginTop: '1.75rem', display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          {/* Free account CTA — light, compact, warm accent tint */}
+          <div style={{ background: '#fff7ed', border: '1px solid #fed7aa', borderRadius: '12px', padding: '1.5rem 1.75rem', marginTop: '1.75rem', display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
             <div style={{ flex: '1 1 340px', minWidth: 0 }}>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '0.4rem', lineHeight: 1.3 }}>
                 Create a free account to see it all
