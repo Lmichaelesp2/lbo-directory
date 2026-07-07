@@ -336,47 +336,26 @@ export default function CityPageClient({ initialOrgs, eventsByOrg }: Props = {})
             </Link>
           </div>
 
-          {/* Unified account + events CTA */}
-          <div style={{ background: 'var(--color-ink)', borderRadius: '12px', padding: '2rem', marginTop: '1.75rem' }}>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.45)', marginBottom: '0.5rem' }}>Free Account — {cityName}</div>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, color: '#fff', marginBottom: '0.5rem', lineHeight: 1.3 }}>
-                See the full directory and what these organizations are hosting every week.
+          {/* Free account CTA — light, compact */}
+          <div style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '1.5rem 1.75rem', marginTop: '1.75rem', display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div style={{ flex: '1 1 340px', minWidth: 0 }}>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '0.4rem', lineHeight: 1.3 }}>
+                Create a free account to see it all
               </h3>
-              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, maxWidth: '540px' }}>
-                Create a free account to unlock complete organization profiles — contact info, membership details, social links, and more. You'll also be automatically subscribed to the <strong style={{ color: 'rgba(255,255,255,0.85)' }}>{cityName} weekly business events newsletter</strong> so you never miss what's coming up.
+              <p style={{ fontSize: '0.875rem', color: 'var(--fg-3)', lineHeight: 1.6, margin: 0 }}>
+                Full org profiles, contact info, and this week&apos;s events — plus the weekly {cityName} events newsletter.
               </p>
             </div>
-
-            {/* What you get */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '1.5rem' }}>
-              {[
-                'Full organization profiles — contact info, phone, email, address',
-                'Membership type, fee range, and how to join',
-                `Weekly ${cityName} business events digest — every Monday`,
-              ].map(item => (
-                <div key={item} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                  <i className="ti ti-check" style={{ color: 'var(--color-accent)', fontSize: '0.875rem', marginTop: '2px', flexShrink: 0 }} />
-                  <span style={{ fontSize: '0.825rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.5 }}>{item}</span>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center', flexShrink: 0 }}>
               <Link href={`/signup?city=${encodeURIComponent(cityName)}`}
-                style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.85rem 1.75rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                style={{ background: 'var(--color-accent)', color: '#fff', padding: '0.75rem 1.5rem', borderRadius: '8px', fontSize: '0.875rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
                 Create free account →
               </Link>
-              <a href={`https://www.localbusinesscalendars.com/texas/${citySlug}`} target="_blank" rel="noopener noreferrer"
-                style={{ fontSize: '0.825rem', color: 'rgba(255,255,255,0.55)', textDecoration: 'none', fontWeight: 600 }}>
-                Browse upcoming events ↗
-              </a>
+              <Link href="/login"
+                style={{ color: 'var(--color-primary)', padding: '0.75rem 0.5rem', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                Sign in
+              </Link>
             </div>
-
-            <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)', marginTop: '1rem' }}>
-              Already have an account?{' '}
-              <Link href="/login" style={{ color: 'rgba(255,255,255,0.5)', fontWeight: 600, textDecoration: 'none' }}>Sign in →</Link>
-            </p>
           </div>
 
           {/* Testimonials — trust beat right after the conversion ask */}
