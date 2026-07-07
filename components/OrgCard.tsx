@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Organization } from '@/lib/supabase';
 import OrgDetailModal from './OrgDetailModal';
+import { OrgEvent, eventTeaser } from '@/lib/events';
 
 function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').trim();
@@ -30,10 +31,11 @@ const CATEGORY_ICONS: Record<string, string> = {
 };
 
 
-export default function OrgCard({ org, lean = false }: { org: Organization; lean?: boolean }) {
+export default function OrgCard({ org, lean = false, events }: { org: Organization; lean?: boolean; events?: OrgEvent[] }) {
   const [showModal, setShowModal] = useState(false);
 
   const catIcon = CATEGORY_ICONS[org.category || ''] || 'ti-dots-circle-horizontal';
+  const nextEvent = events && events.length > 0 ? events[0] : null;
 
   return (
     <>
@@ -79,13 +81,26 @@ export default function OrgCard({ org, lean = false }: { org: Organization; lean
             )}
             <span style={{ fontSize: '9.5px', color: 'var(--fg-4)', whiteSpace: 'nowrap', flexShrink: 0 }}>· {org.city}</span>
           </div>
+
+          {/* Next-event teaser — only on orgs with an event this week */}
+          {nextEvent && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '5px', overflow: 'hidden' }}>
+              <i className="ti ti-calendar-event" style={{ fontSize: '10.5px', color: 'var(--color-accent)', flexShrink: 0 }} />
+              <span style={{ fontSize: '10px', color: 'var(--color-accent)', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <span style={{ fontWeight: 700 }}>Next:</span> {eventTeaser(nextEvent)}
+                {events && events.length > 1 && (
+                  <span style={{ color: 'var(--fg-4)', fontWeight: 500 }}> +{events.length - 1} more</span>
+                )}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* View details */}
-        <span style={{ fontSize: '10.5px', color: 'var(--color-primary)', fontWeight: 600, flexShrink: 0 }}>View →</span>
+        <span style={{ fontSize: '10.5px', color: 'var(--color-primary)', fontWeight: 600, flexShrink: 0, alignSelf: nextEvent ? 'center' : 'center' }}>View →</span>
       </div>
 
-      {showModal && <OrgDetailModal org={org} onClose={() => setShowModal(false)} />}
+      {showModal && <OrgDetailModal org={org} events={events} onClose={() => setShowModal(false)} />}
     </>
   );
 }

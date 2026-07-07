@@ -8,43 +8,63 @@ import Breadcrumb from '@/components/Breadcrumb';
 import OrgCard from '@/components/OrgCard';
 import { Organization } from '@/lib/supabase';
 import { CITY_SLUG_TO_NAME, PUBLIC_CATEGORIES, CITY_CONTENT, CATEGORY_MAP } from '@/lib/config';
+import { OrgEvent } from '@/lib/events';
 
+type Props = {
+  initialOrgs?: Organization[];
+  eventsByOrg?: Record<number, OrgEvent[]>;
+};
 
-export default function CityPageClient() {
+function computeCounts(list: Organization[]): Record<string, number> {
+  const c: Record<string, number> = {};
+  list.forEach((o) => {
+    const label = o.category ? CATEGORY_MAP[o.category] : null;
+    if (label) c[label] = (c[label] || 0) + 1;
+  });
+  return c;
+}
+
+export default function CityPageClient({ initialOrgs, eventsByOrg }: Props = {}) {
   const params = useParams();
   const citySlug = params.city as string;
   const cityName = CITY_SLUG_TO_NAME[citySlug as keyof typeof CITY_SLUG_TO_NAME];
   const content = CITY_CONTENT[cityName];
 
-  const [orgs, setOrgs] = useState<Organization[]>([]);
-  const [counts, setCounts] = useState<Record<string, number>>({});
+  const hasSeed = Array.isArray(initialOrgs);
+  const events = eventsByOrg || {};
+  const totalEventCount = Object.values(events).reduce((n, arr) => n + arr.length, 0);
+
+  const [orgs, setOrgs] = useState<Organization[]>(initialOrgs || []);
+  const [counts, setCounts] = useState<Record<string, number>>(hasSeed ? computeCounts(initialOrgs!) : {});
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!hasSeed);
 
   useEffect(() => {
-    if (!cityName) return;
+    // Server already seeded the list (SSR path) — no client fetch needed.
+    if (hasSeed || !cityName) return;
     setLoading(true);
     fetch(`/api/organizations?city=${encodeURIComponent(cityName)}`)
       .then(r => r.json())
       .then((data: Organization[]) => {
         setOrgs(data || []);
-        const c: Record<string, number> = {};
-        (data || []).forEach((o: any) => {
-          const label = o.category ? CATEGORY_MAP[o.category] : null;
-          if (label) c[label] = (c[label] || 0) + 1;
-        });
-        setCounts(c);
+        setCounts(computeCounts(data || []));
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [cityName]);
+  }, [cityName, hasSeed]);
 
   const filtered = orgs.filter(o => {
     const displayCat = o.category ? CATEGORY_MAP[o.category] : null;
     const matchCat = !selectedCategory || displayCat === selectedCategory;
     const matchSearch = !search || o.name.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchSearch;
+  }).sort((a, b) => {
+    // Active orgs (with an event this week) sort first; then A→Z.
+    const aActive = (events[a.id]?.length || 0) > 0 ? 1 : 0;
+    const bActive = (events[b.id]?.length || 0) > 0 ? 1 : 0;
+    if (aActive !== bActive) return bActive - aActive;
+    return a.name.localeCompare(b.name);
   });
 
   if (!cityName) return <div style={{ padding: '48px', textAlign: 'center' }}>City not found.</div>;
@@ -170,6 +190,20 @@ export default function CityPageClient() {
 
         <div id="organizations" style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem 2rem', boxSizing: 'border-box', overflow: 'hidden', background: 'var(--color-paper-2)' }}>
 
+          {/* Looking for events first? — LBC handoff banner (only when we have live events) */}
+          {totalEventCount > 0 && (
+            <a href={`https://www.localbusinesscalendars.com/texas/${citySlug}`} target="_blank" rel="noopener noreferrer"
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', background: '#fff7ed', border: '1px solid #fed7aa', borderRadius: '10px', padding: '12px 18px', marginBottom: '1.5rem', textDecoration: 'none', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '0.85rem', color: 'var(--fg-2)', lineHeight: 1.5 }}>
+                <i className="ti ti-calendar-event" style={{ color: 'var(--color-accent)', marginRight: '7px' }} />
+                <strong style={{ color: 'var(--fg-1)' }}>{totalEventCount} events</strong> this week from these {cityName} organizations. Looking for events first?
+              </span>
+              <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-accent)', whiteSpace: 'nowrap' }}>
+                See the {cityName} calendar →
+              </span>
+            </a>
+          )}
+
           {/* Browse the directory — heading + category filter */}
           <div style={{ marginBottom: '1.75rem' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>
@@ -288,7 +322,7 @@ export default function CityPageClient() {
             <div style={{ textAlign: 'center', padding: '48px', color: 'var(--fg-4)' }}>No organizations found.</div>
           ) : (
             <div className="lbo-org-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', minWidth: 0 }}>
-              {filtered.map(org => <OrgCard key={org.id} org={org} lean />)}
+              {filtered.map(org => <OrgCard key={org.id} org={org} lean events={events[org.id]} />)}
             </div>
           )}
 

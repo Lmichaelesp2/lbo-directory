@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Organization } from '@/lib/supabase';
 import { getLboUserProfile, LboUserProfile } from '@/lib/auth';
+import { OrgEvent, formatEventDate, formatEventTime, lbcCityUrl } from '@/lib/events';
 
 function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').trim();
@@ -63,7 +64,7 @@ function InfoRow({ icon, label, value, href }: { icon: string; label: string; va
   );
 }
 
-export default function OrgDetailModal({ org, onClose }: { org: Organization; onClose: () => void }) {
+export default function OrgDetailModal({ org, events, onClose }: { org: Organization; events?: OrgEvent[]; onClose: () => void }) {
   const router = useRouter();
   const [profile, setProfile] = useState<LboUserProfile | null | undefined>(undefined);
 
@@ -170,6 +171,63 @@ export default function OrgDetailModal({ org, onClose }: { org: Organization; on
 
         {/* Body */}
         <div style={{ padding: '20px 28px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
+          {/* Upcoming this week — public teaser (free tier: one week of events) */}
+          {events && events.length > 0 && (
+            <div style={{ background: '#fff7ed', border: '1px solid #fed7aa', borderRadius: '10px', padding: '16px 18px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', gap: '10px' }}>
+                <SectionLabel>Upcoming this week</SectionLabel>
+                <a href={lbcCityUrl(org.city)} target="_blank" rel="noopener noreferrer"
+                  style={{ fontSize: '11px', fontWeight: 700, color: 'var(--color-accent)', textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                  View on the calendar →
+                </a>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {(isLoggedIn ? events : events.slice(0, 1)).map(ev => {
+                  const time = formatEventTime(ev.start_time);
+                  return (
+                    <div key={ev.id} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                      <div style={{ flexShrink: 0, width: '58px', textAlign: 'center', background: '#fff', border: '1px solid #fed7aa', borderRadius: '8px', padding: '5px 0' }}>
+                        <div style={{ fontSize: '9px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--color-accent)', lineHeight: 1.2 }}>
+                          {formatEventDate(ev.start_date).split(' ')[0]}
+                        </div>
+                        <div style={{ fontSize: '15px', fontWeight: 800, color: 'var(--fg-1)', lineHeight: 1.1 }}>
+                          {formatEventDate(ev.start_date).split(' ')[2]}
+                        </div>
+                        <div style={{ fontSize: '9px', fontWeight: 600, textTransform: 'uppercase', color: 'var(--fg-4)', lineHeight: 1.2 }}>
+                          {formatEventDate(ev.start_date).split(' ')[1]}
+                        </div>
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.35, marginBottom: '2px' }}>
+                          {ev.website ? (
+                            <a href={ev.website} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--fg-1)', textDecoration: 'none' }}>{ev.name}</a>
+                          ) : ev.name}
+                        </div>
+                        <div style={{ fontSize: '11px', color: 'var(--fg-3)', lineHeight: 1.5 }}>
+                          {time && <span>{time}</span>}
+                          {time && ev.event_address && <span> · </span>}
+                          {ev.event_address && <span>{ev.event_address}</span>}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Gate the rest of the week behind a free account */}
+              {!isLoggedIn && events.length > 1 && (
+                <button
+                  onClick={() => router.push(`/signup${org.city ? `?city=${encodeURIComponent(org.city)}` : ''}`)}
+                  style={{ width: '100%', marginTop: '12px', background: '#fff', border: '1px dashed var(--color-accent)', borderRadius: '8px', padding: '10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '7px', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>
+                  <i className="ti ti-lock" style={{ fontSize: '13px', color: 'var(--color-accent)' }} />
+                  <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--color-accent)' }}>
+                    Create a free account to see all {events.length} events this week →
+                  </span>
+                </button>
+              )}
+            </div>
+          )}
 
           {isLoggedIn ? (
             <>
