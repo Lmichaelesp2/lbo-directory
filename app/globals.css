@@ -309,6 +309,22 @@ a:hover { text-decoration: underline; }
   text-align: right;
 }
 
+/* ── Mobile grid-collapse helpers ──
+   Pair these with inline desktop grid styles: the !important wins over the
+   inline style only inside the media query, so desktop stays untouched. */
+@media (max-width: 640px) {
+  .m-stack { grid-template-columns: 1fr !important; }
+  .m-2col { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* iOS Safari auto-zooms into any focused input with font-size < 16px,
+   which shoves the page sideways. Force 16px on phones to prevent it. */
+@media (max-width: 768px) {
+  input:not([type="checkbox"]):not([type="radio"]), textarea, select {
+    font-size: 16px !important;
+  }
+}
+
 @media (max-width: 768px) {
   /* Nav top bar: shrink wordmark, tighter padding */
   .lbo-nav-topbar-inner {

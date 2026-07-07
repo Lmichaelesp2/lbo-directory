@@ -387,7 +387,7 @@ export default function TexasBusinessNetworkPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div className="m-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Name</label>
                     <input

@@ -97,7 +97,7 @@ export default function TexasBusinessOrganizationsPage() {
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.2, marginBottom: '32px' }}>
             Four Texas cities. One network.
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
+          <div className="m-stack" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
             {CHAPTERS.map(ch => (
               <div key={ch.city} style={{ background: 'var(--color-paper-2)', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '10px', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', bottom: '-10px', right: '12px', fontSize: '3.75rem', fontWeight: 800, color: '#c2410c', opacity: 0.10, letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', fontFamily: 'var(--font-sans)' }}>
@@ -128,7 +128,7 @@ export default function TexasBusinessOrganizationsPage() {
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 700, color: 'var(--fg-1)', lineHeight: 1.2, marginBottom: '32px' }}>
             Three steps to membership
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '36px' }}>
+          <div className="m-stack" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '36px' }}>
             {STEPS.map(s => (
               <div key={s.num} style={{ background: '#fff', border: '1px solid var(--color-rule)', borderRadius: '12px', padding: '24px', position: 'relative', overflow: 'hidden' }}>
                 <i className={`ti ${s.icon}`} style={{ position: 'absolute', bottom: '-4px', right: '8px', fontSize: '2.5rem', color: '#c2410c', opacity: 0.18, pointerEvents: 'none' }} />

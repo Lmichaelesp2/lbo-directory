@@ -105,7 +105,7 @@ export default function DirectoryPage() {
 
         {/* Category grid */}
         <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '14px' }}>Browse by category</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '36px' }}>
+        <div className="m-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '36px' }}>
           {PUBLIC_CATEGORIES.map(cat => {
             const colors = ICON_COLOR[cat.color];
             const isActive = selectedCategory === cat.label;
@@ -136,7 +136,7 @@ export default function DirectoryPage() {
         ) : filtered.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '48px', color: 'var(--fg-4)', fontSize: '14px' }}>No organizations found.</div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+          <div className="m-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
             {filtered.map(org => <OrgCard key={org.id} org={org} />)}
           </div>
         )}

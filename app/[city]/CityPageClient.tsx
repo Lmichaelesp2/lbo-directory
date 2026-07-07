@@ -169,7 +169,7 @@ export default function CityPageClient() {
 
           {/* City intro */}
           {content && (
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '40px', alignItems: 'flex-start', marginBottom: '36px', paddingBottom: '32px', borderBottom: '1px solid var(--color-rule)' }}>
+            <div className="m-stack" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '40px', alignItems: 'flex-start', marginBottom: '36px', paddingBottom: '32px', borderBottom: '1px solid var(--color-rule)' }}>
               <div>
                 <p style={{ fontSize: '14px', color: 'var(--fg-2)', lineHeight: 1.8 }}>
                   {content.intro}
@@ -239,7 +239,7 @@ export default function CityPageClient() {
           ) : filtered.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '48px', color: 'var(--fg-4)' }}>No organizations found.</div>
           ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
+            <div className="m-stack" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
               {filtered.map(org => <OrgCard key={org.id} org={org} lean />)}
             </div>
           )}

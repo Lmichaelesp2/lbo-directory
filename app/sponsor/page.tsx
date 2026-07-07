@@ -81,7 +81,7 @@ export default function SponsorPage() {
           {/* What you get */}
           <div>
             <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', fontWeight: 600, color: 'var(--fg-1)', marginBottom: '1rem' }}>What your sponsorship includes</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+            <div className="m-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
               {[
                 ['ti-building-community', 'Local Business Organizations', 'Featured in your city\'s organization directory under your category'],
                 ['ti-calendar-event',     'Local Business Calendars',     'Featured on your city\'s weekly events calendar under your category'],
