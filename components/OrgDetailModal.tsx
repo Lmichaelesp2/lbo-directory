@@ -92,7 +92,7 @@ export default function OrgDetailModal({ org, events, onClose }: { org: Organiza
 
   const quickFacts: string[] = [];
   if (org.founded_year) quickFacts.push(`Est. ${org.founded_year}`);
-  if (org.how_active) quickFacts.push(org.how_active);
+  if (org.how_active && isLoggedIn) quickFacts.push(org.how_active); // frequency is members-only
   if (org.national_affiliate) quickFacts.push(org.national_affiliate);
   if (org.guest_friendly === 'Yes' || org.guest_friendly === 'yes') quickFacts.push('Guest friendly');
 
@@ -172,21 +172,18 @@ export default function OrgDetailModal({ org, events, onClose }: { org: Organiza
         {/* Body */}
         <div style={{ padding: '20px 28px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
-          {/* Upcoming this week — event details are members-only; count is the public hook */}
-          {events && events.length > 0 && (
+          {/* Upcoming this week — members only; logged-out users see the count inside the single gate below */}
+          {isLoggedIn && events && events.length > 0 && (
             <div style={{ background: '#fff7ed', border: '1px solid #fed7aa', borderRadius: '10px', padding: '16px 18px' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', gap: '10px' }}>
                 <SectionLabel>Upcoming this week</SectionLabel>
-                {isLoggedIn && (
-                  <a href={lbcCityUrl(org.city)} target="_blank" rel="noopener noreferrer"
-                    style={{ fontSize: '11px', fontWeight: 700, color: 'var(--color-accent)', textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
-                    View on the calendar →
-                  </a>
-                )}
+                <a href={lbcCityUrl(org.city)} target="_blank" rel="noopener noreferrer"
+                  style={{ fontSize: '11px', fontWeight: 700, color: 'var(--color-accent)', textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                  View on the calendar →
+                </a>
               </div>
 
-              {isLoggedIn ? (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {events.map(ev => {
                     const time = formatEventTime(ev.start_time);
                     return (
@@ -217,33 +214,7 @@ export default function OrgDetailModal({ org, events, onClose }: { org: Organiza
                       </div>
                     );
                   })}
-                </div>
-              ) : (
-                /* Logged-out: lock the event details, show count + sign-in prompt */
-                <div style={{ display: 'flex', gap: '13px', alignItems: 'center' }}>
-                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#fff', border: '1px solid #fed7aa', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <i className="ti ti-lock" style={{ fontSize: '17px', color: 'var(--color-accent)' }} />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '2px' }}>
-                      {events.length} {events.length === 1 ? 'event' : 'events'} this week
-                    </div>
-                    <p style={{ fontSize: '12px', color: 'var(--fg-3)', lineHeight: 1.5, margin: '0 0 10px' }}>
-                      Sign in to your free account to see this week&apos;s events — dates, times, and locations.
-                    </p>
-                    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                      <button onClick={() => router.push(`/signup${org.city ? `?city=${encodeURIComponent(org.city)}` : ''}`)}
-                        style={{ background: 'var(--color-accent)', color: '#fff', border: 'none', borderRadius: '7px', padding: '8px 16px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>
-                        Create free account →
-                      </button>
-                      <button onClick={() => router.push('/login')}
-                        style={{ background: '#fff', color: 'var(--color-accent)', border: '1px solid var(--color-accent)', borderRadius: '7px', padding: '8px 14px', fontSize: '12px', fontWeight: 600, cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>
-                        Sign in
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
+              </div>
             </div>
           )}
 
@@ -381,8 +352,13 @@ export default function OrgDetailModal({ org, events, onClose }: { org: Organiza
                 <div style={{ fontFamily: 'var(--font-serif)', fontSize: '15px', fontWeight: 700, color: 'var(--fg-1)', marginBottom: '4px' }}>
                   Full profile is members only
                 </div>
+                {events && events.length > 0 && (
+                  <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--color-accent)', marginBottom: '4px' }}>
+                    {events.length} {events.length === 1 ? 'event' : 'events'} this week
+                  </div>
+                )}
                 <p style={{ fontSize: '12px', color: 'var(--fg-3)', lineHeight: 1.5, margin: '0 0 12px' }}>
-                  Free account unlocks: description, contact info, membership details, social links, and more.
+                  Your free account unlocks organization details, upcoming events, and more.
                 </p>
                 <div style={{ display: 'flex', gap: '8px' }}>
                   <button onClick={() => router.push(`/signup${org.city ? `?city=${encodeURIComponent(org.city)}` : ''}`)}
