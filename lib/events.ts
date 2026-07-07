@@ -13,9 +13,8 @@ export type OrgEvent = {
   group_id: number;
 };
 
-// One-city-first rollout: only these city slugs get the events feature (teaser + modal + JSON-LD).
-// Add the other slugs here to roll out: 'houston', 'dallas', 'austin'.
-export const EVENTS_ENABLED_CITY_SLUGS: string[] = ['san-antonio'];
+// Cities with the events feature enabled (teaser + modal + JSON-LD).
+export const EVENTS_ENABLED_CITY_SLUGS: string[] = ['san-antonio', 'houston', 'dallas', 'austin'];
 
 export function eventsEnabledForSlug(slug: string): boolean {
   return EVENTS_ENABLED_CITY_SLUGS.includes(slug);

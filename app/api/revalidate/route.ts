@@ -19,10 +19,9 @@ export const dynamic = 'force-dynamic';
 const PATHS = [
   '/texas',
   '/texas/san-antonio',
-  // Uncomment as the events feature rolls out to more cities:
-  // '/texas/austin',
-  // '/texas/dallas',
-  // '/texas/houston',
+  '/texas/austin',
+  '/texas/dallas',
+  '/texas/houston',
 ];
 
 function authorized(req: NextRequest): boolean {
