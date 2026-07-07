@@ -64,10 +64,10 @@ export function formatEventTime(time: string | null): string | null {
   return `${h}:${String(m).padStart(2, '0')} ${ampm}`;
 }
 
-// One-line card teaser: "Tue Jul 14 · Monthly Lunch Mixer"
-export function eventTeaser(ev: OrgEvent, maxName = 42): string {
-  const name = ev.name.length > maxName ? ev.name.slice(0, maxName - 1).trimEnd() + '…' : ev.name;
-  return `${formatEventDate(ev.start_date)} · ${name}`;
+// One-line card teaser: just the event name (date/time is intentionally withheld
+// to encourage sign-in). "Monthly Lunch Mixer"
+export function eventTeaser(ev: OrgEvent, maxName = 52): string {
+  return ev.name.length > maxName ? ev.name.slice(0, maxName - 1).trimEnd() + '…' : ev.name;
 }
 
 /**
