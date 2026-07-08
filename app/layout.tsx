@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import AuthHandoff from '@/components/AuthHandoff';
 
 export const metadata: Metadata = {
   title: 'Local Business Organizations — Texas Business Directory',
@@ -39,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="min-h-screen flex flex-col">{children}</body>
+      <body className="min-h-screen flex flex-col"><AuthHandoff />{children}</body>
     </html>
   );
 }
