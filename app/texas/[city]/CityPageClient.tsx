@@ -48,6 +48,12 @@ export default function CityPageClient({ initialOrgs, eventsByOrg }: Props = {})
     const raw = new URLSearchParams(window.location.search).get('category');
     if (raw && PUBLIC_CATEGORIES.some(c => c.label === raw)) {
       setSelectedCategory(raw);
+      // Jump straight to the directory/category section instead of the hero —
+      // the visitor came here to see this category. Delay a tick so the seeded
+      // list is painted before we scroll.
+      setTimeout(() => {
+        document.getElementById('directory')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
     }
   }, []);
 
@@ -215,7 +221,7 @@ export default function CityPageClient({ initialOrgs, eventsByOrg }: Props = {})
           )}
 
           {/* Browse the directory — heading + category filter */}
-          <div style={{ marginBottom: '1.75rem' }}>
+          <div id="directory" style={{ marginBottom: '1.75rem', scrollMarginTop: '80px' }}>
             <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>
               Browse the directory
             </div>
