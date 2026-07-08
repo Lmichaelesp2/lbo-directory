@@ -40,6 +40,17 @@ export default function CityPageClient({ initialOrgs, eventsByOrg }: Props = {})
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(!hasSeed);
 
+  // Pre-select a category when arriving from a Local Business Calendars city-page
+  // card (e.g. .../texas/san-antonio?category=Chambers). Read once on mount from
+  // the URL directly to avoid useSearchParams' Suspense requirement.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const raw = new URLSearchParams(window.location.search).get('category');
+    if (raw && PUBLIC_CATEGORIES.some(c => c.label === raw)) {
+      setSelectedCategory(raw);
+    }
+  }, []);
+
   useEffect(() => {
     // Server already seeded the list (SSR path) — no client fetch needed.
     if (hasSeed || !cityName) return;
