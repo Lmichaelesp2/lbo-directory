@@ -94,6 +94,8 @@ export default function Navigation({ activeCitySlug, activeState, activeCityName
             <div className="lbo-nav-wordmark" style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--color-ink)', letterSpacing: '-0.04em', fontFamily: 'var(--font-sans)', lineHeight: 1.1, whiteSpace: 'nowrap' }}>
               {activeCityName ? (
                 <><span style={{ color: 'var(--color-primary)' }}>{activeCityName}</span> Business Organizations</>
+              ) : activeState === 'texas' ? (
+                <><span style={{ color: 'var(--color-primary)' }}>Texas</span> Business Organizations</>
               ) : (
                 <><span style={{ color: 'var(--color-primary)' }}>Local</span> Business Organizations</>
               )}
